@@ -15,7 +15,7 @@ export default function DnsTestPage() {
       <DnsTester />
       <p className="text-sm text-slate-400">Browser caveat: some reachability and protocol checks can be limited by browser security and CORS behavior even when network access works.</p>
       <div className="flex gap-3">
-        <Link href="/aegis-pdns" className="rounded-lg bg-brandBlue px-4 py-2 font-medium text-slate-950">Back to setup</Link>
+        <Link href="/aegis-pdns" className="rounded-lg bg-brandBlue px-4 py-2 font-medium text-slate-950">Back to AEGIS PDNS</Link>
         <Link href="/contact" className="rounded-lg border border-brandPurple/60 px-4 py-2 text-white">Report an issue</Link>
       </div>
     </main>

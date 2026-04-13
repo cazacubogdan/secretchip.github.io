@@ -3,16 +3,16 @@ import { ReactNode } from 'react';
 
 export function SectionHeading({ eyebrow, title, description }: { eyebrow?: string; title: string; description?: string }) {
   return (
-    <div className="max-w-3xl space-y-3">
+    <div className="max-w-3xl space-y-3 fade-up">
       {eyebrow ? <p className="text-xs uppercase tracking-[0.24em] text-brandBlue">{eyebrow}</p> : null}
       <h2 className="text-3xl font-semibold text-white md:text-4xl">{title}</h2>
-      {description ? <p className="text-base text-slate-300">{description}</p> : null}
+      {description ? <p className="text-base leading-relaxed text-slate-300">{description}</p> : null}
     </div>
   );
 }
 
 export function GlassCard({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur ${className}`}>{children}</div>;
+  return <div className={`rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition duration-300 hover:border-brandBlue/30 ${className}`}>{children}</div>;
 }
 
 export function CTA({ title, text, primary, secondary }: { title: string; text: string; primary: { label: string; href: string }; secondary?: { label: string; href: string } }) {
@@ -24,11 +24,11 @@ export function CTA({ title, text, primary, secondary }: { title: string; text: 
           <p className="mt-2 max-w-2xl text-slate-300">{text}</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Link href={primary.href} className="rounded-lg bg-brandBlue px-5 py-3 font-medium text-slate-950 transition hover:bg-sky-400">
+          <Link href={primary.href} className="rounded-lg bg-brandBlue px-5 py-3 font-medium text-slate-950 transition duration-300 hover:-translate-y-0.5 hover:bg-sky-400">
             {primary.label}
           </Link>
           {secondary ? (
-            <Link href={secondary.href} className="rounded-lg border border-brandPurple/70 px-5 py-3 font-medium text-white transition hover:bg-brandPurple/20">
+            <Link href={secondary.href} className="rounded-lg border border-brandPurple/70 px-5 py-3 font-medium text-white transition duration-300 hover:-translate-y-0.5 hover:bg-brandPurple/20">
               {secondary.label}
             </Link>
           ) : null}
