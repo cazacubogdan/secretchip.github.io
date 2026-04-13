@@ -12,6 +12,15 @@ function sanitize(value: unknown, max = 5000) {
     .slice(0, max);
 }
 
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -62,13 +71,18 @@ export async function POST(request: NextRequest) {
       auth: { user: smtpUser, pass: smtpPass }
     });
 
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeTopic = escapeHtml(topic);
+    const safeMessageHtml = escapeHtml(message).replace(/\n/g, '<br/>');
+
     await transporter.sendMail({
       from: smtpFrom,
       to: contactTo,
       replyTo: email,
       subject: `[SecretChip Contact] ${topic} - ${name}`,
       text: `New contact request\n\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\n\nMessage:\n${message}`,
-      html: `<p><strong>New contact request</strong></p><p><strong>Name:</strong> ${name}<br/><strong>Email:</strong> ${email}<br/><strong>Topic:</strong> ${topic}</p><p><strong>Message:</strong><br/>${message.replace(/\n/g, '<br/>')}</p>`
+      html: `<p><strong>New contact request</strong></p><p><strong>Name:</strong> ${safeName}<br/><strong>Email:</strong> ${safeEmail}<br/><strong>Topic:</strong> ${safeTopic}</p><p><strong>Message:</strong><br/>${safeMessageHtml}</p>`
     });
 
     return NextResponse.json({ ok: true, message: 'Your inquiry was sent successfully.' });
