@@ -46,8 +46,8 @@ export default function ServicesPage() {
       </section>
 
       <CTA
-        title="Plan your SecretChip engagement"
-        text="Engage around AEGIS PDNS, services, or both. We scope quickly, communicate clearly, and focus on deployable security outcomes."
+        title="Scope your next security milestone"
+        text="Bring your current constraints and target outcomes. SecretChip will map a practical plan across services, AEGIS PDNS, or both."
         primary={{ label: 'Contact SecretChip', href: '/contact' }}
         secondary={{ label: 'Explore AEGIS PDNS', href: '/aegis-pdns' }}
       />

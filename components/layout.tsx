@@ -37,10 +37,18 @@ export function Header() {
         </div>
       </div>
 
-      <div className={`overflow-hidden border-t border-white/10 transition-all duration-300 md:hidden ${mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div
+        className={`overflow-hidden border-t border-white/10 transition-all duration-300 ease-out md:hidden ${mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+      >
         <nav className="mx-auto grid max-w-6xl gap-1 px-6 py-3">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="rounded-md px-2 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white" onClick={() => setMobileOpen(false)}>
+          {navItems.map((item, index) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-md px-2 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white"
+              style={{ transitionDelay: mobileOpen ? `${index * 30}ms` : '0ms' }}
+              onClick={() => setMobileOpen(false)}
+            >
               {item.label}
             </Link>
           ))}

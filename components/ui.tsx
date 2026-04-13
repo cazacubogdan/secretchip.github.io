@@ -12,7 +12,13 @@ export function SectionHeading({ eyebrow, title, description }: { eyebrow?: stri
 }
 
 export function GlassCard({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition duration-300 hover:border-brandBlue/30 ${className}`}>{children}</div>;
+  return (
+    <div
+      className={`rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-brandBlue/30 ${className}`}
+    >
+      {children}
+    </div>
+  );
 }
 
 export function CTA({ title, text, primary, secondary }: { title: string; text: string; primary: { label: string; href: string }; secondary?: { label: string; href: string } }) {
@@ -24,11 +30,17 @@ export function CTA({ title, text, primary, secondary }: { title: string; text: 
           <p className="mt-2 max-w-2xl text-slate-300">{text}</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Link href={primary.href} className="rounded-lg bg-brandBlue px-5 py-3 font-medium text-slate-950 transition duration-300 hover:-translate-y-0.5 hover:bg-sky-400">
+          <Link
+            href={primary.href}
+            className="rounded-lg bg-brandBlue px-5 py-3 font-medium text-slate-950 transition duration-200 hover:-translate-y-0.5 hover:bg-sky-400 active:translate-y-0"
+          >
             {primary.label}
           </Link>
           {secondary ? (
-            <Link href={secondary.href} className="rounded-lg border border-brandPurple/70 px-5 py-3 font-medium text-white transition duration-300 hover:-translate-y-0.5 hover:bg-brandPurple/20">
+            <Link
+              href={secondary.href}
+              className="rounded-lg border border-brandPurple/70 px-5 py-3 font-medium text-white transition duration-200 hover:-translate-y-0.5 hover:bg-brandPurple/20 active:translate-y-0"
+            >
               {secondary.label}
             </Link>
           ) : null}
