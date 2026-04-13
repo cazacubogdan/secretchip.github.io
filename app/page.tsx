@@ -5,45 +5,118 @@ export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl space-y-20 px-6 py-16">
       <section className="space-y-8">
-        <SectionHeading eyebrow="SecretChip" title="Practical security products and services for real environments" description="SecretChip is a security company. AEGIS PDNS is our flagship product for encrypted, policy-aware DNS protection that teams can run with confidence." />
+        <SectionHeading
+          eyebrow="SecretChip"
+          title="Practical security products and services for real operating environments"
+          description="SecretChip is the company. AEGIS PDNS is the flagship product. We help teams move from DNS exposure and policy drift to encrypted resolution, clear controls, and operational confidence."
+        />
+        <p className="max-w-3xl text-slate-300">
+          This site is intentionally company-first so buyers, operators, and partners can evaluate the full SecretChip model. You can start with AEGIS PDNS, engage services, or combine both into one rollout plan.
+        </p>
         <div className="flex flex-wrap gap-3 text-sm">
-          {['DoH / DoT / DoQ', 'Filtered, open, and managed modes', 'Company-backed product', 'Security-first DNS'].map((item) => (
-            <span key={item} className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-slate-300">{item}</span>
+          {['DoH / DoT / DoQ support', 'Filtered, open, and managed resolver modes', 'Security-first product design', 'Consulting and integration support'].map((item) => (
+            <span key={item} className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-slate-300 transition hover:border-brandBlue/40">
+              {item}
+            </span>
           ))}
         </div>
+      </section>
+
+      <section className="grid gap-4 rounded-2xl border border-white/10 bg-slate-900/50 p-5 md:grid-cols-4">
+        {[
+          ['Company-first architecture', 'SecretChip owns product and services strategy.'],
+          ['Flagship DNS product', 'AEGIS PDNS anchors encrypted DNS protection.'],
+          ['Audience-aligned delivery', 'Personal, managed, and enterprise paths are all supported.'],
+          ['Clear engagement options', 'Start with product testing or scoped service delivery.']
+        ].map(([title, text]) => (
+          <div key={title} className="space-y-2">
+            <p className="text-sm font-semibold text-brandBlue">{title}</p>
+            <p className="text-sm text-slate-300">{text}</p>
+          </div>
+        ))}
       </section>
 
       <section className="grid gap-6 md:grid-cols-2">
         <GlassCard>
           <h3 className="text-xl font-semibold text-white">SecretChip and AEGIS PDNS</h3>
-          <p className="mt-2 text-slate-300">SecretChip develops security capabilities across product and services. AEGIS PDNS leads the product portfolio and anchors our DNS protection strategy.</p>
+          <p className="mt-3 text-slate-300">
+            SecretChip develops security capabilities across products and services. AEGIS PDNS is the flagship product in that portfolio, built for encrypted DNS, threat-aware policy enforcement, and practical deployment at different scales.
+          </p>
+          <p className="mt-3 text-slate-400">
+            Product and services are connected by design. Teams can deploy quickly with standard resolver modes, then extend coverage with consulting, infrastructure hardening, and operational enablement.
+          </p>
         </GlassCard>
         <GlassCard>
-          <h3 className="text-xl font-semibold text-white">Featured product snapshot</h3>
-          <p className="mt-2 text-slate-300">AEGIS PDNS delivers encrypted DNS, policy control, and flexible deployment paths for personal, managed, and enterprise use cases.</p>
-          <Link href="/aegis-pdns" className="mt-4 inline-block text-brandBlue">Explore AEGIS PDNS</Link>
+          <h3 className="text-xl font-semibold text-white">Featured AEGIS PDNS snapshot</h3>
+          <ul className="mt-3 space-y-2 text-slate-300">
+            <li>Encrypted DNS resolution for modern clients and managed networks.</li>
+            <li>Malicious-domain filtering with open resolver options when required.</li>
+            <li>Policy-aware profiles that map cleanly to personal, MSP, and enterprise contexts.</li>
+            <li>Testing and rollout paths that can start in minutes and mature over time.</li>
+          </ul>
+          <Link href="/aegis-pdns" className="mt-5 inline-block text-brandBlue transition hover:text-sky-300">
+            Explore AEGIS PDNS
+          </Link>
         </GlassCard>
       </section>
 
       <section className="space-y-6">
-        <SectionHeading title="Solutions snapshot" />
+        <SectionHeading title="Solutions snapshot" description="Choose the audience path that matches your operating model, then go deeper in Solutions or jump directly to the AEGIS PDNS page." />
         <div className="grid gap-5 md:grid-cols-3">
-          {['Personal & Home', 'SMB & MSP', 'Enterprise'].map((item) => (
-            <GlassCard key={item}><h3 className="font-semibold text-white">{item}</h3><p className="mt-2 text-sm text-slate-400">Clear deployment patterns and policy coverage matched to this audience.</p></GlassCard>
+          {[
+            ['Personal & Home', 'For individuals and home labs that need encrypted DNS with sensible filtering defaults.', '/solutions'],
+            ['SMB & MSP', 'For teams managing many endpoints or clients with policy consistency and operational visibility goals.', '/solutions'],
+            ['Enterprise', 'For security and infrastructure teams that need governance-aligned DNS controls and integration paths.', '/solutions']
+          ].map(([item, text, href]) => (
+            <GlassCard key={item}>
+              <h3 className="font-semibold text-white">{item}</h3>
+              <p className="mt-2 text-sm text-slate-400">{text}</p>
+              <Link href={href} className="mt-3 inline-block text-sm text-brandBlue">Go to solution path</Link>
+            </GlassCard>
           ))}
         </div>
       </section>
 
       <section className="space-y-6">
-        <SectionHeading title="Services snapshot" />
+        <SectionHeading title="Services snapshot" description="SecretChip services are designed to close design and deployment gaps around product adoption and broader security operations." />
         <div className="grid gap-5 md:grid-cols-2">
-          {['Security Consulting', 'Protective DNS Products', 'Infrastructure Security', 'Operational Enablement'].map((item) => (
-            <GlassCard key={item}><h3 className="font-semibold text-white">{item}</h3></GlassCard>
+          {[
+            ['Security Consulting', 'Scope practical control improvements, architecture decisions, and phased execution plans.'],
+            ['Protective DNS Services', 'Design and operational support for AEGIS PDNS deployment, policy tuning, and resolver governance.'],
+            ['Infrastructure Security', 'Harden supporting network and platform controls around DNS and adjacent security surfaces.'],
+            ['Operational Enablement', 'Build repeatable runbooks, response procedures, and team workflows for sustained outcomes.']
+          ].map(([item, text]) => (
+            <GlassCard key={item}>
+              <h3 className="font-semibold text-white">{item}</h3>
+              <p className="mt-2 text-sm text-slate-400">{text}</p>
+            </GlassCard>
           ))}
         </div>
       </section>
 
-      <CTA title="Why SecretChip" text="Teams choose SecretChip for technical clarity, practical architecture decisions, and commercially clear engagement." primary={{ label: 'Contact SecretChip', href: '/contact' }} secondary={{ label: 'View Solutions', href: '/solutions' }} />
+      <section className="space-y-6">
+        <SectionHeading title="Why SecretChip" description="A practical approach, product-plus-consulting depth, and a security-first foundation built for long-term portfolio growth." />
+        <div className="grid gap-5 md:grid-cols-2">
+          {[
+            ['Practical security approach', 'We prioritize deployable controls and operating clarity instead of abstract frameworks disconnected from daily operations.'],
+            ['Product plus consulting depth', 'AEGIS PDNS provides a strong product baseline, while SecretChip services support design, integration, and sustained operation.'],
+            ['Security-first thinking', 'Security outcomes are built into resolver behavior, policy choices, and rollout plans from the first decision point.'],
+            ['Built for expansion', 'The company-first model leaves room for future products and service lines without fragmenting brand clarity.']
+          ].map(([title, text]) => (
+            <GlassCard key={title}>
+              <h3 className="text-lg font-semibold text-white">{title}</h3>
+              <p className="mt-2 text-slate-400">{text}</p>
+            </GlassCard>
+          ))}
+        </div>
+      </section>
+
+      <CTA
+        title="Start with the right SecretChip path"
+        text="Evaluate AEGIS PDNS, review audience-specific solution guidance, or contact SecretChip for a scoped product-and-services discussion."
+        primary={{ label: 'Contact SecretChip', href: '/contact' }}
+        secondary={{ label: 'View AEGIS PDNS', href: '/aegis-pdns' }}
+      />
     </main>
   );
 }

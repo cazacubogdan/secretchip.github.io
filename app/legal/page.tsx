@@ -16,15 +16,18 @@ const links = [
 export default function LegalHubPage() {
   return (
     <main className="mx-auto max-w-5xl space-y-8 px-6 py-16">
-      <SectionHeading title="Legal and compliance" description="This area provides policy documents, data handling disclosures, and user rights resources." />
+      <SectionHeading title="Legal and compliance" description="Policy pages are published as structured draft production content with clear placeholders where legal entity specifics are still pending." />
       <GlassCard>
         <ul className="space-y-3">
           {links.map(([href, label]) => (
-            <li key={href}><Link href={href} className="text-brandBlue">{label}</Link></li>
+            <li key={href} className="flex items-center justify-between rounded-lg border border-white/10 px-4 py-3">
+              <span className="text-slate-200">{label}</span>
+              <Link href={href} className="text-brandBlue">Open</Link>
+            </li>
           ))}
         </ul>
       </GlassCard>
-      <p className="text-slate-400">For privacy or policy questions, contact <a className="text-brandBlue" href="mailto:hello@secretchip.net">hello@secretchip.net</a>.</p>
+      <p className="text-slate-400">For privacy or policy questions, contact <a className="text-brandBlue" href="mailto:hello@secretchip.net">hello@secretchip.net</a>. Cookie settings remain available via footer and this hub.</p>
     </main>
   );
 }
