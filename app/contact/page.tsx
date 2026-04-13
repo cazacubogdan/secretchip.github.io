@@ -17,7 +17,9 @@ export default function ContactPage() {
       </GlassCard>
 
       <GlassCard className="space-y-4">
-        <p className="text-slate-300">Direct contact: <a href="mailto:hello@secretchip.net" className="text-brandBlue">hello@secretchip.net</a></p>
+        <p className="text-slate-300">
+          Direct contact: <a href="mailto:hello@secretchip.net" className="text-brandBlue">hello@secretchip.net</a>
+        </p>
         <div className="space-y-3">
           <h3 className="text-lg font-semibold text-white">Contact FAQ</h3>
           <div>
@@ -33,8 +35,8 @@ export default function ContactPage() {
             <p className="text-sm text-slate-400">Yes. Use topic selection for Services or AEGIS PDNS and describe scope, timeline, and operating model.</p>
           </div>
           <div>
-            <p className="font-medium text-white">Is this form fully connected to ticketing?</p>
-            <p className="text-sm text-slate-400">Not yet. This release includes a polished front-end flow while backend routing remains pending.</p>
+            <p className="font-medium text-white">What happens if contact delivery is not configured?</p>
+            <p className="text-sm text-slate-400">The form returns a clear configuration error instead of showing a false success state.</p>
           </div>
         </div>
       </GlassCard>

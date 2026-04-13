@@ -131,15 +131,15 @@ export default function AegisPage() {
 
       <GlassCard className="space-y-3">
         <h3 className="text-xl font-semibold text-white">Test AEGIS PDNS</h3>
-        <p className="text-slate-300">Run browser-based checks for resolver reachability, DoH behavior, and block behavior signals. Results are intentionally scoped to what browser context can validate.</p>
+        <p className="text-slate-300">Run live server-assisted checks for resolver reachability, DoH behavior, and block behavior signals with honest result states.</p>
         <Link href="/aegis-pdns/test" className="inline-block text-brandBlue">Open DNS test workflow</Link>
       </GlassCard>
 
       <CTA
-        title="Deploy with confidence"
-        text="Use AEGIS PDNS as a direct resolver, a managed protective DNS layer, or part of a broader SecretChip security engagement."
+        title="Validate and deploy with confidence"
+        text="Run real DNS checks, confirm resolver behavior, and engage SecretChip for policy-aware rollout support."
         primary={{ label: 'Open DNS Test', href: '/aegis-pdns/test' }}
-        secondary={{ label: 'Contact Product Team', href: '/contact' }}
+        secondary={{ label: 'Contact SecretChip', href: '/contact' }}
       />
     </main>
   );

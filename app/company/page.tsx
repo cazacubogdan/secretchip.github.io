@@ -61,8 +61,8 @@ export default function CompanyPage() {
       </section>
 
       <CTA
-        title="Work with SecretChip"
-        text="Discuss AEGIS PDNS rollout, services scope, or a combined engagement model designed for your operating context."
+        title="Build your rollout with SecretChip"
+        text="Start with a focused conversation on AEGIS PDNS, services delivery, or a combined model aligned to your operating context."
         primary={{ label: 'Contact SecretChip', href: '/contact' }}
         secondary={{ label: 'See Services', href: '/services' }}
       />
