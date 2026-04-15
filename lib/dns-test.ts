@@ -12,7 +12,8 @@ const FILTERED_ENDPOINT = process.env.NEXT_PUBLIC_DOH_FILTERED || 'https://dns.s
 const OPEN_ENDPOINT = process.env.NEXT_PUBLIC_DOH_OPEN || 'https://nofilter.dns.secretchip.net/dns-query';
 const ALLOWED_ENDPOINTS = new Set([FILTERED_ENDPOINT, OPEN_ENDPOINT]);
 
-const BLOCK_TEST_DOMAIN = process.env.BLOCK_TEST_DOMAIN || 'dns-block-test.secretchip.net';
+export const DNS_TEST_QUERY_DOMAIN = process.env.DNS_TEST_QUERY_DOMAIN || 'example.com';
+export const BLOCK_TEST_DOMAIN = process.env.BLOCK_TEST_DOMAIN || 'dns-block-test.secretchip.net';
 
 type DnsJsonAnswer = { name?: string; type?: number; TTL?: number; data?: string };
 type DnsJsonResponse = { Status?: number; TC?: boolean; RD?: boolean; RA?: boolean; AD?: boolean; CD?: boolean; Question?: Array<{ name?: string; type?: number }>; Answer?: DnsJsonAnswer[] };
@@ -56,7 +57,7 @@ export async function runReachability(endpoint: string): Promise<DnsCheckResult>
       state,
       message: response.ok
         ? 'Resolver endpoint accepted an HTTPS request from the server.'
-        : 'Resolver responded but returned a non-success HTTP status.',
+        : 'Resolver endpoint responded but returned a non-success HTTP status.',
       details: `HTTP ${response.status} in ${elapsedMs}ms`,
       technical: { status: response.status, elapsedMs }
     };
@@ -64,13 +65,13 @@ export async function runReachability(endpoint: string): Promise<DnsCheckResult>
     return {
       title: 'Reachability',
       state: 'fail',
-      message: 'Server-side request to the resolver failed.',
+      message: 'Server-side request to the resolver endpoint failed.',
       details: error instanceof Error ? error.message : String(error)
     };
   }
 }
 
-export async function runQuery(endpoint: string, domain = 'google.com'): Promise<DnsCheckResult> {
+export async function runQuery(endpoint: string, domain = DNS_TEST_QUERY_DOMAIN): Promise<DnsCheckResult> {
   const queryUrl = `${endpoint}?name=${encodeURIComponent(domain)}&type=A`;
   try {
     const response = await fetch(queryUrl, {
@@ -84,7 +85,7 @@ export async function runQuery(endpoint: string, domain = 'google.com'): Promise
       return {
         title: 'DoH Query',
         state: 'inconclusive',
-        message: 'Resolver endpoint was reachable but did not return a successful DoH response.',
+        message: `Resolver endpoint was reachable but did not return a successful DoH response for ${domain}.`,
         details: `HTTP ${response.status}`
       };
     }
@@ -96,18 +97,18 @@ export async function runQuery(endpoint: string, domain = 'google.com'): Promise
       return {
         title: 'DoH Query',
         state: 'pass',
-        message: `Resolver returned DNS answers for ${domain}.`,
+        message: `Resolver returned DNS answers for query domain ${domain}.`,
         details: summarize(data),
-        technical: { status: data.Status, answerCount, question: data.Question }
+        technical: { status: data.Status, answerCount, question: data.Question, queryDomain: domain }
       };
     }
 
     return {
       title: 'DoH Query',
       state: 'inconclusive',
-      message: `Resolver returned a response for ${domain}, but no definitive answer set was present.`,
+      message: `Resolver returned a DNS response for query domain ${domain}, but no definitive answer set was present.`,
       details: summarize(data),
-      technical: { status: data.Status, answerCount }
+      technical: { status: data.Status, answerCount, queryDomain: domain }
     };
   } catch (error) {
     return {
@@ -150,30 +151,38 @@ export async function runBlockCheck(endpoint: string, mode: 'filtered' | 'open' 
         return {
           title: 'Block Behavior',
           state: 'pass',
-          message: `Filtered resolver appears to block or suppress answers for ${domain}.`,
+          message: `Filtered resolver appears to block or suppress answers for block test domain ${domain}.`,
           details: summarize(data),
-          technical: { status, answerCount }
+          technical: { status, answerCount, queryDomain: domain }
         };
       }
 
       return {
         title: 'Block Behavior',
         state: 'fail',
-        message: `Filtered resolver returned answers for ${domain}.`,
+        message: `Filtered resolver returned answers for block test domain ${domain}.`,
         details: summarize(data),
-        technical: { status, answerCount, answers: data.Answer }
+        technical: { status, answerCount, answers: data.Answer, queryDomain: domain }
       };
     }
 
     if (mode === 'open') {
+      if (blockedSignal) {
+        return {
+          title: 'Block Behavior',
+          state: 'inconclusive',
+          message: `Open resolver did not return answers for block test domain ${domain}. This could mean the domain is inactive or blocked upstream.`,
+          details: summarize(data),
+          technical: { status, answerCount, queryDomain: domain }
+        };
+      }
+
       return {
         title: 'Block Behavior',
-        state: blockedSignal ? 'info' : 'pass',
-        message: blockedSignal
-          ? `Open resolver did not return answers for ${domain}. This can happen if the domain is inactive or externally blocked.`
-          : `Open resolver returned answers for ${domain}.`,
+        state: 'pass',
+        message: `Open resolver returned answers for block test domain ${domain}.`,
         details: summarize(data),
-        technical: { status, answerCount }
+        technical: { status, answerCount, queryDomain: domain }
       };
     }
 
@@ -182,7 +191,7 @@ export async function runBlockCheck(endpoint: string, mode: 'filtered' | 'open' 
       state: 'inconclusive',
       message: 'Resolver mode was not recognized for strict block interpretation.',
       details: summarize(data),
-      technical: { status, answerCount }
+      technical: { status, answerCount, queryDomain: domain }
     };
   } catch (error) {
     return {

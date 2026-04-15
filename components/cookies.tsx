@@ -3,28 +3,31 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { GlassCard } from './ui';
-
-type CookiePrefs = { necessary: true; analytics: boolean; embeds: boolean };
-const defaultPrefs: CookiePrefs = { necessary: true, analytics: false, embeds: false };
+import {
+  COOKIE_CONSENT_KEY,
+  COOKIE_PREFS_KEY,
+  defaultCookiePrefs,
+  parseCookiePrefs,
+  type CookiePrefs
+} from '@/lib/cookie-prefs';
 
 export function useCookiePrefs() {
-  const [prefs, setPrefs] = useState<CookiePrefs>(defaultPrefs);
+  const [prefs, setPrefs] = useState<CookiePrefs>(defaultCookiePrefs);
 
   useEffect(() => {
-    const stored = localStorage.getItem('secretchip-cookie-prefs');
-    if (stored) setPrefs(JSON.parse(stored));
+    setPrefs(parseCookiePrefs(localStorage.getItem(COOKIE_PREFS_KEY)));
   }, []);
 
   const save = (next: CookiePrefs) => {
     setPrefs(next);
-    localStorage.setItem('secretchip-cookie-prefs', JSON.stringify(next));
-    localStorage.setItem('secretchip-cookie-consent', 'set');
+    localStorage.setItem(COOKIE_PREFS_KEY, JSON.stringify(next));
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'set');
   };
 
   const withdraw = () => {
-    setPrefs(defaultPrefs);
-    localStorage.setItem('secretchip-cookie-prefs', JSON.stringify(defaultPrefs));
-    localStorage.removeItem('secretchip-cookie-consent');
+    setPrefs(defaultCookiePrefs);
+    localStorage.setItem(COOKIE_PREFS_KEY, JSON.stringify(defaultCookiePrefs));
+    localStorage.removeItem(COOKIE_CONSENT_KEY);
   };
 
   return { prefs, save, withdraw };
@@ -35,7 +38,7 @@ export function CookieBanner() {
   const { save } = useCookiePrefs();
 
   useEffect(() => {
-    setOpen(!localStorage.getItem('secretchip-cookie-consent'));
+    setOpen(!localStorage.getItem(COOKIE_CONSENT_KEY));
   }, []);
 
   if (!open) return null;
@@ -47,7 +50,7 @@ export function CookieBanner() {
           <p className="text-sm text-slate-200">We use strictly necessary cookies to run this site. Optional analytics and embedded content cookies require your consent.</p>
           <div className="flex flex-wrap gap-2">
             <button onClick={() => { save({ necessary: true, analytics: true, embeds: true }); setOpen(false); }} className="rounded-md bg-brandBlue px-3 py-2 text-sm font-medium text-slate-950">Accept</button>
-            <button onClick={() => { save(defaultPrefs); setOpen(false); }} className="rounded-md border border-white/20 px-3 py-2 text-sm text-white">Reject</button>
+            <button onClick={() => { save(defaultCookiePrefs); setOpen(false); }} className="rounded-md border border-white/20 px-3 py-2 text-sm text-white">Reject</button>
             <Link href="/legal/cookie-preferences" className="rounded-md border border-brandPurple/60 px-3 py-2 text-sm text-white">Manage Preferences</Link>
           </div>
         </div>

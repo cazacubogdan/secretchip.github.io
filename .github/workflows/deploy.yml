@@ -18,6 +18,21 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_DOH_FILTERED: ${{ secrets.NEXT_PUBLIC_DOH_FILTERED }}
+      NEXT_PUBLIC_DOH_OPEN: ${{ secrets.NEXT_PUBLIC_DOH_OPEN }}
+      NEXT_PUBLIC_DNS_TEST_QUERY_DOMAIN: ${{ secrets.NEXT_PUBLIC_DNS_TEST_QUERY_DOMAIN }}
+      NEXT_PUBLIC_BLOCK_TEST_DOMAIN: ${{ secrets.NEXT_PUBLIC_BLOCK_TEST_DOMAIN }}
+      DNS_TEST_QUERY_DOMAIN: ${{ secrets.DNS_TEST_QUERY_DOMAIN }}
+      BLOCK_TEST_DOMAIN: ${{ secrets.BLOCK_TEST_DOMAIN }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASS: ${{ secrets.SMTP_PASS }}
+      SMTP_FROM: ${{ secrets.SMTP_FROM }}
+      CONTACT_TO: ${{ secrets.CONTACT_TO }}
+      TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,6 +48,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm run test:unit
 
       - name: Build static export
         run: npm run export

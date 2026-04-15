@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
 
     const [reachability, query, block] = await Promise.all([
       runReachability(endpoint),
-      runQuery(endpoint, 'google.com'),
+      runQuery(endpoint),
       runBlockCheck(endpoint, mode)
     ]);
 
