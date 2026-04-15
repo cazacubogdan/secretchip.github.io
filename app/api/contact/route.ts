@@ -1,50 +1,66 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-
-const allowedTopics = new Set(['AEGIS PDNS', 'Services', 'Partnership', 'General Inquiry']);
-
-function sanitize(value: unknown, max = 5000) {
-  if (typeof value !== 'string') return '';
-  return value
-    .replace(/[\u0000-\u001F\u007F]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .slice(0, max);
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function isValidEmail(email: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+import {
+  escapeHtml,
+  getClientIp,
+  isTurnstileConfigured,
+  validateContactPayload,
+  validateTurnstileToken
+} from '@/lib/contact-security';
+import { contactRateLimiter } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request);
+
+    // This in-memory limiter is replaceable. For multi-instance production deployments,
+    // migrate this interface to a distributed store such as Redis.
+    const limitDecision = contactRateLimiter.check(ip);
+    if (!limitDecision.allowed) {
+      return NextResponse.json(
+        {
+          error: 'Too many contact submissions. Please wait and try again.',
+          code: 'RATE_LIMITED'
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(limitDecision.retryAfterSeconds),
+            'X-RateLimit-Limit': String(limitDecision.limit),
+            'X-RateLimit-Remaining': String(limitDecision.remaining)
+          }
+        }
+      );
+    }
+
     const body = await request.json();
-
-    const name = sanitize(body?.name, 120);
-    const email = sanitize(body?.email, 200).toLowerCase();
-    const topic = sanitize(body?.topic, 80);
-    const message = sanitize(body?.message, 4000);
-
-    const fieldErrors: Record<string, string> = {};
-
-    if (!name) fieldErrors.name = 'Name is required.';
-    if (!email) fieldErrors.email = 'Email is required.';
-    else if (!isValidEmail(email)) fieldErrors.email = 'Email format is invalid.';
-    if (!topic) fieldErrors.topic = 'Topic is required.';
-    else if (!allowedTopics.has(topic)) fieldErrors.topic = 'Topic is invalid.';
-    if (!message) fieldErrors.message = 'Message is required.';
+    const { values, fieldErrors } = validateContactPayload(body);
 
     if (Object.keys(fieldErrors).length > 0) {
       return NextResponse.json({ error: 'Validation failed.', fieldErrors }, { status: 422 });
+    }
+
+    if (values.companyWebsite) {
+      return NextResponse.json(
+        {
+          error: 'Submission blocked.',
+          code: 'ABUSE_DETECTED'
+        },
+        { status: 400 }
+      );
+    }
+
+    if (isTurnstileConfigured()) {
+      const turnstileResult = await validateTurnstileToken(values.turnstileToken, ip);
+      if (!turnstileResult.ok) {
+        return NextResponse.json(
+          {
+            error: 'Verification failed. Please try again.',
+            code: turnstileResult.code
+          },
+          { status: 400 }
+        );
+      }
     }
 
     const smtpHost = process.env.SMTP_HOST;
@@ -71,26 +87,25 @@ export async function POST(request: NextRequest) {
       auth: { user: smtpUser, pass: smtpPass }
     });
 
-    const safeName = escapeHtml(name);
-    const safeEmail = escapeHtml(email);
-    const safeTopic = escapeHtml(topic);
-    const safeMessageHtml = escapeHtml(message).replace(/\n/g, '<br/>');
+    const safeName = escapeHtml(values.name);
+    const safeEmail = escapeHtml(values.email);
+    const safeTopic = escapeHtml(values.topic);
+    const safeMessageHtml = escapeHtml(values.message).replace(/\n/g, '<br/>');
 
     await transporter.sendMail({
       from: smtpFrom,
       to: contactTo,
-      replyTo: email,
-      subject: `[SecretChip Contact] ${topic} - ${name}`,
-      text: `New contact request\n\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\n\nMessage:\n${message}`,
+      replyTo: values.email,
+      subject: `[SecretChip Contact] ${values.topic} - ${values.name}`,
+      text: `New contact request\n\nName: ${values.name}\nEmail: ${values.email}\nTopic: ${values.topic}\n\nMessage:\n${values.message}`,
       html: `<p><strong>New contact request</strong></p><p><strong>Name:</strong> ${safeName}<br/><strong>Email:</strong> ${safeEmail}<br/><strong>Topic:</strong> ${safeTopic}</p><p><strong>Message:</strong><br/>${safeMessageHtml}</p>`
     });
 
     return NextResponse.json({ ok: true, message: 'Your inquiry was sent successfully.' });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
-        error: 'Contact submission failed.',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        error: 'Contact submission failed.'
       },
       { status: 500 }
     );

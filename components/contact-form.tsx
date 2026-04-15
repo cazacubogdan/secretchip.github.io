@@ -1,19 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 type FormState = {
   name: string;
   email: string;
   topic: string;
   message: string;
+  companyWebsite: string;
+  turnstileToken: string;
 };
 
 const initialState: FormState = {
   name: '',
   email: '',
   topic: 'AEGIS PDNS',
-  message: ''
+  message: '',
+  companyWebsite: '',
+  turnstileToken: ''
 };
 
 export function ContactForm() {
@@ -21,6 +25,9 @@ export function ContactForm() {
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
+
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const isTurnstileConfigured = useMemo(() => Boolean(turnstileSiteKey), [turnstileSiteKey]);
 
   const validateClient = () => {
     const errors: Partial<Record<keyof FormState, string>> = {};
@@ -122,6 +129,32 @@ export function ContactForm() {
           />
           {fieldErrors.message ? <p className="mt-1 text-xs text-rose-300">{fieldErrors.message}</p> : null}
         </div>
+
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="companyWebsite">Company website</label>
+          <input
+            id="companyWebsite"
+            name="companyWebsite"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.companyWebsite}
+            onChange={(e) => setForm((prev) => ({ ...prev, companyWebsite: e.target.value }))}
+          />
+        </div>
+
+        {isTurnstileConfigured ? (
+          <div className="rounded-lg border border-brandPurple/40 bg-slate-900/50 p-3 text-sm text-slate-300">
+            Turnstile is configured. Ensure your Turnstile widget writes a token into this field before submitting.
+            <input
+              className="mt-2 w-full rounded-md border border-white/15 bg-slate-950 p-2 text-xs"
+              placeholder="Turnstile token"
+              name="turnstileToken"
+              value={form.turnstileToken}
+              onChange={(e) => setForm((prev) => ({ ...prev, turnstileToken: e.target.value }))}
+            />
+          </div>
+        ) : null}
+
         <button
           type="submit"
           disabled={status === 'loading'}

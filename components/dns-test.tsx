@@ -10,6 +10,10 @@ type Result = {
   details?: string;
 };
 
+
+const positiveQueryDomain = process.env.NEXT_PUBLIC_DNS_TEST_QUERY_DOMAIN || 'example.com';
+const blockQueryDomain = process.env.NEXT_PUBLIC_BLOCK_TEST_DOMAIN || 'dns-block-test.secretchip.net';
+
 const endpointOptions = [
   {
     label: 'Protected resolver',
@@ -109,7 +113,7 @@ export function DnsTester() {
   return (
     <GlassCard className="space-y-6">
       <div>
-        <label className="mb-2 block text-sm text-slate-300">Endpoint selector</label>
+        <label className="mb-2 block text-sm text-slate-300">Resolver endpoint selector</label>
         <select
           value={endpoint}
           onChange={(event) => setEndpoint(event.target.value)}
@@ -122,7 +126,13 @@ export function DnsTester() {
           ))}
         </select>
         <p className="mt-2 text-xs text-slate-400">
-          Running checks against: <span className="text-slate-200">{selectedLabel}</span>
+          Running checks against resolver endpoint: <span className="text-slate-200">{selectedLabel}</span>
+        </p>
+        <p className="mt-1 text-xs text-slate-400">
+          Positive query domain: <span className="text-slate-200">{positiveQueryDomain}</span>
+        </p>
+        <p className="mt-1 text-xs text-slate-400">
+          Block test domain: <span className="text-slate-200">{blockQueryDomain}</span>
         </p>
       </div>
 
