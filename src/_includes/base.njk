@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{% if title %}{{ title }} | {{ site.company }}{% else %}{{ site.company }} | {{ site.productTagline }}{% endif %}</title>
+  <meta name="description" content="{% if description %}{{ description }}{% else %}{{ site.company }} builds {{ site.productTagline | lower }}. {{ site.product }} blocks malicious and unwanted domains over DoH, DoT, and DoQ.{% endif %}" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/assets/img/logo-full.png" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{{ site.company }}" />
+  <meta property="og:title" content="{% if title %}{{ title }} | {{ site.company }}{% else %}{{ site.company }} | {{ site.productTagline }}{% endif %}" />
+  <meta property="og:description" content="{% if description %}{{ description }}{% else %}{{ site.product }} — {{ site.productTagline }} over DoH, DoT, and DoQ.{% endif %}" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:image" content="{{ site.url }}/assets/img/logo-full.png" />
+  <meta property="og:image:alt" content="{{ site.company }} logo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{% if title %}{{ title }} | {{ site.company }}{% else %}{{ site.company }} | {{ site.productTagline }}{% endif %}" />
+  <meta name="twitter:description" content="{% if description %}{{ description }}{% else %}{{ site.product }} — {{ site.productTagline }} over DoH, DoT, and DoQ.{% endif %}" />
+  <meta name="twitter:image" content="{{ site.url }}/assets/img/logo-full.png" />
+</head>
+
+<body id="top">
+  <div class="wrap">
+    {% include "header.njk" %}
+
+    <main>
+      {{ content | safe }}
+    </main>
+
+    {% include "footer.njk" %}
+  </div>
+
+  {% include "cookie-banner.njk" %}
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

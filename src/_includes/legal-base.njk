@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{{ title }} | {{ site.company }}</title>
+  <meta name="description" content="{% if description %}{{ description }}{% else %}{{ title }} — {{ site.company }} legal documentation.{% endif %}" />
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/assets/img/logo-full.png" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{{ site.company }}" />
+  <meta property="og:title" content="{{ title }} | {{ site.company }}" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:image" content="{{ site.url }}/assets/img/logo-full.png" />
+</head>
+
+<body id="top">
+  <div class="wrap">
+    {% include "header.njk" %}
+
+    <main>
+      <div class="legal-wrap fade-up">
+        <header class="legal-header">
+          <p class="eyebrow">Structured draft production content</p>
+          <h1>{{ title }}</h1>
+          {% if intro %}<p class="intro">{{ intro }}</p>{% endif %}
+        </header>
+
+        <div class="card">
+          {{ content | safe }}
+        </div>
+
+        <p class="legal-footer">
+          Need a different policy page? Visit the <a href="/legal/">Legal hub</a> or update cookie settings in <a href="/legal/cookie-preferences/">Cookie Preferences</a>.
+        </p>
+      </div>
+    </main>
+
+    {% include "footer.njk" %}
+  </div>
+
+  {% include "cookie-banner.njk" %}
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

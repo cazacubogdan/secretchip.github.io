@@ -1,0 +1,27 @@
+<footer class="site">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Secret<span class="chip">Chip</span></h3>
+      <p>Practical security products and services. {{ site.product }} is the flagship product for encrypted, policy-aware DNS protection.</p>
+    </div>
+    {% for groupName, links in site.footerGroups %}
+      <div>
+        <h4>{{ groupName }}</h4>
+        <ul>
+          {% for link in links %}
+            <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="footer-base">
+    <div>© <span id="year">{{ "" | year }}</span> {{ site.company }}. All rights reserved.</div>
+    <div>
+      <a href="/legal/cookie-preferences/">Cookie preferences</a>
+      <span style="color: rgba(255,255,255,0.20);"> · </span>
+      <a href="/legal/">Legal hub</a>
+    </div>
+  </div>
+</footer>

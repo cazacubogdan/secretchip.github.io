@@ -1,0 +1,40 @@
+---
+layout: base.njk
+permalink: /report/
+title: Redirecting
+description: Redirecting to the issue tracker.
+eleventyExcludeFromCollections: true
+---
+
+<section class="card" style="text-align: center;">
+  <h2>Redirecting to the issue tracker</h2>
+  <p class="subtitle" style="margin-left: auto; margin-right: auto;">
+    Reports, false positives, and feature requests live in the public tracker.
+  </p>
+
+  <div class="statusline" style="justify-content: center;">
+    <span class="pill"><span class="led ok"></span><span>Redirecting in <strong id="redirSeconds">5</strong>s…</span></span>
+  </div>
+
+  <p style="margin-top: 14px;">
+    If you are not redirected automatically, open
+    <a href="{{ site.github.issues }}">{{ site.github.issues }}</a>.
+  </p>
+</section>
+
+<script>
+  (function () {
+    var target = "{{ site.github.issues }}";
+    var total = 5;
+    var s = total;
+    var label = document.getElementById("redirSeconds");
+    var t = setInterval(function () {
+      s--;
+      if (label) label.textContent = String(s);
+      if (s <= 0) {
+        clearInterval(t);
+        window.location.replace(target);
+      }
+    }, 1000);
+  })();
+</script>

@@ -1,0 +1,105 @@
+---
+layout: base.njk
+permalink: /aegis-pdns/test/
+title: Test AEGIS PDNS
+description: Run live checks for AEGIS PDNS endpoint reachability, DoH behavior, and policy outcomes.
+---
+
+<section class="stack-xl">
+  <div class="fade-up">
+    {% set eyebrow = "AEGIS PDNS" %}{% set heading = "Test AEGIS PDNS behavior" %}{% set asH1 = true %}{% set desc = "Run practical checks for endpoint reachability, DoH behavior, and policy outcomes. Checks run from your browser against live endpoints. Results are reported as <strong>pass</strong>, <strong>fail</strong>, or <strong>inconclusive</strong> based on real resolver responses." %}
+    {% include "section-heading.njk" %}
+  </div>
+
+  <div class="card" id="verify">
+    <h3 class="section-title">Resolver endpoint selector</h3>
+    <p class="mini">Switch between filtered and open resolver to compare behavior. Filtered should block the canary; open should resolve it normally.</p>
+
+    <div class="field" style="margin-top: 12px;">
+      <label for="resolverSelect">Endpoint under test</label>
+      <select id="resolverSelect" name="resolver">
+        <option value="{{ site.endpoints.doh }}" data-mode="filtered">Protected resolver (filtered): {{ site.endpoints.doh }}</option>
+        <option value="{{ site.endpoints.dohOpen }}" data-mode="open">Open resolver option: {{ site.endpoints.dohOpen }}</option>
+      </select>
+      <span class="hint">Mode: <span id="resolverMode">filtered</span></span>
+    </div>
+
+    <input type="hidden" id="verifyDohUrl" />
+    <div class="mono mini" id="blockHost" style="margin-top: 8px;">{{ site.endpoints.blockTestHost }}</div>
+
+    <div class="statusline">
+      <span class="pill"><span class="led" id="vLed"></span><span id="vStatus">Idle</span></span>
+    </div>
+
+    <div class="btnrow">
+      <button class="btn primary" type="button" onclick="verifyAll()">Run all checks</button>
+      <button class="btn" type="button" onclick="verifyReachability()">Reachability</button>
+      <button class="btn" type="button" onclick="verifyBinaryExample()">DoH query</button>
+      <button class="btn" type="button" onclick="verifyBlockTest()">Block / behavior</button>
+      <button class="btn" type="button" onclick="clearVerify()">Reset</button>
+    </div>
+
+    <div class="grid3" style="margin-top: 18px;">
+      <div class="tile">
+        <h3>Reachability</h3>
+        <p><strong id="rReach">Not run</strong></p>
+        <p class="mini" id="dReach"></p>
+      </div>
+      <div class="tile">
+        <h3>DoH query</h3>
+        <p><strong id="rBin">Not run</strong></p>
+        <p class="mini" id="dBin"></p>
+        <p class="mini" id="dBinExtra"></p>
+      </div>
+      <div class="tile">
+        <h3>Behavior check</h3>
+        <p><strong id="rBlock">Not run</strong></p>
+        <p class="mini" id="dBlock"></p>
+        <p class="mini" id="dBlockExtra"></p>
+      </div>
+    </div>
+
+    <p class="mini" id="vSummary" style="margin-top: 12px;"></p>
+  </div>
+
+  <div class="card" id="device-probe">
+    <h3 class="section-title">Device-level probe</h3>
+    <p class="mini">3-host probe: control + allow + block. Reports "On AEGIS PDNS" only when the allow host loads and the block host fails.</p>
+
+    <div class="note">
+      <div class="mini" style="margin-bottom: 6px;">Targets:</div>
+      <div class="mono">DoH: <span id="dohUrl">{{ site.endpoints.doh }}</span></div>
+      <div class="mono">Control: <span id="controlHost">{{ site.endpoints.controlHost }}</span></div>
+      <div class="mono">Allow: <span id="allowHost">{{ site.endpoints.allowTestHost }}</span></div>
+    </div>
+
+    <div class="statusline">
+      <span class="pill"><span class="led" id="overallLed"></span><span id="overallText">Idle</span></span>
+      <button class="btn primary" type="button" onclick="runAll()">Run device probe</button>
+    </div>
+
+    <div class="grid3" style="margin-top: 16px;">
+      <div class="tile">
+        <h3><span class="led" id="dohLed" style="display: inline-block; vertical-align: middle; margin-right: 6px;"></span>DoH</h3>
+        <p><strong id="dohText">Not run</strong></p>
+        <p class="mini" id="dohDetail"></p>
+      </div>
+      <div class="tile">
+        <h3><span class="led" id="blockLed" style="display: inline-block; vertical-align: middle; margin-right: 6px;"></span>Filter</h3>
+        <p><strong id="blockText">Not run</strong></p>
+        <p class="mini" id="blockDetail"></p>
+      </div>
+      <div class="tile">
+        <h3><span class="led" id="deviceLed" style="display: inline-block; vertical-align: middle; margin-right: 6px;"></span>This device</h3>
+        <p><strong id="deviceText">Not run</strong></p>
+        <p class="mini" id="deviceDetail"></p>
+      </div>
+    </div>
+  </div>
+
+  <p class="mini">
+    <a href="/aegis-pdns/">← Back to AEGIS PDNS</a>
+    <span style="color: rgba(255,255,255,0.20);"> · </span>
+    <a href="{{ site.github.issues }}" target="_blank" rel="noopener noreferrer">Report an issue</a>
+  </p>
+</section>

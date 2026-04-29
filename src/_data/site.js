@@ -1,0 +1,60 @@
+module.exports = {
+  company: "SecretChip",
+  product: "AEGIS PDNS",
+  productShort: "AEGIS PDNS",
+  productMark: "AEGIS PDNS",
+  productTagline: "Practical security products and services",
+  domain: "secretchip.net",
+  url: "https://secretchip.net",
+  contactEmail: "hello@secretchip.net",
+  abuseEmail: "abuse@secretchip.net",
+  endpoints: {
+    doh: "https://dns.secretchip.net/dns-query",
+    dohOpen: "https://nofilter.dns.secretchip.net/dns-query",
+    dotHost: "dns.secretchip.net",
+    dotPort: 853,
+    doqHost: "dns.secretchip.net",
+    doqPort: 853,
+    blockTestHost: "dns-block-test.secretchip.net",
+    allowTestHost: "dns-allow-test.secretchip.net",
+    controlHost: "dns.secretchip.net",
+  },
+  github: {
+    issues: "https://github.com/secretchip/dns.secretchip.net/issues",
+  },
+  // Build-time Turnstile site key. Leave blank to skip CAPTCHA on the contact form.
+  turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || "",
+  nav: [
+    { label: "Home", href: "/" },
+    { label: "AEGIS PDNS", href: "/aegis-pdns/" },
+    { label: "Solutions", href: "/solutions/" },
+    { label: "Services", href: "/services/" },
+    { label: "Company", href: "/company/" },
+    { label: "Contact", href: "/contact/" },
+  ],
+  footerGroups: {
+    Company: [
+      { label: "About SecretChip", href: "/company/" },
+      { label: "Contact", href: "/contact/" },
+    ],
+    Product: [
+      { label: "AEGIS PDNS", href: "/aegis-pdns/" },
+      { label: "Setup", href: "/aegis-pdns/setup/" },
+      { label: "DNS Test", href: "/aegis-pdns/test/" },
+    ],
+    Solutions: [
+      { label: "Audience Segments", href: "/solutions/" },
+      { label: "Services", href: "/services/" },
+    ],
+    Legal: [
+      { label: "Legal Hub", href: "/legal/" },
+      { label: "Privacy Notice", href: "/legal/privacy-notice/" },
+      { label: "Cookie Policy", href: "/legal/cookie-policy/" },
+      { label: "Cookie Preferences", href: "/legal/cookie-preferences/" },
+      { label: "Terms & Conditions", href: "/legal/terms-and-conditions/" },
+      { label: "Acceptable Use Policy", href: "/legal/acceptable-use-policy/" },
+      { label: "Privacy Requests", href: "/legal/privacy-requests/" },
+    ],
+    Client: [{ label: "Client Login", href: "/login/" }],
+  },
+};

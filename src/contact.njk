@@ -1,0 +1,104 @@
+---
+layout: base.njk
+permalink: /contact/
+title: Contact SecretChip
+description: Direct contact for AEGIS PDNS, services, partnership discussions, and general inquiries.
+---
+
+<section class="stack-xl">
+  <div class="fade-up">
+    {% set eyebrow = "Contact" %}{% set heading = "Contact SecretChip" %}{% set asH1 = true %}{% set desc = "Direct contact for AEGIS PDNS, services, partnership discussions, and general inquiries. Share your context and we will route the inquiry to the right team." %}
+    {% include "section-heading.njk" %}
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Send us a message</h3>
+      <p class="mini" style="margin: -2px 0 0;">Form submissions go to a server-side endpoint with rate limiting and abuse protection.</p>
+
+      <form id="contactForm"
+            class="form-grid"
+            novalidate
+            autocomplete="off"
+            data-turnstile-sitekey="{{ site.turnstileSiteKey }}">
+
+        {# Honeypot — invisible to humans #}
+        <div class="hp" aria-hidden="true">
+          <label>Company website (leave blank)
+            <input type="text" name="companyWebsite" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+
+        {# Submit token populated by JS at page load #}
+        <input type="hidden" name="form_token" value="" />
+
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" type="text" name="name" required maxlength="120" />
+          <span class="err">Name is required.</span>
+        </div>
+
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" type="email" name="email" required maxlength="200" />
+          <span class="hint">We use this only to reply.</span>
+          <span class="err">Please enter a valid email address.</span>
+        </div>
+
+        <div class="field">
+          <label for="cf-topic">Topic</label>
+          <select id="cf-topic" name="topic" required>
+            <option>AEGIS PDNS</option>
+            <option>Services</option>
+            <option>Partnership</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="6" required maxlength="4000"
+                    placeholder="Share your context: environment, scope, timeline, and what you'd like SecretChip to help with."></textarea>
+          <span class="err">Message is required.</span>
+        </div>
+
+        {# Per-load human check picked by JS #}
+        <div class="field">
+          <label for="cf-human" data-human-question>Quick check…</label>
+          <input id="cf-human" type="text" name="human_check" required maxlength="40" autocomplete="off" />
+          <span class="hint">Spam filter — bots usually skip this.</span>
+        </div>
+
+        {# Turnstile mount; site.js inserts a widget if site.turnstileSiteKey is set #}
+        <div id="turnstile-mount" data-rendered="false"></div>
+
+        <input type="hidden" name="turnstileToken" value="" />
+
+        <div class="btnrow">
+          <button class="btn primary" type="submit">Send inquiry</button>
+          <span id="contactStatus" class="mini" role="status" aria-live="polite"></span>
+        </div>
+
+        <p class="mini" style="margin-top: 4px;">
+          Privacy reminder: your submission is processed per our <a href="/legal/privacy-notice/">Privacy Notice</a>.
+        </p>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>Direct email</h3>
+      <p>For sensitive disclosures or anything that doesn't belong in the form:</p>
+      <p class="mono" style="font-size: 14px; color: var(--accent);">
+        <a href="#" data-rot13-mailto="uryyb@frpergpuvc.arg" data-subject="SecretChip — direct">Reveal email address</a>
+      </p>
+
+      <h3 style="margin-top: 22px;">Contact FAQ</h3>
+      <div class="stack">
+        <details class="faq"><summary>How quickly does SecretChip respond?</summary><p>Initial responses are typically sent within two business days.</p></details>
+        <details class="faq"><summary>Can I use this form for product and services questions?</summary><p>Yes. Select the topic that best matches your request and include your environment details.</p></details>
+        <details class="faq"><summary>Can organizations request managed deployment options?</summary><p>Yes. Use topic selection for Services or AEGIS PDNS and describe scope, timeline, and operating model.</p></details>
+        <details class="faq"><summary>What happens if contact delivery is not configured?</summary><p>The form returns a clear configuration error instead of showing a false success state.</p></details>
+      </div>
+    </div>
+  </div>
+</section>

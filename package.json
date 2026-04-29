@@ -1,0 +1,14 @@
+{
+  "name": "secretchip-web",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Static marketing and product site for SecretChip and SecretChip Aegis (Protective DNS).",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve --quiet",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}

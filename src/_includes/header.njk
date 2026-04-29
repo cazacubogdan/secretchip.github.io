@@ -1,0 +1,16 @@
+<header class="site">
+  <div class="brand">
+    <a class="brand-link" href="/" aria-label="{{ site.company }} home">
+      <img src="/assets/img/logo.svg" alt="" class="logo-mark" width="28" height="28" />
+      <span class="wordmark">Secret<span class="chip">Chip</span></span>
+    </a>
+  </div>
+
+  {% set p = page.url %}
+  <nav class="site" aria-label="Primary">
+    {% for item in site.nav %}
+      <a class="nav-link{% if p == item.href %} is-active{% endif %}" href="{{ item.href }}">{{ item.label }}</a>
+    {% endfor %}
+    <a class="login-pill{% if p == '/login/' %} is-active{% endif %}" href="/login/">Client Login</a>
+  </nav>
+</header>
