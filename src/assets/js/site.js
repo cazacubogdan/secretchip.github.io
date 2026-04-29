@@ -253,6 +253,16 @@
     lb = { open: function (src, cap) { img.src = src; caption.textContent = cap || ""; overlay.style.display = "flex"; }, close: close };
     return lb;
   }
+  function toSafeLightboxSrc(raw) {
+    if (!raw) return null;
+    var v = String(raw).trim();
+    if (!v) return null;
+    try {
+      var u = new URL(v, window.location.href);
+      if (u.protocol === "http:" || u.protocol === "https:") return u.href;
+    } catch (_) {}
+    return null;
+  }
   function bindLightbox() {
     var nodes = document.querySelectorAll("[data-lightbox]");
     if (!nodes.length) return;
@@ -262,7 +272,8 @@
         e.preventDefault();
         var src = n.getAttribute("data-lightbox");
         var cap = n.getAttribute("data-caption") || "";
-        if (src) l.open(src, cap);
+        var safeSrc = toSafeLightboxSrc(src);
+        if (safeSrc) l.open(safeSrc, cap);
       });
     });
   }
