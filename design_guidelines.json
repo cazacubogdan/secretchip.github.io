@@ -1,0 +1,124 @@
+{
+  "typography": {
+    "font_family": {
+      "heading": "Playfair Display, serif",
+      "body": "IBM Plex Sans, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "scale": {
+      "h1": "text-5xl md:text-7xl font-medium tracking-tight leading-[1.1]",
+      "h2": "text-4xl md:text-5xl font-medium tracking-tight leading-tight",
+      "h3": "text-2xl md:text-3xl font-medium tracking-normal",
+      "body_lg": "text-lg md:text-xl leading-relaxed text-slate-300",
+      "body_base": "text-base leading-relaxed text-slate-400",
+      "caption": "text-sm font-mono uppercase tracking-widest text-slate-500"
+    },
+    "weights": {
+      "heading": "font-medium",
+      "body": "font-light"
+    }
+  },
+  "colors": {
+    "theme": "dark",
+    "palette": {
+      "background": {
+        "default": "#020617",
+        "paper": "#0f172a",
+        "subtle": "#1e293b"
+      },
+      "text": {
+        "primary": "#f8fafc",
+        "secondary": "#cbd5e1",
+        "muted": "#64748b"
+      },
+      "primary": {
+        "main": "#38bdf8",
+        "glow": "rgba(56, 189, 248, 0.5)"
+      },
+      "accent": {
+        "silver": "#e2e8f0",
+        "gold": "#fbbf24"
+      },
+      "border": {
+        "default": "rgba(148, 163, 184, 0.1)",
+        "active": "rgba(56, 189, 248, 0.3)"
+      }
+    },
+    "gradients": {
+      "hero_glow": "radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%)",
+      "card_surface": "linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)"
+    }
+  },
+  "layout": {
+    "spacing": {
+      "section_padding": "py-24 md:py-32",
+      "container_padding": "px-6 md:px-12",
+      "element_gap": "gap-8 md:gap-12"
+    },
+    "grid": {
+      "bento": "grid grid-cols-1 md:grid-cols-3 gap-6",
+      "split": "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+    },
+    "container": "max-w-7xl mx-auto"
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-slate-50 text-slate-950 hover:bg-slate-200 rounded-full px-8 py-4 font-medium transition-all duration-300 hover:scale-105",
+      "secondary": "bg-transparent border border-slate-700 text-slate-300 hover:border-slate-50 hover:text-slate-50 rounded-full px-8 py-4 transition-all duration-300",
+      "ghost": "text-slate-400 hover:text-slate-50 transition-colors duration-300"
+    },
+    "cards": {
+      "style": "glass-crystal",
+      "classes": "bg-slate-900/40 backdrop-blur-md border border-white/5 rounded-xl p-8 hover:border-white/10 transition-all duration-500 group"
+    },
+    "inputs": {
+      "style": "minimal",
+      "classes": "bg-slate-950/50 border-b border-slate-800 focus:border-slate-50 rounded-none px-0 py-4 transition-all duration-300 placeholder:text-slate-600 focus:ring-0"
+    }
+  },
+  "visual_enhancers": {
+    "effects": [
+      "Tracing Beam Borders on key cards",
+      "Subtle noise texture overlay on background",
+      "Slow-fade entrance animations"
+    ],
+    "icons": "Phosphor Icons (Thin or Light weight)",
+    "radius": "rounded-xl"
+  },
+  "images": {
+    "hero_bg": {
+      "url": "https://images.unsplash.com/photo-1719702703328-87e335030324?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGRpZ2l0YWwlMjBzZWN1cml0eSUyMG5ldHdvcmslMjBkYXJrJTIwYmx1ZXxlbnwwfHx8fDE3NzAzNDIyODZ8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Abstract digital security network background",
+      "usage": "Hero section background with heavy overlay/opacity reduction"
+    },
+    "about_context": {
+      "url": "https://images.unsplash.com/photo-1764255120215-9bb4665b44cc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBtaW5pbWFsaXN0JTIwb2ZmaWNlJTIwYXJjaGl0ZWN0dXJlJTIwbmlnaHR8ZW58MHx8fHwxNzcwMzQyMjkwfDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Modern minimalist office architecture",
+      "usage": "Side image for 'About' or 'Philosophy' section"
+    },
+    "tech_accent": {
+      "url": "https://images.unsplash.com/photo-1628939824352-baa1cdddeb6b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGRpZ2l0YWwlMjBzZWN1cml0eSUyMG5ldHdvcmslMjBkYXJrJTIwYmx1ZXxlbnwwfHx8fDE3NzAzNDIyODZ8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Cyberpunk light fixture",
+      "usage": "Decorative element for 'How it Works' or 'Process' section"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Implement a 'Dark Mode Only' design. Force the 'dark' class on the html element.",
+    "Use 'Playfair Display' for all Headings (H1-H3) to give that 'Senior Executive' feel. Use 'IBM Plex Sans' for body text.",
+    "Create a 'Noise' overlay component that sits fixed on top of everything with pointer-events-none to give a film grain texture.",
+    "For the 'Problem' section, use a Bento Grid layout with 'Glass Crystal' cards.",
+    "For the 'Pricing' section, do NOT use a standard pricing table. Use 'Investment Framing' cards that look like executive briefs.",
+    "The 'Contact' form should feel like a VIP inquiry. Minimal fields, high-end typography.",
+    "Use the 'Tracing Beam' effect for the main CTA or the 'Offer' cards.",
+    "Ensure all text has high contrast (APCA compliant).",
+    "Do NOT use gradients for text. Keep text solid Slate-50 or Slate-200.",
+    "Install 'lucide-react' for icons if not available, but prefer 'phosphor-icons' if possible."
+  ],
+  "universal_guidelines": [
+    "Avoid 'AI Slop' - no generic centered layouts.",
+    "Use 2-3x more spacing than typical.",
+    "Every interaction needs micro-animations.",
+    "Use 'sonner' for toasts.",
+    "Components must use named exports."
+  ]
+}
