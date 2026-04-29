@@ -7,8 +7,23 @@ description: Run live checks for AEGIS PDNS endpoint reachability, DoH behavior,
 
 <section class="stack-xl">
   <div class="fade-up">
-    {% set eyebrow = "AEGIS PDNS" %}{% set heading = "Test AEGIS PDNS behavior" %}{% set asH1 = true %}{% set desc = "Run practical checks for endpoint reachability, DoH behavior, and policy outcomes. Checks run from your browser against live endpoints. Results are reported as <strong>pass</strong>, <strong>fail</strong>, or <strong>inconclusive</strong> based on real resolver responses." %}
+    {% set eyebrow = "AEGIS PDNS" %}{% set heading = "Test AEGIS PDNS behavior" %}{% set asH1 = true %}{% set kicker = "checks: reachability · doh-query · block-test · device-probe" %}{% set desc = "Run practical checks for endpoint reachability, DoH behavior, and policy outcomes. Checks run from your browser against live endpoints. Results are reported as <strong>pass</strong>, <strong>fail</strong>, or <strong>inconclusive</strong> based on real resolver responses." %}
     {% include "section-heading.njk" %}
+  </div>
+
+  <div class="terminal" aria-hidden="true">
+    <div class="terminal-bar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="title">aegis-pdns ~ verifier overview</span>
+    </div>
+    <div class="terminal-body"><span class="prompt">$</span> <span class="cmd">verifier --plan</span>
+<span class="dim">→ resolver-mode probe (filtered | open)</span>
+  <span class="accent">[1]</span> reachability   <span class="out">https GET <span class="dim">{{ site.endpoints.doh }}</span></span>
+  <span class="accent">[2]</span> doh-query      <span class="out">RFC 8484 binary query for google.com A</span>
+  <span class="accent">[3]</span> block-test     <span class="out">canary {{ site.endpoints.blockTestHost }} → expect rcode=3 in filtered, answers in open</span>
+<span class="dim">→ device-level probe (control + allow + block, cross-checked via Cloudflare DoH)</span>
+  <span class="accent">[4]</span> device-probe   <span class="out">"On AEGIS PDNS" only when allow loads and block fails</span>
+<span class="prompt">$</span> <span class="cmd">verifier --run</span><span class="cursor"></span></div>
   </div>
 
   <div class="card" id="verify">

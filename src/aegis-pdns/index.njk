@@ -7,11 +7,19 @@ description: AEGIS PDNS is the flagship SecretChip product for encrypted, policy
 
 <section class="stack-xl">
   <div class="fade-up">
-    {% set eyebrow = "Flagship Product" %}{% set heading = "AEGIS PDNS by SecretChip" %}{% set asH1 = true %}{% set desc = "Encrypted, policy-aware DNS protection with resolver modes and setup paths for personal users, managed operators, and enterprise security teams." %}
+    {% set eyebrow = "Flagship Product" %}{% set heading = "AEGIS PDNS by SecretChip" %}{% set asH1 = true %}{% set kicker = "resolver: filtered + open · transports: doh, dot, doq · policy: filter | allow | observe" %}{% set desc = "Encrypted, policy-aware DNS protection with resolver modes and setup paths for personal users, managed operators, and enterprise security teams." %}
     {% include "section-heading.njk" %}
 
-    <p style="margin-top: 18px;">Protected resolver: <span class="mono" style="color: var(--accent);">{{ site.endpoints.doh }}</span></p>
-    <p>Open resolver option: <span class="mono" style="color: var(--accent);">{{ site.endpoints.dohOpen }}</span></p>
+    <div class="kv-table" style="margin-top: 18px;">
+      <div class="kv-key">Filtered</div>
+      <div class="kv-val"><span class="code-inline">{{ site.endpoints.doh }}</span> &mdash; default mode, blocks known malicious infrastructure</div>
+      <div class="kv-key">Open</div>
+      <div class="kv-val"><span class="code-inline">{{ site.endpoints.dohOpen }}</span> &mdash; permissive mode for compatibility testing</div>
+      <div class="kv-key">DoT host</div>
+      <div class="kv-val"><span class="code-inline">{{ site.endpoints.dotHost }}:{{ site.endpoints.dotPort }}</span></div>
+      <div class="kv-key">DoQ host</div>
+      <div class="kv-val"><span class="code-inline">{{ site.endpoints.doqHost }}:{{ site.endpoints.doqPort }}</span></div>
+    </div>
 
     <div class="pill-row">
       <span class="pill">Encrypted DNS transport</span>
@@ -52,14 +60,53 @@ description: AEGIS PDNS is the flagship SecretChip product for encrypted, policy
   </div>
 
   <div>
-    {% set heading = "Resolver modes" %}{% set desc = "" %}
+    {% set heading = "Resolver modes" %}{% set desc = "Three modes covering the spectrum from strict filtering to compatibility testing to per-tenant policy design." %}
     {% include "section-heading.njk" %}
 
-    <div class="grid3" style="margin-top: 16px;">
-      <div class="card"><h3>Filtered resolver</h3><p>Security-oriented default mode with malicious-domain blocking and practical policy coverage.</p></div>
-      <div class="card"><h3>Open resolver option</h3><p>Reduced filtering mode for compatibility testing and scenarios where strict filtering is not desired.</p></div>
-      <div class="card"><h3>Managed profiles</h3><p>SecretChip-supported profile strategy for organizations that need tenant or environment-specific policy design.</p></div>
+    <div class="proto-table-wrap" style="margin-top: 16px;">
+      <table class="proto-table">
+        <thead>
+          <tr><th>Mode</th><th>Default behavior</th><th>Canary block-test response</th><th>Intended use</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Filtered</td>
+            <td>Block known malicious infrastructure</td>
+            <td class="mono-cell">rcode=3 (NXDOMAIN) or 0.0.0.0</td>
+            <td>Default protective mode for users, devices, fleets</td>
+          </tr>
+          <tr>
+            <td>Open</td>
+            <td>Permissive resolution, no security filtering</td>
+            <td class="mono-cell">rcode=0 + answer records</td>
+            <td>Compatibility testing, A/B comparison against filtered</td>
+          </tr>
+          <tr>
+            <td>Managed</td>
+            <td>Per-tenant policy, profile-based controls</td>
+            <td class="mono-cell">depends on profile policy</td>
+            <td>MSP and enterprise rollouts where policy varies by group</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+
+  <div>
+    {% set heading = "Sample DoH query" %}{% set desc = "RFC 8484 DoH wire query against the AEGIS PDNS filtered resolver. The same shape works against any DoH endpoint in the table above." %}
+    {% include "section-heading.njk" %}
+
+    <div class="code-block" style="margin-top: 16px;">
+<span class="lang">shell</span><span class="cmt"># GET form: base64url-encoded binary DNS query as ?dns=…</span>
+curl -sS -H <span class="hl">'accept: application/dns-message'</span> \
+  <span class="hl-purple">'{{ site.endpoints.doh }}?dns=AAABAAABAAAAAAAABmdvb2dsZQNjb20AAAEAAQ'</span> \
+  | xxd | head
+
+<span class="cmt"># POST form: send the binary query in the request body</span>
+curl -sS -X POST -H <span class="hl">'content-type: application/dns-message'</span> \
+  --data-binary @query.bin <span class="hl-purple">{{ site.endpoints.doh }}</span> \
+  | xxd | head</div>
+    <p class="mini" style="margin-top: 8px;">The browser-based test page constructs and parses the binary frames in JavaScript &mdash; <a href="/aegis-pdns/test/">run it live →</a></p>
   </div>
 
   <div>

@@ -38,6 +38,10 @@ description: Set up AEGIS PDNS on Android, iPhone, routers, and browsers.
     <li>Enter: <strong>{{ site.endpoints.dotHost }}</strong></li>
     <li>Save. Confirm on the <a href="#verify">verification widget</a>.</li>
   </ol>
+  <div class="code-block" style="margin-top: 10px;"><span class="lang">android</span><span class="cmt"># Settings path</span>
+Settings → Network &amp; Internet → Private DNS
+Mode: <span class="hl">Private DNS provider hostname</span>
+Hostname: <span class="hl-purple">{{ site.endpoints.dotHost }}</span></div>
   <p class="mini">Some carriers prevent Private DNS from being used on cellular. Wi-Fi networks should always work.</p>
 </section>
 
@@ -73,6 +77,10 @@ description: Set up AEGIS PDNS on Android, iPhone, routers, and browsers.
     The signed profile will be hosted at <code>/aegis-dot.mobileconfig</code> when published. Until then, configure manually:
     in <strong>Settings</strong> → <strong>General</strong> → <strong>VPN, DNS &amp; Device Management</strong>, choose <strong>DNS</strong> and enter the DoT hostname: <strong>{{ site.endpoints.dotHost }}</strong>.
   </p>
+  <div class="code-block" style="margin-top: 10px;"><span class="lang">ios</span><span class="cmt"># Manual DoT configuration (no profile)</span>
+Settings → General → VPN, DNS &amp; Device Management → DNS
+Server type: <span class="hl">Encrypted DNS (DoT)</span>
+Hostname: <span class="hl-purple">{{ site.endpoints.dotHost }}</span></div>
 </section>
 
 <section class="card" id="routers" style="margin-top: 16px;">
@@ -83,6 +91,19 @@ description: Set up AEGIS PDNS on Android, iPhone, routers, and browsers.
     <li>DoH upstream: <strong>{{ site.endpoints.doh }}</strong></li>
     <li>If your firmware exposes DoQ, point it to <strong>{{ site.endpoints.doqHost }}</strong> on port <strong>{{ site.endpoints.doqPort }}</strong>.</li>
   </ul>
+
+  <div class="code-block" style="margin-top: 10px;"><span class="lang">openwrt</span><span class="cmt"># /etc/config/dhcp — point dnsmasq upstream at AEGIS DoT via stubby/unbound</span>
+config server
+  option address <span class="hl-purple">'/#/{{ site.endpoints.dotHost }}'</span>
+  option port    <span class="hl-purple">'{{ site.endpoints.dotPort }}'</span>
+  option proto   <span class="hl">'tls'</span></div>
+
+  <div class="code-block" style="margin-top: 10px;"><span class="lang">systemd-resolved</span><span class="cmt"># /etc/systemd/resolved.conf.d/aegis.conf</span>
+[Resolve]
+DNS=<span class="hl-purple">{{ site.endpoints.dotHost }}#{{ site.endpoints.dotHost }}</span>
+DNSOverTLS=<span class="hl">yes</span>
+DNSSEC=allow-downgrade</div>
+
   <p class="mini">OpenWrt, Ubiquiti EdgeOS, MikroTik, AsusWRT-Merlin, and pfSense / OPNsense all support at least DoT.</p>
 </section>
 
@@ -94,7 +115,9 @@ description: Set up AEGIS PDNS on Android, iPhone, routers, and browsers.
     <li>Find the <strong>DNS over HTTPS</strong> section.</li>
     <li>Choose <strong>Custom</strong> and paste:</li>
   </ol>
-  <div class="mono">DoH URL: {{ site.endpoints.doh }}</div>
+  <div class="code-block" style="margin-top: 10px;"><span class="lang">browser</span><span class="cmt"># Firefox: about:preferences#privacy → Enable DNS over HTTPS</span>
+<span class="cmt"># Chrome:  chrome://settings/security  → Use secure DNS → Custom</span>
+DoH URL: <span class="hl-purple">{{ site.endpoints.doh }}</span></div>
 </section>
 
 <section class="card" id="verify" style="margin-top: 16px;">

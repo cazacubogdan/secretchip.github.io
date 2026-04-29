@@ -6,14 +6,44 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
 
 <section class="stack-xl">
   <div class="fade-up">
-    {% set eyebrow = "SecretChip" %}{% set heading = "Practical security products and services for real operating environments" %}{% set asH1 = true %}{% set desc = "SecretChip is the company. AEGIS PDNS is the flagship product. We help teams move from DNS exposure and policy drift to encrypted resolution, clear controls, and operational confidence." %}
+    {% set eyebrow = "SecretChip" %}{% set heading = "Practical security products and services for real operating environments" %}{% set asH1 = true %}{% set kicker = "company: secretchip · flagship: aegis-pdns · transports: doh, dot, doq" %}{% set desc = "SecretChip is the company. AEGIS PDNS is the flagship product. We help teams move from DNS exposure and policy drift to encrypted resolution, clear controls, and operational confidence." %}
     {% include "section-heading.njk" %}
 
-    <p class="subtitle" style="margin-top: 16px;">
-      This site is intentionally company-first so buyers, operators, and partners can evaluate the full SecretChip model. Start with AEGIS PDNS, engage services, or combine both into a scoped rollout plan.
-    </p>
+    <div class="grid2" style="margin-top: 18px; align-items: stretch;">
+      <div class="terminal" aria-hidden="true">
+        <div class="terminal-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="title">aegis-pdns ~ live doh probe</span>
+        </div>
+        <div class="terminal-body"><span class="prompt">$</span> <span class="cmd">dohQuery</span> <span class="accent">{{ site.endpoints.doh }}</span> <span class="out">google.com A</span>
+<span class="dim">→ resolving via DoH (RFC 8484)…</span>
+<span class="ok">✓ rcode=0</span>  <span class="out">A=142.250.190.78  ttl=212  rtt=18ms</span>
 
-    <div class="pill-row">
+<span class="prompt">$</span> <span class="cmd">dohQuery</span> <span class="accent">{{ site.endpoints.doh }}</span> <span class="out">{{ site.endpoints.blockTestHost }} A</span>
+<span class="dim">→ canary block-test query…</span>
+<span class="ok">✓ blocked</span>  <span class="out">rcode=3 (NXDOMAIN)</span>  <span class="purple">policy=filtered</span>
+<span class="prompt">$</span><span class="cursor"></span></div>
+      </div>
+
+      <div class="card glow-border ribbon-gradient" style="display: flex; flex-direction: column; justify-content: center;">
+        <p class="eyebrow" style="margin: 0; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.24em; color: var(--accent);">Why SecretChip</p>
+        <h3 style="margin: 8px 0 10px; color: var(--text-strong); font-size: 19px;">Encrypted resolution, clear controls, operational confidence.</h3>
+        <p style="color: var(--soft); margin: 0;">A company-first security brand: AEGIS PDNS as the flagship resolver, services that close architecture and rollout gaps. Buyers, operators, and partners evaluate the full model in one place.</p>
+        <div class="btnrow" style="margin-top: 16px;">
+          <a class="btn primary" href="/aegis-pdns/test/">Run live DNS test</a>
+          <a class="btn purple" href="/contact/">Talk to SecretChip</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-strip" style="margin-top: 22px;">
+      <div class="stat"><span class="stat-num"><span class="todo">TBD</span></span><span class="stat-label">Queries / day</span></div>
+      <div class="stat"><span class="stat-num"><span class="todo">TBD</span></span><span class="stat-label">Threats blocked</span></div>
+      <div class="stat"><span class="stat-num"><span class="todo">TBD</span></span><span class="stat-label">p95 resolver latency</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Encrypted transports</span></div>
+    </div>
+
+    <div class="pill-row" style="margin-top: 18px;">
       <span class="pill">DoH / DoT / DoQ support</span>
       <span class="pill">Filtered, open, and managed resolver modes</span>
       <span class="pill">Security-first product design</span>
@@ -59,7 +89,7 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
   </div>
 
   <div>
-    {% set eyebrow = "" %}{% set heading = "Solutions snapshot" %}{% set asH1 = false %}{% set desc = "Choose the path that fits your environment, then move into full technical planning." %}
+    {% set eyebrow = "" %}{% set kicker = "" %}{% set heading = "Solutions snapshot" %}{% set asH1 = false %}{% set desc = "Choose the path that fits your environment, then move into full technical planning." %}
     {% include "section-heading.njk" %}
 
     <div class="grid3" style="margin-top: 16px;">
@@ -78,6 +108,39 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
         <p>Governance-aligned DNS controls for security and infrastructure teams.</p>
         <p style="margin-top: 10px;"><a href="/solutions/#enterprise">Go to solution path →</a></p>
       </div>
+    </div>
+  </div>
+
+  <div>
+    {% set heading = "Encrypted DNS at a glance" %}{% set desc = "AEGIS PDNS speaks every modern encrypted DNS transport. Pick by client capability and operating context — there is no single right answer." %}
+    {% include "section-heading.njk" %}
+
+    <div class="proto-table-wrap" style="margin-top: 16px;">
+      <table class="proto-table">
+        <thead>
+          <tr><th>Transport</th><th>Port</th><th>Underlying protocol</th><th>Best for</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DoH</td>
+            <td class="mono-cell">443</td>
+            <td>HTTPS / HTTP/2</td>
+            <td>Browsers, apps, restrictive networks where 443 is the only path out</td>
+          </tr>
+          <tr>
+            <td>DoT</td>
+            <td class="mono-cell">{{ site.endpoints.dotPort }}</td>
+            <td>TLS</td>
+            <td>System-wide resolver on Android, routers, gateways</td>
+          </tr>
+          <tr>
+            <td>DoQ</td>
+            <td class="mono-cell">{{ site.endpoints.doqPort }}</td>
+            <td>QUIC / UDP</td>
+            <td>Low-latency clients on lossy networks; modern resolver platforms</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 

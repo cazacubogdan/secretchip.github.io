@@ -22,8 +22,8 @@ module.exports = {
   github: {
     issues: "https://github.com/secretchip/dns.secretchip.net/issues",
   },
-  // Build-time Turnstile site key. Leave blank to skip CAPTCHA on the contact form.
-  turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || "",
+  // Tally embed — handles contact form submission, validation, and delivery.
+  tallyContactFormUrl: "https://tally.so/r/QKxLNY?transparentBackground=1&formEventsForwarding=1",
   nav: [
     { label: "Home", href: "/" },
     { label: "AEGIS PDNS", href: "/aegis-pdns/" },

@@ -6,14 +6,20 @@ description: Redirecting to the issue tracker.
 eleventyExcludeFromCollections: true
 ---
 
-<section class="card" style="text-align: center;">
-  <h2>Redirecting to the issue tracker</h2>
-  <p class="subtitle" style="margin-left: auto; margin-right: auto;">
-    Reports, false positives, and feature requests live in the public tracker.
-  </p>
+<section class="stack-xl" style="max-width: 720px; margin: 60px auto 0;">
+  <div class="fade-up">
+    {% set eyebrow = "Redirecting" %}{% set heading = "Issue tracker" %}{% set asH1 = true %}{% set kicker = "target: github issues · open in: 5s" %}{% set desc = "Reports, false positives, and feature requests live in the public tracker." %}
+    {% include "section-heading.njk" %}
+  </div>
 
-  <div class="statusline" style="justify-content: center;">
-    <span class="pill"><span class="led ok"></span><span>Redirecting in <strong id="redirSeconds">5</strong>s…</span></span>
+  <div class="terminal" aria-hidden="true">
+    <div class="terminal-bar">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <span class="title">secretchip ~ redirecting</span>
+    </div>
+    <div class="terminal-body"><span class="prompt">$</span> <span class="cmd">open</span> <span class="accent">{{ site.github.issues }}</span>
+<span class="dim">→ redirecting in <strong id="redirSeconds">5</strong>s…</span>
+<span class="prompt">$</span><span class="cursor"></span></div>
   </div>
 
   <p style="margin-top: 14px;">

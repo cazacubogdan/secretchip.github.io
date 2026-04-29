@@ -47,8 +47,12 @@
   --radius-pill: 999px;
   --max: 1120px;
 
-  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* Grid texture (subtle infrastructure feel) */
+  --grid-line: rgba(255, 255, 255, 0.025);
+  --grid-step: 32px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -62,6 +66,8 @@ body {
   background: var(--bg);
   min-height: 100vh;
   position: relative;
+  letter-spacing: -0.01em;
+  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
 }
 
@@ -76,6 +82,21 @@ body::before {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Subtle infrastructure grid (sits above the gradient, below content) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-step) var(--grid-step);
+  mask-image: radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.85), rgba(0,0,0,0.35) 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.85), rgba(0,0,0,0.35) 60%, transparent 100%);
   z-index: -1;
   pointer-events: none;
 }
@@ -186,7 +207,7 @@ nav.site a.login-pill:hover {
   transition: transform 300ms ease, border-color 300ms ease;
 }
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   border-color: rgba(10, 158, 252, 0.30);
 }
 .card.cta-card { box-shadow: var(--shadow-glow); }
@@ -213,18 +234,30 @@ nav.site a.login-pill:hover {
 .section-heading h2 {
   margin: 0;
   font-size: 32px;
-  font-weight: 600;
-  line-height: 1.18;
-  letter-spacing: -0.2px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
   color: var(--text-strong);
 }
 .section-heading h1 {
   margin: 0;
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.3px;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.5px;
   color: var(--text-strong);
+}
+.section-heading .kicker {
+  margin: 2px 0 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--soft);
+  letter-spacing: 0;
+}
+.section-heading .kicker-prompt {
+  color: var(--accent);
+  margin-right: 6px;
+  font-weight: 600;
 }
 .section-heading .desc {
   margin: 0;
@@ -587,10 +620,10 @@ footer.site {
 /* Hero typography */
 h2.hero-title {
   margin: 0 0 12px;
-  font-size: 38px;
-  letter-spacing: -0.4px;
-  line-height: 1.1;
-  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: -0.5px;
+  line-height: 1.08;
+  font-weight: 700;
   color: var(--text-strong);
 }
 h2.hero-title .mark {
@@ -720,6 +753,280 @@ h2.hero-title .mark {
 }
 
 /* -----------------------------------------------------------
+   Terminal block — fake-live monospace artifact
+   ----------------------------------------------------------- */
+.terminal {
+  background: linear-gradient(180deg, rgba(6, 11, 24, 0.95), rgba(10, 17, 36, 0.95));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-soft);
+  background: rgba(255, 255, 255, 0.02);
+}
+.terminal-bar .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  margin: 0;
+  background: rgba(255, 107, 107, 0.55);
+  flex: 0 0 auto;
+}
+.terminal-bar .dot:nth-child(2) { background: rgba(255, 209, 102, 0.55); }
+.terminal-bar .dot:nth-child(3) { background: rgba(87, 211, 140, 0.55); }
+.terminal-bar .title {
+  margin-left: 10px;
+  font-size: 11.5px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.terminal-body {
+  padding: 14px 16px 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.terminal .prompt { color: var(--muted); }
+.terminal .cmd { color: var(--text-strong); }
+.terminal .out { color: var(--soft); }
+.terminal .ok { color: var(--ok); }
+.terminal .accent { color: var(--accent); }
+.terminal .purple { color: var(--purple); }
+.terminal .dim { color: var(--muted); }
+.terminal .cursor {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1em;
+  background: var(--accent);
+  vertical-align: -2px;
+  margin-left: 2px;
+  animation: termBlink 1.05s steps(2, start) infinite;
+}
+@keyframes termBlink {
+  to { background: transparent; }
+}
+
+/* -----------------------------------------------------------
+   Code block + inline code + cli line
+   ----------------------------------------------------------- */
+.code-block {
+  position: relative;
+  background: rgba(6, 11, 24, 0.7);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--soft);
+  padding: 14px 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+.code-block .lang {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+.code-block .hl { color: var(--accent); }
+.code-block .hl-purple { color: var(--purple); }
+.code-block .cmt { color: var(--muted); font-style: italic; }
+.code-inline {
+  font-family: var(--mono);
+  font-size: 0.92em;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-soft);
+  border-radius: 5px;
+  padding: 1px 6px;
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+.cli {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--soft);
+  padding: 4px 0;
+}
+.cli::before {
+  content: "›";
+  color: var(--accent);
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+.cli-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.cli-list li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--soft);
+}
+.cli-list li::before {
+  content: "›";
+  color: var(--accent);
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+
+/* -----------------------------------------------------------
+   Key/value + protocol comparison tables
+   ----------------------------------------------------------- */
+.kv-table {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--panel-glass);
+  font-size: 13.5px;
+}
+.kv-table > div {
+  padding: 10px 14px;
+  border-top: 1px solid var(--border-soft);
+}
+.kv-table > div:nth-child(1),
+.kv-table > div:nth-child(2) { border-top: 0; }
+.kv-table .kv-key {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.02);
+}
+.kv-table .kv-val {
+  color: var(--soft);
+}
+.kv-table .kv-val strong { color: var(--text-strong); font-weight: 600; }
+
+.proto-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--panel-glass);
+  font-size: 13.5px;
+}
+.proto-table th,
+.proto-table td {
+  text-align: left;
+  padding: 11px 14px;
+  border-top: 1px solid var(--border-soft);
+}
+.proto-table thead th {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 0;
+}
+.proto-table tbody td:first-child {
+  font-weight: 600;
+  color: var(--text-strong);
+}
+.proto-table tbody tr:hover { background: rgba(10, 158, 252, 0.04); }
+.proto-table .mono-cell {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--soft);
+}
+.proto-table-wrap { overflow-x: auto; }
+
+/* -----------------------------------------------------------
+   Stat strip (hero numbers)
+   ----------------------------------------------------------- */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.stat-strip .stat {
+  background: var(--panel-glass);
+  padding: 16px 18px;
+  display: grid;
+  gap: 4px;
+}
+.stat-strip .stat-num {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-strong);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.stat-strip .stat-label {
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* -----------------------------------------------------------
+   Gradient borders / ribbons
+   ----------------------------------------------------------- */
+.glow-border {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--panel), var(--panel)) padding-box,
+    linear-gradient(135deg, var(--accent), var(--purple)) border-box;
+}
+.ribbon-gradient {
+  position: relative;
+}
+.ribbon-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 14px; right: 14px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--purple), transparent);
+  pointer-events: none;
+}
+
+/* -----------------------------------------------------------
+   Status accents on contact form status (legacy)
+   ----------------------------------------------------------- */
+#contactStatus.ok { color: var(--ok); }
+#contactStatus.bad { color: var(--bad); }
+
+/* -----------------------------------------------------------
    Mobile
    ----------------------------------------------------------- */
 @media (max-width: 720px) {
@@ -730,7 +1037,14 @@ h2.hero-title .mark {
   }
   .brand a.brand-link { justify-content: center; }
   nav.site { justify-content: center; gap: 4px; }
-  h2.hero-title { font-size: 30px; }
+  h2.hero-title { font-size: 32px; }
   .section-heading h2 { font-size: 26px; }
   .section-heading h1 { font-size: 30px; }
+  .terminal { font-size: 12px; }
+  .terminal-body { padding: 12px 12px 14px; }
+  .stat-strip .stat-num { font-size: 19px; }
+  .kv-table { grid-template-columns: 1fr; }
+  .kv-table .kv-key { border-top: 1px solid var(--border-soft); }
+  .proto-table { font-size: 12.5px; }
+  .proto-table th, .proto-table td { padding: 9px 10px; }
 }

@@ -18,8 +18,19 @@ description: Security solutions by audience segment from SecretChip.
   </div>
 
   <section id="personal-home" class="stack">
-    {% set eyebrow = "" %}{% set heading = "Personal & Home" %}{% set asH1 = false %}{% set desc = "Who it is for: individuals, families, and home-lab operators who want stronger DNS security without enterprise complexity." %}
+    {% set eyebrow = "" %}{% set heading = "Personal & Home" %}{% set asH1 = false %}{% set kicker = "scope: 1 device → 1 household · ownership: self · effort: minutes" %}{% set desc = "Who it is for: individuals, families, and home-lab operators who want stronger DNS security without enterprise complexity." %}
     {% include "section-heading.njk" %}
+
+    <div class="kv-table">
+      <div class="kv-key">Default mode</div>
+      <div class="kv-val"><strong>Filtered</strong> resolver — encrypted DoH/DoT with malicious-domain blocking</div>
+      <div class="kv-key">Threat coverage</div>
+      <div class="kv-val">Known malicious infrastructure, plaintext-DNS interception on untrusted networks</div>
+      <div class="kv-key">Fits into</div>
+      <div class="kv-val">Browser, OS resolver, home router — no extra software</div>
+      <div class="kv-key">Typical owner</div>
+      <div class="kv-val">The user themselves</div>
+    </div>
 
     <div class="grid2">
       <div class="card"><h3>Problems it solves</h3><p>Reduces exposure to malicious domains, improves DNS privacy through encrypted protocols, and creates clearer default behavior than unmanaged resolver choices.</p></div>
@@ -29,8 +40,19 @@ description: Security solutions by audience segment from SecretChip.
   </section>
 
   <section id="smb-msp" class="stack">
-    {% set heading = "SMB & MSP" %}{% set desc = "Who it is for: internal IT teams and managed service providers that operate multiple customer environments and need repeatable security controls." %}
+    {% set heading = "SMB & MSP" %}{% set kicker = "scope: tens → thousands of endpoints · ownership: shared · effort: weeks" %}{% set desc = "Who it is for: internal IT teams and managed service providers that operate multiple customer environments and need repeatable security controls." %}
     {% include "section-heading.njk" %}
+
+    <div class="kv-table">
+      <div class="kv-key">Default mode</div>
+      <div class="kv-val"><strong>Filtered</strong> + <strong>Managed</strong> profiles per client tenant</div>
+      <div class="kv-key">Threat coverage</div>
+      <div class="kv-val">Cross-tenant policy drift, inconsistent endpoint configuration, malicious-domain exposure</div>
+      <div class="kv-key">Fits into</div>
+      <div class="kv-val">Per-client router/firewall config, MDM payloads, RMM rollouts</div>
+      <div class="kv-key">Typical owner</div>
+      <div class="kv-val">MSP service desk, SMB IT lead</div>
+    </div>
 
     <div class="grid2">
       <div class="card"><h3>Problems it solves</h3><p>Improves policy consistency, reduces DNS-based threat exposure across tenants, and provides a more coherent control baseline for day-to-day operations.</p></div>
@@ -40,8 +62,19 @@ description: Security solutions by audience segment from SecretChip.
   </section>
 
   <section id="enterprise" class="stack">
-    {% set heading = "Enterprise" %}{% set desc = "Who it is for: security, network, and platform teams that need governance-ready DNS controls and integration with existing operating models." %}
+    {% set heading = "Enterprise" %}{% set kicker = "scope: segmented network · ownership: security + platform · effort: phased program" %}{% set desc = "Who it is for: security, network, and platform teams that need governance-ready DNS controls and integration with existing operating models." %}
     {% include "section-heading.njk" %}
+
+    <div class="kv-table">
+      <div class="kv-key">Default mode</div>
+      <div class="kv-val"><strong>Managed</strong> profiles aligned to network segments and risk groups</div>
+      <div class="kv-key">Threat coverage</div>
+      <div class="kv-val">Decentralized resolver behavior, plaintext exfil paths, audit gaps in DNS posture</div>
+      <div class="kv-key">Fits into</div>
+      <div class="kv-val">Existing change-management, segmented rollout, SIEM observability where supported</div>
+      <div class="kv-key">Typical owner</div>
+      <div class="kv-val">Security architecture, network engineering, platform team</div>
+    </div>
 
     <div class="grid2">
       <div class="card"><h3>Problems it solves</h3><p>Supports encrypted resolution, policy enforcement, and control clarity where decentralized DNS behavior creates governance and risk management gaps.</p></div>

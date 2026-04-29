@@ -14,75 +14,23 @@ description: Direct contact for AEGIS PDNS, services, partnership discussions, a
   <div class="grid2">
     <div class="card">
       <h3>Send us a message</h3>
-      <p class="mini" style="margin: -2px 0 0;">Form submissions go to a server-side endpoint with rate limiting and abuse protection.</p>
+      <p class="mini" style="margin: -2px 0 0;">Submissions are routed through Tally with built-in validation and abuse protection.</p>
 
-      <form id="contactForm"
-            class="form-grid"
-            novalidate
-            autocomplete="off"
-            data-turnstile-sitekey="{{ site.turnstileSiteKey }}">
+      <div class="tally-wrap" style="margin-top: 14px;">
+        <iframe data-tally-src="{{ site.tallyContactFormUrl }}"
+                loading="lazy"
+                width="100%"
+                height="500"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+                title="Contact SecretChip"></iframe>
+      </div>
+      <script async src="https://tally.so/widgets/embed.js"></script>
 
-        {# Honeypot — invisible to humans #}
-        <div class="hp" aria-hidden="true">
-          <label>Company website (leave blank)
-            <input type="text" name="companyWebsite" tabindex="-1" autocomplete="off" />
-          </label>
-        </div>
-
-        {# Submit token populated by JS at page load #}
-        <input type="hidden" name="form_token" value="" />
-
-        <div class="field">
-          <label for="cf-name">Name</label>
-          <input id="cf-name" type="text" name="name" required maxlength="120" />
-          <span class="err">Name is required.</span>
-        </div>
-
-        <div class="field">
-          <label for="cf-email">Email</label>
-          <input id="cf-email" type="email" name="email" required maxlength="200" />
-          <span class="hint">We use this only to reply.</span>
-          <span class="err">Please enter a valid email address.</span>
-        </div>
-
-        <div class="field">
-          <label for="cf-topic">Topic</label>
-          <select id="cf-topic" name="topic" required>
-            <option>AEGIS PDNS</option>
-            <option>Services</option>
-            <option>Partnership</option>
-            <option>General Inquiry</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="cf-message">Message</label>
-          <textarea id="cf-message" name="message" rows="6" required maxlength="4000"
-                    placeholder="Share your context: environment, scope, timeline, and what you'd like SecretChip to help with."></textarea>
-          <span class="err">Message is required.</span>
-        </div>
-
-        {# Per-load human check picked by JS #}
-        <div class="field">
-          <label for="cf-human" data-human-question>Quick check…</label>
-          <input id="cf-human" type="text" name="human_check" required maxlength="40" autocomplete="off" />
-          <span class="hint">Spam filter — bots usually skip this.</span>
-        </div>
-
-        {# Turnstile mount; site.js inserts a widget if site.turnstileSiteKey is set #}
-        <div id="turnstile-mount" data-rendered="false"></div>
-
-        <input type="hidden" name="turnstileToken" value="" />
-
-        <div class="btnrow">
-          <button class="btn primary" type="submit">Send inquiry</button>
-          <span id="contactStatus" class="mini" role="status" aria-live="polite"></span>
-        </div>
-
-        <p class="mini" style="margin-top: 4px;">
-          Privacy reminder: your submission is processed per our <a href="/legal/privacy-notice/">Privacy Notice</a>.
-        </p>
-      </form>
+      <p class="mini" style="margin-top: 14px;">
+        Privacy reminder: your submission is processed per our <a href="/legal/privacy-notice/">Privacy Notice</a>.
+      </p>
     </div>
 
     <div class="card">
