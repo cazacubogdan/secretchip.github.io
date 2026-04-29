@@ -679,12 +679,16 @@
       return String.fromCharCode(((c.charCodeAt(0) - k + 13) % 26) + k);
     });
   }
+  function isSafeEmailAddress(addr) {
+    return /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(addr);
+  }
   function initRevealEmail() {
     var nodes = document.querySelectorAll("[data-rot13-mailto]");
     nodes.forEach(function (n) {
       n.addEventListener("click", function (e) {
         e.preventDefault();
-        var addr = rot13(n.getAttribute("data-rot13-mailto") || "");
+        var addr = rot13(n.getAttribute("data-rot13-mailto") || "").trim();
+        if (!isSafeEmailAddress(addr)) return;
         var subj = n.getAttribute("data-subject") || "";
         var body = n.getAttribute("data-body") || "";
         var href = "mailto:" + addr;
