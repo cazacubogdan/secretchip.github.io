@@ -6,7 +6,7 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
 
 <section class="stack-xl">
   <div class="fade-up">
-    {% set eyebrow = "SecretChip" %}{% set heading = "Practical security products and services for real operating environments" %}{% set asH1 = true %}{% set kicker = "company: secretchip · flagship: aegis-pdns · transports: doh, dot, doq" %}{% set desc = "SecretChip is the company. AEGIS PDNS is the flagship product. We help teams move from DNS exposure and policy drift to encrypted resolution, clear controls, and operational confidence." %}
+    {% set eyebrow = "SecretChip" %}{% set heading = "Practical security products and services for real operating environments" %}{% set asH1 = true %}{% set kicker = "company: secretchip · flagship: aegis-pdns · transports: doh, dot, doq" %}{% set desc = "SecretChip is the company. AEGIS PDNS is the flagship product. We help teams secure DNS with encrypted resolution and clear policy controls." %}
     {% include "section-heading.njk" %}
 
     <div class="grid2" style="margin-top: 18px; align-items: stretch;">
@@ -27,8 +27,8 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
 
       <div class="card glow-border ribbon-gradient" style="display: flex; flex-direction: column; justify-content: center;">
         <p class="eyebrow" style="margin: 0; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.24em; color: var(--accent);">Why SecretChip</p>
-        <h3 style="margin: 8px 0 10px; color: var(--text-strong); font-size: 19px;">Encrypted resolution, clear controls, operational confidence.</h3>
-        <p style="color: var(--soft); margin: 0;">A company-first security brand: AEGIS PDNS as the flagship resolver, services that close architecture and rollout gaps. Buyers, operators, and partners evaluate the full model in one place.</p>
+        <h3 style="margin: 8px 0 10px; color: var(--text-strong); font-size: 19px;">A resolver and a team behind it.</h3>
+        <p style="color: var(--soft); margin: 0;">AEGIS PDNS is the resolver. SecretChip services help you deploy and operate it across your infrastructure.</p>
         <div class="btnrow" style="margin-top: 16px;">
           <a class="btn primary" href="/aegis-pdns/test/">Run live DNS test</a>
           <a class="btn purple" href="/contact/">Talk to SecretChip</a>
@@ -37,36 +37,27 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
     </div>
 
     <div class="stat-strip" style="margin-top: 22px;">
-      <div class="stat"><span class="stat-num">Generally available</span><span class="stat-label">Resolver service</span></div>
-      <div class="stat"><span class="stat-num">DoH · DoT · DoQ</span><span class="stat-label">Encrypted transports</span></div>
-      <div class="stat"><span class="stat-num">Filtered + open</span><span class="stat-label">Resolver modes</span></div>
-      <div class="stat"><span class="stat-num">Policy-based</span><span class="stat-label">Filtering profiles</span></div>
+      {% if technitium.available %}
+        <div class="stat"><span class="stat-num">{{ technitium.queriesPerDay | compactNumber }}</span><span class="stat-label">Queries / 24h</span></div>
+        <div class="stat"><span class="stat-num">{{ technitium.threatsBlockedPerDay | compactNumber }}</span><span class="stat-label">Threats blocked / 24h</span></div>
+        <div class="stat"><span class="stat-num">DoH · DoT · DoQ</span><span class="stat-label">Encrypted transports</span></div>
+        <div class="stat"><span class="stat-num">Filtered + open</span><span class="stat-label">Resolver modes</span></div>
+      {% else %}
+        <div class="stat"><span class="stat-num">Generally available</span><span class="stat-label">Resolver service</span></div>
+        <div class="stat"><span class="stat-num">DoH · DoT · DoQ</span><span class="stat-label">Encrypted transports</span></div>
+        <div class="stat"><span class="stat-num">Filtered + open</span><span class="stat-label">Resolver modes</span></div>
+        <div class="stat"><span class="stat-num">Policy-based</span><span class="stat-label">Filtering profiles</span></div>
+      {% endif %}
     </div>
+    {% if technitium.available %}
+      <p class="mini" style="margin-top: 6px; color: var(--muted);">Live · refreshed daily from the AEGIS PDNS resolver.</p>
+    {% endif %}
 
     <div class="pill-row" style="margin-top: 18px;">
       <span class="pill">DoH / DoT / DoQ support</span>
       <span class="pill">Filtered, open, and managed resolver modes</span>
       <span class="pill">Security-first product design</span>
       <span class="pill">Consulting and integration support</span>
-    </div>
-  </div>
-
-  <div class="card grid4" style="border-radius: var(--radius);">
-    <div>
-      <p style="margin: 0; font-size: 13px; font-weight: 600; color: var(--accent);">Company-first architecture</p>
-      <p style="margin-top: 6px; font-size: 13px; color: var(--soft);">SecretChip leads strategy across products and services.</p>
-    </div>
-    <div>
-      <p style="margin: 0; font-size: 13px; font-weight: 600; color: var(--accent);">Flagship DNS product</p>
-      <p style="margin-top: 6px; font-size: 13px; color: var(--soft);">AEGIS PDNS anchors encrypted DNS protection and policy control.</p>
-    </div>
-    <div>
-      <p style="margin: 0; font-size: 13px; font-weight: 600; color: var(--accent);">Audience-aligned delivery</p>
-      <p style="margin-top: 6px; font-size: 13px; color: var(--soft);">Personal, managed, and enterprise deployment paths are supported.</p>
-    </div>
-    <div>
-      <p style="margin: 0; font-size: 13px; font-weight: 600; color: var(--accent);">Clear engagement options</p>
-      <p style="margin-top: 6px; font-size: 13px; color: var(--soft);">Start with testing, then scale into guided rollout or services.</p>
     </div>
   </div>
 
@@ -157,14 +148,12 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
   </div>
 
   <div>
-    {% set heading = "Why SecretChip" %}{% set desc = "A practical approach, product and consulting depth, and a security-first foundation built for long-term portfolio growth." %}
+    {% set heading = "Why SecretChip" %}{% set desc = "A practical approach combined with product and consulting depth." %}
     {% include "section-heading.njk" %}
 
     <div class="grid2" style="margin-top: 16px;">
-      <div class="card"><h3>Practical security approach</h3><p>We prioritize deployable controls and operating clarity instead of abstract frameworks disconnected from daily operations.</p></div>
+      <div class="card"><h3>Practical security approach</h3><p>We prioritize deployable controls and operating clarity over abstract frameworks disconnected from daily operations.</p></div>
       <div class="card"><h3>Product plus consulting depth</h3><p>AEGIS PDNS provides the product baseline while SecretChip services support design, integration, and sustained operation.</p></div>
-      <div class="card"><h3>Security-first thinking</h3><p>Security outcomes are built into resolver behavior, policy choices, and rollout plans from the first decision point.</p></div>
-      <div class="card"><h3>Built for expansion</h3><p>The company-first model supports future products and service lines without fragmenting brand clarity.</p></div>
     </div>
   </div>
 

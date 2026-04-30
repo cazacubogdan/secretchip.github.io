@@ -363,6 +363,12 @@
   }
 
   async function dohQuery(dohBase, name, qtype) {
+    // Browser-side DoH client. We intentionally omit the
+    // `Accept: application/dns-message` request header so the request stays a
+    // "simple" CORS request and avoids a preflight — the server only needs
+    // `Access-Control-Allow-Origin: *` on the GET response. The DoH spec
+    // requires the server to respond with `Content-Type: application/dns-message`
+    // for `?dns=base64url(...)` queries regardless of the Accept header.
     var q = buildDnsQuery(name, qtype);
     var dnsParam = base64UrlEncode(q);
     var joiner = (dohBase.indexOf("?") !== -1) ? "&" : "?";
@@ -370,11 +376,7 @@
     var ctrl = new AbortController();
     var timer = setTimeout(function () { ctrl.abort(); }, 6000);
     try {
-      var r = await fetch(url, {
-        method: "GET",
-        headers: { "accept": "application/dns-message" },
-        signal: ctrl.signal
-      });
+      var r = await fetch(url, { method: "GET", signal: ctrl.signal });
       clearTimeout(timer);
       if (!r.ok) return { ok: false, http: r.status, reason: r.statusText || "HTTP error" };
       var ct = (r.headers && r.headers.get) ? (r.headers.get("content-type") || "") : "";

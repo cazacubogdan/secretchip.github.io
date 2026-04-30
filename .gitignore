@@ -3,6 +3,8 @@ dist/
 .cache/
 .DS_Store
 *.log
+.gitignore
+
 
 # Legacy trees — kept locally for reference, excluded from the deployed repo.
 # Will be removed entirely once the new build is verified live.

@@ -31,6 +31,8 @@ module.exports = {
     { label: "Services", href: "/services/" },
     { label: "Company", href: "/company/" },
     { label: "Contact", href: "/contact/" },
+    // TODO: confirm final external status page URL
+    { label: "Status", href: "https://status.secretchip.net", external: true },
   ],
   footerGroups: {
     Company: [

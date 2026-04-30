@@ -9,7 +9,9 @@
   {% set p = page.url %}
   <nav class="site" aria-label="Primary">
     {% for item in site.nav %}
-      <a class="nav-link{% if p == item.href %} is-active{% endif %}" href="{{ item.href }}">{{ item.label }}</a>
+      <a class="nav-link{% if p == item.href %} is-active{% endif %}"
+         href="{{ item.href }}"
+         {% if item.external %}target="_blank" rel="noopener"{% endif %}>{{ item.label }}</a>
     {% endfor %}
     <a class="login-pill{% if p == '/login/' %} is-active{% endif %}" href="/login/">Client Login</a>
   </nav>
