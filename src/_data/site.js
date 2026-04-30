@@ -23,7 +23,7 @@ module.exports = {
     issues: "https://github.com/secretchip/dns.secretchip.net/issues",
   },
   // Tally embed — handles contact form submission, validation, and delivery.
-  tallyContactFormUrl: "https://tally.so/r/QKxLNY?transparentBackground=1&formEventsForwarding=1",
+  tallyContactFormUrl: "https://tally.so/embed/QKxLNY?alignLeft=1&hideTitle=1&dynamicHeight=1&formEventsForwarding=1",
   nav: [
     { label: "Home", href: "/" },
     { label: "AEGIS PDNS", href: "/aegis-pdns/" },
