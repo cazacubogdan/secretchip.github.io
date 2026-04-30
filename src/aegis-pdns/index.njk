@@ -93,6 +93,20 @@ description: AEGIS PDNS is the flagship SecretChip product for encrypted, policy
   </div>
 
   <div>
+    {% set heading = "Why AEGIS PDNS" %}{% set desc = "Differentiators that describe how AEGIS PDNS is built, not marketing claims." %}
+    {% include "section-heading.njk" %}
+
+    <div class="grid2" style="margin-top: 16px;">
+      <div class="card"><h3>EU-focused operator</h3><p>Protective DNS service operated by SecretChip with an EU-focused posture for hosting and policy decisions.</p></div>
+      <div class="card"><h3>Modern encrypted transports</h3><p>Designed for encrypted DNS access using DoH, DoT, and DoQ across browsers, devices, routers, and managed estates.</p></div>
+      <div class="card"><h3>Filtered and unfiltered modes</h3><p>Supports both filtered and unfiltered (open) resolver modes so teams can compare behavior or run permissive paths where required.</p></div>
+      <div class="card"><h3>Transparent policy profiles</h3><p>Built around transparent policy profiles instead of opaque, one-size-fits-all blocking. Filtering decisions are explainable.</p></div>
+      <div class="card"><h3>Suitable across contexts</h3><p>Suitable for individuals, small businesses, labs, and managed customer profiles as the platform matures.</p></div>
+      <div class="card"><h3>Threat intelligence on the roadmap</h3><p>Planned threat-intelligence enrichment with curated blocklists, false-positive handling, and operational monitoring. Customer-specific policies are designed to follow as the platform matures.</p></div>
+    </div>
+  </div>
+
+  <div>
     {% set heading = "Sample DoH query" %}{% set desc = "RFC 8484 DoH wire query against the AEGIS PDNS filtered resolver. The same shape works against any DoH endpoint in the table above." %}
     {% include "section-heading.njk" %}
 
@@ -142,6 +156,18 @@ curl -sS -X POST -H <span class="hl">'content-type: application/dns-message'</sp
     </div>
 
     <p style="margin-top: 16px;"><a href="/aegis-pdns/setup/">Open the full setup guide →</a></p>
+  </div>
+
+  <div>
+    {% set heading = "Resolver privacy and logging" %}{% set desc = "Honest disclosure of what happens to a DNS query when it reaches the AEGIS PDNS resolver." %}
+    {% include "section-heading.njk" %}
+
+    <div class="card" style="margin-top: 16px;">
+      <p>DNS queries sent to the AEGIS PDNS resolver are processed by SecretChip infrastructure. Resolver operation may involve technical logs that include source IP address, timestamp, queried domain, query type, resolver endpoint used, policy decision, response code, and security or abuse metadata.</p>
+      <p>Logs are used for service operation, abuse prevention, debugging, security monitoring, and improving filtering quality. <strong>SecretChip does not sell DNS query data.</strong></p>
+      <p>Filtering is best-effort and may produce false positives or false negatives. Reports for false positives, false negatives, abuse, and privacy questions can be submitted via the <a href="/contact/">contact page</a>.</p>
+      <p class="mini" style="margin-top: 10px;">Logs are retained only for as long as necessary for service operation, security, abuse prevention, troubleshooting, and legal obligations. See the <a href="/legal/privacy-notice/">Privacy Notice</a> for the complete data-handling description.</p>
+    </div>
   </div>
 
   <div>

@@ -19,7 +19,7 @@ description: Run live checks for AEGIS PDNS endpoint reachability, DoH behavior,
     <div class="terminal-body"><span class="prompt">$</span> <span class="cmd">verifier --plan</span>
 <span class="dim">→ resolver-mode probe (filtered | open)</span>
   <span class="accent">[1]</span> reachability   <span class="out">https GET <span class="dim">{{ site.endpoints.doh }}</span></span>
-  <span class="accent">[2]</span> doh-query      <span class="out">RFC 8484 binary query for google.com A</span>
+  <span class="accent">[2]</span> doh-query      <span class="out">RFC 8484 binary query for {{ site.endpoints.allowTestHost }} A</span>
   <span class="accent">[3]</span> block-test     <span class="out">canary {{ site.endpoints.blockTestHost }} → expect rcode=3 in filtered, answers in open</span>
 <span class="dim">→ device-level probe (control + allow + block, cross-checked via Cloudflare DoH)</span>
   <span class="accent">[4]</span> device-probe   <span class="out">"On AEGIS PDNS" only when allow loads and block fails</span>
@@ -49,8 +49,9 @@ description: Run live checks for AEGIS PDNS endpoint reachability, DoH behavior,
     <div class="btnrow">
       <button class="btn primary" type="button" onclick="verifyAll()">Run all checks</button>
       <button class="btn" type="button" onclick="verifyReachability()">Reachability</button>
-      <button class="btn" type="button" onclick="verifyBinaryExample()">DoH query</button>
+      <button class="btn" type="button" onclick="verifyBinaryExample()">DoH query (allow-test canary)</button>
       <button class="btn" type="button" onclick="verifyBlockTest()">Block / behavior</button>
+      <button class="btn purple" type="button" onclick="verifyBinaryExample('google.com')" title="Optional external sanity check — confirms the resolver can resolve a well-known external domain.">External sanity (google.com)</button>
       <button class="btn" type="button" onclick="clearVerify()">Reset</button>
     </div>
 

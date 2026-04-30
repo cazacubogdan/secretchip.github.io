@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 permalink: /aegis-pdns/setup/
-title: AEGIS PDNS Setup
+title: AEGIS PDNS Setup Guide
 description: Set up AEGIS PDNS on Android, iPhone, routers, and browsers.
 ---
 
@@ -46,10 +46,10 @@ Hostname: <span class="hl-purple">{{ site.endpoints.dotHost }}</span></div>
 </section>
 
 <section class="card" id="ios" style="margin-top: 16px;">
-  <h3 class="section-title">iPhone and iPad (DoT via DNS profile)</h3>
-  <p>iOS uses a configuration profile to set the encrypted resolver system-wide.</p>
+  <h3 class="section-title">iPhone and iPad (encrypted DNS profile)</h3>
+  <p>iOS uses a configuration profile to set the encrypted resolver system-wide. The AEGIS profile uses DNS-over-HTTPS.</p>
   <ol class="steps">
-    <li>Open <a href="#downloadProfile">the DNS profile</a> from Safari (other browsers won't install profiles).</li>
+    <li>From Safari on the device, open <a href="/aegis.mobileconfig">/aegis.mobileconfig</a> (other browsers won't install profiles).</li>
     <li>iOS prompts you to allow the download. Open <strong>Settings</strong>, you'll see a banner saying <em>Profile Downloaded</em>.</li>
     <li>Tap the banner → <strong>Install</strong> → enter your passcode → <strong>Install</strong> again.</li>
     <li>Verify in <strong>Settings</strong> → <strong>General</strong> → <strong>VPN &amp; Device Management</strong>.</li>
@@ -73,9 +73,12 @@ Hostname: <span class="hl-purple">{{ site.endpoints.dotHost }}</span></div>
     </a>
   </div>
 
+  <div class="btnrow" style="margin-top: 12px;">
+    <a class="btn primary" href="/aegis.mobileconfig">Download AEGIS DNS profile</a>
+  </div>
+
   <p class="mini" id="downloadProfile" style="margin-top: 12px;">
-    The signed profile will be hosted at <code>/aegis-dot.mobileconfig</code> when published. Until then, configure manually:
-    in <strong>Settings</strong> → <strong>General</strong> → <strong>VPN, DNS &amp; Device Management</strong>, choose <strong>DNS</strong> and enter the DoT hostname: <strong>{{ site.endpoints.dotHost }}</strong>.
+    Prefer manual configuration? In <strong>Settings</strong> → <strong>General</strong> → <strong>VPN, DNS &amp; Device Management</strong>, choose <strong>DNS</strong> and enter the DoT hostname: <strong>{{ site.endpoints.dotHost }}</strong>.
   </p>
   <div class="code-block" style="margin-top: 10px;"><span class="lang">ios</span><span class="cmt"># Manual DoT configuration (no profile)</span>
 Settings → General → VPN, DNS &amp; Device Management → DNS
@@ -122,7 +125,7 @@ DoH URL: <span class="hl-purple">{{ site.endpoints.doh }}</span></div>
 
 <section class="card" id="verify" style="margin-top: 16px;">
   <h3 class="section-title">Live verification</h3>
-  <p>Run real DNS-over-HTTPS queries from this page against the resolver. No data leaves your browser.</p>
+  <p>The verification runs directly from your browser against the selected resolver. No separate backend service is used for this test page, but DNS queries are sent to the resolver endpoint being tested.</p>
 
   <div class="endpoint">
     <div class="label">
@@ -140,8 +143,9 @@ DoH URL: <span class="hl-purple">{{ site.endpoints.doh }}</span></div>
   <div class="btnrow">
     <button class="btn primary" type="button" onclick="verifyAll()">Run all checks</button>
     <button class="btn" type="button" onclick="verifyReachability()">Reachability</button>
-    <button class="btn" type="button" onclick="verifyBinaryExample()">DoH query (google.com)</button>
+    <button class="btn" type="button" onclick="verifyBinaryExample()">DoH query (allow-test canary)</button>
     <button class="btn" type="button" onclick="verifyBlockTest()">Block test</button>
+    <button class="btn purple" type="button" onclick="verifyBinaryExample('google.com')" title="Optional external sanity check — confirms the resolver can resolve a well-known external domain.">External sanity (google.com)</button>
     <button class="btn" type="button" onclick="clearVerify()">Reset</button>
   </div>
 

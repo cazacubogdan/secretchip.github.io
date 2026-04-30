@@ -477,31 +477,34 @@
     }
   };
 
-  window.verifyBinaryExample = async function () {
+  window.verifyBinaryExample = async function (overrideHost) {
     if (!$("verify")) return;
     var url = getVerifyUrl();
     if (!url) return;
-    window.setVerifyOverall("Testing DoH query…", "");
-    setResult("Bin", "Running", "", "");
-    var res = await dohQuery(url, "google.com", 1);
+    var allowHost = ($("allowHost") ? $("allowHost").textContent.trim() : "dns-allow-test.secretchip.net");
+    var host = (typeof overrideHost === "string" && overrideHost) ? overrideHost : allowHost;
+    var label = "DoH query (" + host + ")";
+    window.setVerifyOverall("Testing " + label + "…", "");
+    setResult("Bin", "Running", "Querying " + host + " A…", "");
+    var res = await dohQuery(url, host, 1);
     if (!res.ok) {
-      setResult("Bin", "Fail", "HTTP error: " + (res.http || "") + " " + (res.reason || ""), "");
-      window.setVerifyOverall("DoH query failed", "bad");
+      setResult("Bin", "Fail", "HTTP error: " + (res.http || "") + " " + (res.reason || ""), "Host: " + host);
+      window.setVerifyOverall(label + " failed", "bad");
       return false;
     }
     var p = res.parsed;
     if (!p.ok) {
-      setResult("Bin", "Fail", "Parse error: " + (p.reason || ""), "");
-      window.setVerifyOverall("DoH query failed", "bad");
+      setResult("Bin", "Fail", "Parse error: " + (p.reason || ""), "Host: " + host);
+      window.setVerifyOverall(label + " failed", "bad");
       return false;
     }
     if (p.rcode === 0 && (p.ips4 || []).length) {
-      setResult("Bin", "Pass", "Resolved google.com", "A: " + p.ips4.join(", "));
-      window.setVerifyOverall("DoH query passed", "ok");
+      setResult("Bin", "Pass", "Resolved " + host, "A: " + p.ips4.join(", "));
+      window.setVerifyOverall(label + " passed", "ok");
       return true;
     }
-    setResult("Bin", "Fail", "Unexpected response. rcode=" + p.rcode, "A: " + ((p.ips4 || []).join(", ")));
-    window.setVerifyOverall("DoH query failed", "bad");
+    setResult("Bin", "Fail", "Unexpected response. rcode=" + p.rcode, "A: " + ((p.ips4 || []).join(", ") || "none"));
+    window.setVerifyOverall(label + " failed", "bad");
     return false;
   };
 

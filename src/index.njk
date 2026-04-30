@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: SecretChip Security Products and Services
+title: Security Consulting and AEGIS PDNS
 description: SecretChip is the parent security company. AEGIS PDNS is the flagship product for encrypted, policy-aware DNS protection with practical rollout support.
 ---
 
@@ -15,9 +15,9 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
           <span class="dot"></span><span class="dot"></span><span class="dot"></span>
           <span class="title">aegis-pdns ~ live doh probe</span>
         </div>
-        <div class="terminal-body"><span class="prompt">$</span> <span class="cmd">dohQuery</span> <span class="accent">{{ site.endpoints.doh }}</span> <span class="out">google.com A</span>
+        <div class="terminal-body"><span class="prompt">$</span> <span class="cmd">dohQuery</span> <span class="accent">{{ site.endpoints.doh }}</span> <span class="out">{{ site.endpoints.allowTestHost }} A</span>
 <span class="dim">→ resolving via DoH (RFC 8484)…</span>
-<span class="ok">✓ rcode=0</span>  <span class="out">A=142.250.190.78  ttl=212  rtt=18ms</span>
+<span class="ok">✓ rcode=0</span>  <span class="out">A=allow-test answer  ttl=212  rtt=18ms</span>
 
 <span class="prompt">$</span> <span class="cmd">dohQuery</span> <span class="accent">{{ site.endpoints.doh }}</span> <span class="out">{{ site.endpoints.blockTestHost }} A</span>
 <span class="dim">→ canary block-test query…</span>
@@ -37,10 +37,10 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
     </div>
 
     <div class="stat-strip" style="margin-top: 22px;">
-      <div class="stat"><span class="stat-num"><span class="todo">TBD</span></span><span class="stat-label">Queries / day</span></div>
-      <div class="stat"><span class="stat-num"><span class="todo">TBD</span></span><span class="stat-label">Threats blocked</span></div>
-      <div class="stat"><span class="stat-num"><span class="todo">TBD</span></span><span class="stat-label">p95 resolver latency</span></div>
-      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Encrypted transports</span></div>
+      <div class="stat"><span class="stat-num">Generally available</span><span class="stat-label">Resolver service</span></div>
+      <div class="stat"><span class="stat-num">DoH · DoT · DoQ</span><span class="stat-label">Encrypted transports</span></div>
+      <div class="stat"><span class="stat-num">Filtered + open</span><span class="stat-label">Resolver modes</span></div>
+      <div class="stat"><span class="stat-num">Policy-based</span><span class="stat-label">Filtering profiles</span></div>
     </div>
 
     <div class="pill-row" style="margin-top: 18px;">
@@ -169,10 +169,16 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
   </div>
 
   {% set ctaTitle = "Start with the right SecretChip path" %}
-  {% set ctaText = "Run the AEGIS PDNS DNS test, review solution guidance, or contact SecretChip for a scoped product and services discussion." %}
-  {% set ctaPrimaryLabel = "Contact SecretChip" %}
-  {% set ctaPrimaryHref = "/contact/" %}
-  {% set ctaSecondaryLabel = "Run DNS Test" %}
-  {% set ctaSecondaryHref = "/aegis-pdns/test/" %}
+  {% set ctaText = "Explore the flagship product, run the resolver test, follow the setup guide, or contact SecretChip for a scoped discussion." %}
+  {% set ctaPrimaryLabel = "Explore AEGIS PDNS" %}
+  {% set ctaPrimaryHref = "/aegis-pdns/" %}
+  {% set ctaSecondaryLabel = "Contact SecretChip" %}
+  {% set ctaSecondaryHref = "/contact/" %}
   {% include "cta.njk" %}
+
+  <div class="btnrow" style="justify-content: center; margin-top: 16px; flex-wrap: wrap;">
+    <a class="btn" href="/aegis-pdns/test/">Test the Resolver</a>
+    <a class="btn" href="/aegis-pdns/setup/">Setup Guide</a>
+    <a class="btn" href="/login/">Client Portal</a>
+  </div>
 </section>

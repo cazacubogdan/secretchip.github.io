@@ -295,10 +295,20 @@ nav.site a.login-pill:hover {
   gap: 16px;
   align-items: stretch;
 }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: stretch; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: stretch; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
+
+/* Cards inside grids fill the row height and use grid gap, not stack margin. */
+.grid2 > .card,
+.grid3 > .card,
+.grid4 > .card,
+.split  > .card { height: 100%; }
+.grid2 > .card + .card,
+.grid3 > .card + .card,
+.grid4 > .card + .card,
+.split  > .card + .card { margin-top: 0; }
 
 @media (max-width: 980px) {
   .hero, .grid2, .grid3, .grid4, .split { grid-template-columns: 1fr; }
@@ -699,21 +709,6 @@ h2.hero-title .mark {
 .legal-footer {
   font-size: 13px;
   color: var(--muted);
-}
-
-/* TODO marker — visible flag for placeholder copy */
-.todo {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--warn);
-  background: var(--warn-edge);
-  border: 1px solid var(--warn);
-  border-radius: 4px;
-  padding: 1px 6px;
-  margin: 0 2px;
-  vertical-align: middle;
 }
 
 /* -----------------------------------------------------------
