@@ -93,16 +93,15 @@ description: AEGIS PDNS is the flagship SecretChip product for encrypted, policy
   </div>
 
   <div>
-    {% set heading = "Why AEGIS PDNS" %}{% set desc = "Differentiators that describe how AEGIS PDNS is built, not marketing claims." %}
+    {% set heading = "Why AEGIS PDNS" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
     <div class="grid2" style="margin-top: 16px;">
-      <div class="card"><h3>EU-focused operator</h3><p>Protective DNS service operated by SecretChip with an EU-focused posture for hosting and policy decisions.</p></div>
-      <div class="card"><h3>Modern encrypted transports</h3><p>Designed for encrypted DNS access using DoH, DoT, and DoQ across browsers, devices, routers, and managed estates.</p></div>
-      <div class="card"><h3>Filtered and unfiltered modes</h3><p>Supports both filtered and unfiltered (open) resolver modes so teams can compare behavior or run permissive paths where required.</p></div>
-      <div class="card"><h3>Transparent policy profiles</h3><p>Built around transparent policy profiles instead of opaque, one-size-fits-all blocking. Filtering decisions are explainable.</p></div>
-      <div class="card"><h3>Suitable across contexts</h3><p>Suitable for individuals, small businesses, labs, and managed customer profiles as the platform matures.</p></div>
-      <div class="card"><h3>Threat intelligence on the roadmap</h3><p>Planned threat-intelligence enrichment with curated blocklists, false-positive handling, and operational monitoring. Customer-specific policies are designed to follow as the platform matures.</p></div>
+      <div class="card"><h3>EU-based operation</h3><p>Operated from Europe, designed for data residency and GDPR alignment.</p></div>
+      <div class="card"><h3>Modern encrypted transports</h3><p>DoH, DoT, and DoQ across browsers, devices, routers, and managed estates.</p></div>
+      <div class="card"><h3>Filtered and unfiltered modes</h3><p>Run filtered protection by default, or switch to the open resolver to compare behavior.</p></div>
+      <div class="card"><h3>Transparent policy profiles</h3><p>See exactly why each domain is blocked or allowed — no black-box filtering.</p></div>
+      <div class="card"><h3>Suitable across contexts</h3><p>Works for individuals, small businesses, labs, and managed customer profiles.</p></div>
     </div>
   </div>
 
@@ -159,7 +158,7 @@ curl -sS -X POST -H <span class="hl">'content-type: application/dns-message'</sp
   </div>
 
   <div>
-    {% set heading = "Resolver privacy and logging" %}{% set desc = "Honest disclosure of what happens to a DNS query when it reaches the AEGIS PDNS resolver." %}
+    {% set heading = "Resolver privacy and logging" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
     <div class="card" style="margin-top: 16px;">
