@@ -1,134 +1,80 @@
 ---
 layout: base.njk
-title: Security Consulting and AEGIS PDNS
-description: SecretChip is the parent security company. AEGIS PDNS is the flagship product for encrypted, policy-aware DNS protection with practical rollout support.
+title: AEGIS PDNS
+description: SecretChip builds AEGIS PDNS, a protective DNS layer for people and teams who want control, transparency, and practical rollout support.
 ---
 
 <section class="stack-xl">
   <div class="fade-up">
-    {% set eyebrow = "SecretChip" %}{% set heading = "Practical security products and services for real operating environments" %}{% set asH1 = true %}{% set kicker = "company: secretchip · flagship: aegis-pdns · transports: doh, dot, doq" %}{% set desc = "SecretChip is the company. AEGIS PDNS is the flagship product. We help teams secure DNS with encrypted resolution and clear policy controls." %}
+    {% set eyebrow = "SecretChip" %}{% set heading = "AEGIS PDNS" %}{% set asH1 = true %}{% set kicker = "protective dns layer · doh, dot, doq · filtered and open resolver modes" %}{% set desc = "Protective DNS for people and teams who want control, transparency, and practical rollout support." %}
     {% include "section-heading.njk" %}
 
-    <div class="grid2" style="margin-top: 18px; align-items: stretch;">
-      <div class="terminal" aria-hidden="true">
-        <div class="terminal-bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="title">aegis-pdns ~ live doh probe</span>
-        </div>
-        <div class="terminal-body"><span class="prompt">$</span> <span class="cmd">dohQuery</span> <span class="accent">{{ site.endpoints.doh }}</span> <span class="out">{{ site.endpoints.allowTestHost }} A</span>
-<span class="dim">→ resolving via DoH (RFC 8484)…</span>
-<span class="ok">✓ rcode=0</span>  <span class="out">A=allow-test answer  ttl=212  rtt=18ms</span>
-
-<span class="prompt">$</span> <span class="cmd">dohQuery</span> <span class="accent">{{ site.endpoints.doh }}</span> <span class="out">{{ site.endpoints.blockTestHost }} A</span>
-<span class="dim">→ canary block-test query…</span>
-<span class="ok">✓ blocked</span>  <span class="out">rcode=3 (NXDOMAIN)</span>  <span class="purple">policy=filtered</span>
-<span class="prompt">$</span><span class="cursor"></span></div>
+    <div class="card" style="margin-top: 18px;">
+      <p>AEGIS PDNS blocks known risky destinations before a connection is made, using encrypted DNS over DoH, DoT, and DoQ. Use it directly on a device, deploy it at the router, or work with SecretChip for managed rollout and policy design.</p>
+      <div class="btnrow" style="margin-top: 16px;">
+        <a class="btn primary" href="/aegis-pdns/test/">Run DNS Test</a>
+        <a class="btn" href="/aegis-pdns/setup/">Setup Guide</a>
+        <a class="btn purple" href="/contact/">Contact SecretChip</a>
       </div>
-
-      <div class="card glow-border ribbon-gradient" style="display: flex; flex-direction: column; justify-content: center;">
-        <p class="eyebrow" style="margin: 0; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.24em; color: var(--accent);">Why SecretChip</p>
-        <h3 style="margin: 8px 0 10px; color: var(--text-strong); font-size: 19px;">A resolver and a team behind it.</h3>
-        <p style="color: var(--soft); margin: 0;">AEGIS PDNS is the resolver. SecretChip services help you deploy and operate it across your infrastructure.</p>
-        <div class="btnrow" style="margin-top: 16px;">
-          <a class="btn primary" href="/aegis-pdns/test/">Run live DNS test</a>
-          <a class="btn purple" href="/contact/">Talk to SecretChip</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="stat-strip" style="margin-top: 22px;">
-      {% if technitium.available %}
-        <div class="stat"><span class="stat-num">{{ technitium.queriesPerDay | compactNumber }}</span><span class="stat-label">Queries / 24h</span></div>
-        <div class="stat"><span class="stat-num">{{ technitium.threatsBlockedPerDay | compactNumber }}</span><span class="stat-label">Threats blocked / 24h</span></div>
-        <div class="stat"><span class="stat-num">DoH · DoT · DoQ</span><span class="stat-label">Encrypted transports</span></div>
-        <div class="stat"><span class="stat-num">Filtered + open</span><span class="stat-label">Resolver modes</span></div>
-      {% else %}
-        <div class="stat"><span class="stat-num">Generally available</span><span class="stat-label">Resolver service</span></div>
-        <div class="stat"><span class="stat-num">DoH · DoT · DoQ</span><span class="stat-label">Encrypted transports</span></div>
-        <div class="stat"><span class="stat-num">Filtered + open</span><span class="stat-label">Resolver modes</span></div>
-        <div class="stat"><span class="stat-num">Policy-based</span><span class="stat-label">Filtering profiles</span></div>
-      {% endif %}
-    </div>
-    {% if technitium.available %}
-      <p class="mini" style="margin-top: 6px; color: var(--muted);">Live · refreshed daily from the AEGIS PDNS resolver.</p>
-    {% endif %}
-
-    <div class="pill-row" style="margin-top: 18px;">
-      <span class="pill">DoH / DoT / DoQ support</span>
-      <span class="pill">Filtered, open, and managed resolver modes</span>
-      <span class="pill">Security-first product design</span>
-      <span class="pill">Consulting and integration support</span>
     </div>
   </div>
 
-  <div class="grid2">
-    <div class="card">
-      <h3>SecretChip and AEGIS PDNS</h3>
-      <p>SecretChip develops security capabilities across products and services. AEGIS PDNS is the flagship product in that portfolio, built for encrypted DNS, threat-aware policy enforcement, and practical deployment at different scales.</p>
-      <p style="color: var(--muted);">Product and services are connected by design. Teams can deploy quickly with standard resolver modes, then extend coverage with consulting, infrastructure hardening, and operational enablement.</p>
-    </div>
-    <div class="card">
-      <h3>Featured AEGIS PDNS snapshot</h3>
+  <div>
+    {% set heading = "Why choose AEGIS PDNS?" %}{% set desc = "Most DNS filtering services give you a resolver. AEGIS PDNS gives you a resolver, public test endpoints, visible blocklist pipeline outputs, and a security team behind the deployment." %}
+    {% include "section-heading.njk" %}
+
+    <div class="card" style="margin-top: 16px;">
+      <p>Use AEGIS PDNS when you want:</p>
       <ul class="list">
-        <li>Encrypted DNS resolution for modern clients and managed networks.</li>
-        <li>Malicious-domain filtering with open resolver options when required.</li>
-        <li>Policy-aware profiles that map cleanly to personal, MSP, and enterprise contexts.</li>
-        <li>Testing and rollout paths that can start in minutes and mature over time.</li>
+        <li>Encrypted DNS over DoH, DoT, and DoQ.</li>
+        <li>Filtered and open resolver modes for testing and comparison.</li>
+        <li>Public canary domains to verify allow and block behavior.</li>
+        <li>Transparent list generation and published feed manifests.</li>
+        <li>Practical help with rollout, tuning, false positives, and policy design.</li>
       </ul>
-      <p style="margin-top: 14px;"><a href="/aegis-pdns/">Explore AEGIS PDNS →</a></p>
     </div>
   </div>
 
   <div>
-    {% set eyebrow = "" %}{% set kicker = "" %}{% set heading = "Solutions snapshot" %}{% set asH1 = false %}{% set desc = "Choose the path that fits your environment, then move into full technical planning." %}
+    {% set heading = "How AEGIS PDNS is different" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
-    <div class="grid3" style="margin-top: 16px;">
-      <div class="card">
-        <h3>Personal & Home</h3>
-        <p>Encrypted DNS with practical defaults for personal devices and home labs.</p>
-        <p style="margin-top: 10px;"><a href="/solutions/#personal-home">Go to solution path →</a></p>
-      </div>
-      <div class="card">
-        <h3>SMB & MSP</h3>
-        <p>Consistent resolver policy for managed customers, endpoints, and mixed network estates.</p>
-        <p style="margin-top: 10px;"><a href="/solutions/#smb-msp">Go to solution path →</a></p>
-      </div>
-      <div class="card">
-        <h3>Enterprise</h3>
-        <p>Governance-aligned DNS controls for security and infrastructure teams.</p>
-        <p style="margin-top: 10px;"><a href="/solutions/#enterprise">Go to solution path →</a></p>
-      </div>
+    <div class="card" style="margin-top: 16px;">
+      <p>Cloudflare is strong for global-scale DNS and enterprise traffic controls. AdGuard DNS is strong for consumer privacy and ad blocking. NextDNS is strong for self-service customization. Quad9 is strong for free security-focused recursive DNS.</p>
+      <p>AEGIS PDNS is different because it is built around practical security operations: visible resolver behavior, testable canary domains, public feed outputs, and optional SecretChip support for deployment, policy design, and troubleshooting.</p>
+      <p>It is not trying to be the biggest resolver. It is designed to be understandable, testable, and usable by people who need a protective DNS layer they can reason about.</p>
     </div>
-  </div>
-
-  <div>
-    {% set heading = "Encrypted DNS at a glance" %}{% set desc = "AEGIS PDNS speaks every modern encrypted DNS transport. Pick by client capability and operating context — there is no single right answer." %}
-    {% include "section-heading.njk" %}
 
     <div class="proto-table-wrap" style="margin-top: 16px;">
       <table class="proto-table">
         <thead>
-          <tr><th>Transport</th><th>Port</th><th>Underlying protocol</th><th>Best for</th></tr>
+          <tr><th>Provider</th><th>Best fit</th><th>AEGIS difference</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>DoH</td>
-            <td class="mono-cell">443</td>
-            <td>HTTPS / HTTP/2</td>
-            <td>Browsers, apps, restrictive networks where 443 is the only path out</td>
+            <td>Cloudflare</td>
+            <td>Global DNS, performance, and enterprise edge ecosystem.</td>
+            <td>Smaller, security-focused, more transparent rollout and test flow.</td>
           </tr>
           <tr>
-            <td>DoT</td>
-            <td class="mono-cell">{{ site.endpoints.dotPort }}</td>
-            <td>TLS</td>
-            <td>System-wide resolver on Android, routers, gateways</td>
+            <td>AdGuard DNS</td>
+            <td>Consumer privacy, family filtering, ads, and tracker blocking.</td>
+            <td>Security-first positioning, managed rollout support, public feed transparency.</td>
           </tr>
           <tr>
-            <td>DoQ</td>
-            <td class="mono-cell">{{ site.endpoints.doqPort }}</td>
-            <td>QUIC / UDP</td>
-            <td>Low-latency clients on lossy networks; modern resolver platforms</td>
+            <td>NextDNS</td>
+            <td>Self-service configurable DNS filtering.</td>
+            <td>Simpler default path plus SecretChip-supported operational deployment.</td>
+          </tr>
+          <tr>
+            <td>Quad9</td>
+            <td>Free malicious-domain blocking.</td>
+            <td>Additional setup guidance, testing workflow, and managed policy support.</td>
+          </tr>
+          <tr>
+            <td>AEGIS PDNS</td>
+            <td>Users, SMBs, MSPs, and teams that want protective DNS with transparent behavior and practical support.</td>
+            <td>Testable resolver behavior, visible feed outputs, and rollout support from SecretChip.</td>
           </tr>
         </tbody>
       </table>
@@ -136,38 +82,35 @@ description: SecretChip is the parent security company. AEGIS PDNS is the flagsh
   </div>
 
   <div>
-    {% set heading = "Services snapshot" %}{% set desc = "SecretChip services close architecture and deployment gaps around product adoption and broader security operations." %}
+    {% set heading = "Choose your path" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
-    <div class="grid2" style="margin-top: 16px;">
-      <div class="card"><h3>Security Consulting</h3><p>Define control priorities, architecture decisions, and phased implementation plans.</p></div>
-      <div class="card"><h3>Protective DNS Services</h3><p>Deploy AEGIS PDNS with policy tuning, resolver governance, and ongoing support.</p></div>
-      <div class="card"><h3>Infrastructure Security</h3><p>Harden network and platform controls around DNS and adjacent security surfaces.</p></div>
-      <div class="card"><h3>Operational Enablement</h3><p>Establish runbooks and team workflows that keep controls effective over time.</p></div>
+    <div class="grid3" style="margin-top: 16px;">
+      <div class="card">
+        <h3>Personal and home</h3>
+        <p>Use encrypted DNS on your devices or router with practical security defaults.</p>
+      </div>
+      <div class="card">
+        <h3>SMB and MSP</h3>
+        <p>Standardize protective DNS across users, endpoints, and customer environments.</p>
+      </div>
+      <div class="card">
+        <h3>Enterprise</h3>
+        <p>Use AEGIS PDNS as part of a governed DNS control strategy, with support for policy design and operational rollout.</p>
+      </div>
     </div>
   </div>
 
-  <div>
-    {% set heading = "Why SecretChip" %}{% set desc = "A practical approach combined with product and consulting depth." %}
-    {% include "section-heading.njk" %}
-
-    <div class="grid2" style="margin-top: 16px;">
-      <div class="card"><h3>Practical security approach</h3><p>We prioritize deployable controls and operating clarity over abstract frameworks disconnected from daily operations.</p></div>
-      <div class="card"><h3>Product plus consulting depth</h3><p>AEGIS PDNS provides the product baseline while SecretChip services support design, integration, and sustained operation.</p></div>
-    </div>
-  </div>
-
-  {% set ctaTitle = "Start with the right SecretChip path" %}
-  {% set ctaText = "Explore the flagship product, run the resolver test, follow the setup guide, or contact SecretChip for a scoped discussion." %}
-  {% set ctaPrimaryLabel = "Explore AEGIS PDNS" %}
-  {% set ctaPrimaryHref = "/aegis-pdns/" %}
+  {% set ctaTitle = "Test, set up, or talk through deployment" %}
+  {% set ctaText = "Run the DNS test, follow the setup guide, or contact SecretChip for beta access, managed rollout, and commercial support." %}
+  {% set ctaPrimaryLabel = "Run DNS Test" %}
+  {% set ctaPrimaryHref = "/aegis-pdns/test/" %}
   {% set ctaSecondaryLabel = "Contact SecretChip" %}
   {% set ctaSecondaryHref = "/contact/" %}
   {% include "cta.njk" %}
 
-  <div class="btnrow" style="justify-content: center; margin-top: 16px; flex-wrap: wrap;">
-    <a class="btn" href="/aegis-pdns/test/">Test the Resolver</a>
+  <div class="btnrow" style="justify-content: center; margin-top: 16px;">
+    <a class="btn" href="/aegis-pdns/">AEGIS PDNS Product Page</a>
     <a class="btn" href="/aegis-pdns/setup/">Setup Guide</a>
-    <a class="btn" href="/login/">Client Portal</a>
   </div>
 </section>

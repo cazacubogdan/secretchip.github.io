@@ -2,170 +2,152 @@
 layout: base.njk
 permalink: /aegis-pdns/
 title: AEGIS PDNS
-description: AEGIS PDNS is the flagship SecretChip product for encrypted, policy-aware DNS protection.
+description: AEGIS PDNS is SecretChip protective DNS with encrypted resolver access, malicious-domain filtering, and practical deployment support.
 ---
 
 <section class="stack-xl">
   <div class="fade-up">
-    {% set eyebrow = "Flagship Product" %}{% set heading = "AEGIS PDNS by SecretChip" %}{% set asH1 = true %}{% set kicker = "resolver: filtered + open · transports: doh, dot, doq · policy: filter | allow | observe" %}{% set desc = "Encrypted, policy-aware DNS protection with resolver modes and setup paths for personal users, managed operators, and enterprise security teams." %}
+    {% set eyebrow = "AEGIS PDNS by SecretChip" %}{% set heading = "Protective DNS with encrypted resolver access, malicious-domain filtering, and practical deployment support." %}{% set asH1 = true %}{% set kicker = "filtered + open resolvers · doh, dot, doq · public canary tests" %}{% set desc = "AEGIS PDNS helps stop connections to known risky domains before the browser, app, or device reaches them. It supports DoH, DoT, and DoQ, includes filtered and open resolver modes, and provides test domains so users can verify whether protection is working." %}
     {% include "section-heading.njk" %}
 
-    <div class="kv-table" style="margin-top: 18px;">
-      <div class="kv-key">Filtered</div>
-      <div class="kv-val"><span class="code-inline">{{ site.endpoints.doh }}</span> &mdash; default mode, blocks known malicious infrastructure</div>
-      <div class="kv-key">Open</div>
-      <div class="kv-val"><span class="code-inline">{{ site.endpoints.dohOpen }}</span> &mdash; permissive mode for compatibility testing</div>
-      <div class="kv-key">DoT host</div>
-      <div class="kv-val"><span class="code-inline">{{ site.endpoints.dotHost }}:{{ site.endpoints.dotPort }}</span></div>
-      <div class="kv-key">DoQ host</div>
-      <div class="kv-val"><span class="code-inline">{{ site.endpoints.doqHost }}:{{ site.endpoints.doqPort }}</span></div>
-    </div>
-
-    <div class="pill-row">
-      <span class="pill">Encrypted DNS transport</span>
-      <span class="pill">Malicious-domain blocking</span>
-      <span class="pill">Policy-aware access profiles</span>
-      <span class="pill">Product backed by SecretChip services</span>
-    </div>
-
-    <div class="btnrow">
-      <a class="btn primary" href="/aegis-pdns/test/">Run DNS Test</a>
-      <a class="btn" href="/aegis-pdns/setup/">Setup guide</a>
-      <a class="btn purple" href="/contact/">Contact SecretChip</a>
+    <div class="card" style="margin-top: 18px;">
+      <p>It is designed for people who do not just want a DNS address. They want to understand what is blocked, how to test it, how to deploy it, and how to get support when something is wrong.</p>
+      <div class="btnrow" style="margin-top: 16px;">
+        <a class="btn primary" href="/aegis-pdns/test/">Run DNS Test</a>
+        <a class="btn" href="/aegis-pdns/setup/">Setup Guide</a>
+        <a class="btn purple" href="/contact/">Contact SecretChip</a>
+      </div>
     </div>
   </div>
 
   <div>
-    {% set eyebrow = "" %}{% set heading = "What it does" %}{% set asH1 = false %}{% set desc = "AEGIS PDNS secures DNS resolution with encrypted protocols, blocks known malicious destinations, and applies policy-aware resolver profiles that fit different operating contexts." %}
+    {% set heading = "What problem it solves" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
     <div class="grid2" style="margin-top: 16px;">
-      <div class="card"><h3>Encrypted DNS resolution</h3><p>Queries can be sent over encrypted channels to reduce local interception risk and improve privacy posture in untrusted and mixed networks.</p></div>
-      <div class="card"><h3>Malicious-domain blocking</h3><p>Filtered resolver modes are tuned to block known malicious infrastructure while still supporting practical day-to-day connectivity needs.</p></div>
-      <div class="card"><h3>Policy-aware access profiles</h3><p>Different profiles support different risk tolerances so teams can separate strict filtering from open access where operationally required.</p></div>
-      <div class="card"><h3>Usable across contexts</h3><p>AEGIS PDNS can be used directly by individuals, rolled out across managed customer estates, or integrated into enterprise DNS control strategies.</p></div>
+      <div class="card">
+        <h3>Reduce exposure before connection</h3>
+        <p>AEGIS PDNS provides a protective DNS layer that can block known malicious infrastructure and known risky destinations before apps complete a connection.</p>
+      </div>
+      <div class="card">
+        <h3>Make DNS rollout understandable</h3>
+        <p>Public canary domains, filtered and open resolver modes, and setup guidance help users verify what is happening instead of guessing.</p>
+      </div>
     </div>
   </div>
 
   <div>
-    {% set heading = "Core capabilities" %}{% set desc = "" %}
+    {% set heading = "What you get" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
     <div class="grid2" style="margin-top: 16px;">
-      <div class="card"><h3>Threat blocking</h3><p>Block known malicious domains as a baseline defensive control.</p></div>
-      <div class="card"><h3>Encrypted transport</h3><p>Use encrypted protocols to reduce plaintext DNS exposure.</p></div>
-      <div class="card"><h3>Profile-based policies</h3><p>Apply resolver behavior based on user, tenant, or environment needs.</p></div>
-      <div class="card"><h3>Operational flexibility</h3><p>Run as quick-start resolver usage or managed deployment with service support.</p></div>
+      <div class="card"><h3>Encrypted DNS</h3><p>Use DoH, DoT, or DoQ depending on your device, router, browser, or network design.</p></div>
+      <div class="card"><h3>Protective filtering</h3><p>Filtered resolver mode blocks known risky destinations using curated blocklists.</p></div>
+      <div class="card"><h3>Open resolver mode</h3><p>Use the open resolver for compatibility checks and behavior comparison.</p></div>
+      <div class="card"><h3>Live verification</h3><p>Use the DNS test page to check reachability, allow behavior, block behavior, and device-level configuration.</p></div>
+      <div class="card"><h3>Transparent feed pipeline</h3><p>AEGIS-DNS publishes list manifests, hashes, build metadata, and release assets so the filtering base is not hidden.</p></div>
+      <div class="card"><h3>Deployment support</h3><p>SecretChip can help with policy design, router rollout, endpoint setup, false positives, and operational handover.</p></div>
     </div>
   </div>
 
   <div>
-    {% set heading = "Resolver modes" %}{% set desc = "Three modes covering the spectrum from strict filtering to compatibility testing to per-tenant policy design." %}
+    {% set heading = "How AEGIS PDNS is different" %}{% set desc = "" %}
+    {% include "section-heading.njk" %}
+
+    <div class="card" style="margin-top: 16px;">
+      <p>Cloudflare is strong for global-scale DNS and enterprise traffic controls. AdGuard DNS is strong for consumer privacy and ad blocking. NextDNS is strong for self-service customization. Quad9 is strong for free security-focused recursive DNS.</p>
+      <p>AEGIS PDNS is built around practical security operations: visible resolver behavior, testable canary domains, public feed outputs, and optional SecretChip support for deployment, policy design, and troubleshooting.</p>
+      <p>It is a best-effort protective DNS layer, not a promise that every risky destination will be blocked. Policy-aware resolver behavior can still produce false positives or false negatives.</p>
+    </div>
+  </div>
+
+  <div>
+    {% set heading = "Resolver modes" %}{% set desc = "Use filtered mode for protection and open mode for compatibility checks and behavior comparison." %}
     {% include "section-heading.njk" %}
 
     <div class="proto-table-wrap" style="margin-top: 16px;">
       <table class="proto-table">
         <thead>
-          <tr><th>Mode</th><th>Default behavior</th><th>Canary block-test response</th><th>Intended use</th></tr>
+          <tr><th>Mode</th><th>Endpoint</th><th>Expected block-test behavior</th><th>Use</th></tr>
         </thead>
         <tbody>
           <tr>
             <td>Filtered</td>
-            <td>Block known malicious infrastructure</td>
-            <td class="mono-cell">rcode=3 (NXDOMAIN) or 0.0.0.0</td>
-            <td>Default protective mode for users, devices, fleets</td>
+            <td class="mono-cell">{{ site.endpoints.doh }}</td>
+            <td>Blocks {{ site.endpoints.blockTestHost }} with NXDOMAIN, 0.0.0.0, or another configured block response.</td>
+            <td>Default protective DNS layer for users, devices, and fleets.</td>
           </tr>
           <tr>
             <td>Open</td>
-            <td>Permissive resolution, no security filtering</td>
-            <td class="mono-cell">rcode=0 + answer records</td>
-            <td>Compatibility testing, A/B comparison against filtered</td>
+            <td class="mono-cell">{{ site.endpoints.dohOpen }}</td>
+            <td>Resolves {{ site.endpoints.blockTestHost }} normally.</td>
+            <td>Compatibility checks and comparison against filtered behavior.</td>
           </tr>
           <tr>
             <td>Managed</td>
-            <td>Per-tenant policy, profile-based controls</td>
-            <td class="mono-cell">depends on profile policy</td>
-            <td>MSP and enterprise rollouts where policy varies by group</td>
+            <td>Scoped during deployment</td>
+            <td>Depends on agreed policy.</td>
+            <td>MSP and enterprise rollout with policy design and operational support.</td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
 
-  <div>
-    {% set heading = "Why AEGIS PDNS" %}{% set desc = "" %}
-    {% include "section-heading.njk" %}
-
-    <div class="grid2" style="margin-top: 16px;">
-      <div class="card"><h3>EU-based operation</h3><p>Operated from Europe, designed for data residency and GDPR alignment.</p></div>
-      <div class="card"><h3>Modern encrypted transports</h3><p>DoH, DoT, and DoQ across browsers, devices, routers, and managed estates.</p></div>
-      <div class="card"><h3>Filtered and unfiltered modes</h3><p>Run filtered protection by default, or switch to the open resolver to compare behavior.</p></div>
-      <div class="card"><h3>Transparent policy profiles</h3><p>See exactly why each domain is blocked or allowed — no black-box filtering.</p></div>
-      <div class="card"><h3>Suitable across contexts</h3><p>Works for individuals, small businesses, labs, and managed customer profiles.</p></div>
+    <div class="note" style="margin-top: 16px;">
+      <div class="mono">DoT: {{ site.endpoints.dotHost }}:{{ site.endpoints.dotPort }}</div>
+      <div class="mono">DoQ: {{ site.endpoints.doqHost }}:{{ site.endpoints.doqPort }}</div>
+      <div class="mono">Allow canary: {{ site.endpoints.allowTestHost }}</div>
+      <div class="mono">Block canary: {{ site.endpoints.blockTestHost }}</div>
     </div>
   </div>
 
   <div>
-    {% set heading = "Sample DoH query" %}{% set desc = "RFC 8484 DoH wire query against the AEGIS PDNS filtered resolver. The same shape works against any DoH endpoint in the table above." %}
-    {% include "section-heading.njk" %}
-
-    <div class="code-block" style="margin-top: 16px;">
-<span class="lang">shell</span><span class="cmt"># GET form: base64url-encoded binary DNS query as ?dns=…</span>
-curl -sS -H <span class="hl">'accept: application/dns-message'</span> \
-  <span class="hl-purple">'{{ site.endpoints.doh }}?dns=AAABAAABAAAAAAAABmdvb2dsZQNjb20AAAEAAQ'</span> \
-  | xxd | head
-
-<span class="cmt"># POST form: send the binary query in the request body</span>
-curl -sS -X POST -H <span class="hl">'content-type: application/dns-message'</span> \
-  --data-binary @query.bin <span class="hl-purple">{{ site.endpoints.doh }}</span> \
-  | xxd | head</div>
-    <p class="mini" style="margin-top: 8px;">The browser-based test page constructs and parses the binary frames in JavaScript &mdash; <a href="/aegis-pdns/test/">run it live →</a></p>
-  </div>
-
-  <div>
-    {% set heading = "Protocol support" %}{% set desc = "AEGIS PDNS is designed for modern encrypted DNS clients." %}
+    {% set heading = "Who it is for" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
     <div class="grid3" style="margin-top: 16px;">
-      <div class="card"><h3>DoH</h3><p>DNS over HTTPS for browser and app integrations.</p></div>
-      <div class="card"><h3>DoT</h3><p>DNS over TLS for resolver-level encrypted transport.</p></div>
-      <div class="card"><h3>DoQ</h3><p>DNS over QUIC for low-latency encrypted resolver communication.</p></div>
+      <div class="card"><h3>Personal and home</h3><p>People who want encrypted DNS on devices or routers with practical security defaults.</p></div>
+      <div class="card"><h3>SMB and MSP</h3><p>Teams standardizing protective DNS across users, endpoints, and customer environments.</p></div>
+      <div class="card"><h3>Enterprise</h3><p>Security and infrastructure teams that need DNS controls they can test, document, and roll out with governance.</p></div>
     </div>
   </div>
 
   <div>
-    {% set heading = "Who it is for" %}{% set desc = "AEGIS PDNS is segmented for distinct operating needs, not a one-size-fits-all resolver story." %}
+    {% set heading = "Built with visible feed outputs" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
-    <div class="grid3" style="margin-top: 16px;">
-      <div class="card"><h3>Personal and home users</h3><p>People who want encrypted DNS and sensible protection defaults without complex infrastructure work.</p></div>
-      <div class="card"><h3>SMB and MSP operators</h3><p>Teams that need repeatable deployment patterns, policy consistency, and support across many endpoints or client environments.</p></div>
-      <div class="card"><h3>Enterprise teams</h3><p>Security and infrastructure groups that need policy governance, audit-friendly control posture, and integration with broader operational controls.</p></div>
+    <div class="card" style="margin-top: 16px;">
+      <p>AEGIS PDNS is powered by the AEGIS-DNS list pipeline. The public repo publishes list manifests, chunk metadata, SHA-256 hashes, build timing, and release archives.</p>
+      <p>This does not mean every detection decision is perfect. It means the filtering base is visible enough to audit, test, and improve.</p>
+      <div class="btnrow" style="margin-top: 14px;">
+        <a class="btn" href="{{ site.github.aegisDns }}" target="_blank" rel="noopener noreferrer">AEGIS-DNS repo</a>
+        <a class="btn" href="{{ site.github.aegisDnsReleases }}" target="_blank" rel="noopener noreferrer">Releases</a>
+        <a class="btn purple" href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Report DNS issue</a>
+      </div>
     </div>
   </div>
 
   <div>
-    {% set heading = "Setup paths" %}{% set desc = "Choose setup depth based on scope, then expand when policy or governance requirements grow." %}
-    {% include "section-heading.njk" %}
-
-    <div class="grid3" style="margin-top: 16px;">
-      <div class="card"><h3>Browsers and apps</h3><p>Fastest path for individual testing. Configure resolver endpoints directly in supporting browsers or applications.</p></div>
-      <div class="card"><h3>Routers and gateways</h3><p>Apply DNS policy across local networks for home, branch, or small office environments with centralized control.</p></div>
-      <div class="card"><h3>Managed environments</h3><p>Use SecretChip-guided deployment patterns for multi-tenant or enterprise rollouts that require profile design and operational handoff.</p></div>
-    </div>
-
-    <p style="margin-top: 16px;"><a href="/aegis-pdns/setup/">Open the full setup guide →</a></p>
-  </div>
-
-  <div>
-    {% set heading = "Resolver privacy and logging" %}{% set desc = "" %}
+    {% set heading = "Privacy and logging" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
     <div class="card" style="margin-top: 16px;">
       <p>DNS queries sent to the AEGIS PDNS resolver are processed by SecretChip infrastructure. Resolver operation may involve technical logs that include source IP address, timestamp, queried domain, query type, resolver endpoint used, policy decision, response code, and security or abuse metadata.</p>
       <p>Logs are used for service operation, abuse prevention, debugging, security monitoring, and improving filtering quality. <strong>SecretChip does not sell DNS query data.</strong></p>
-      <p>Filtering is best-effort and may produce false positives or false negatives. Reports for false positives, false negatives, abuse, and privacy questions can be submitted via the <a href="/contact/">contact page</a>.</p>
-      <p class="mini" style="margin-top: 10px;">Logs are retained only for as long as necessary for service operation, security, abuse prevention, troubleshooting, and legal obligations. See the <a href="/legal/privacy-notice/">Privacy Notice</a> for the complete data-handling description.</p>
+      <p>Filtering behavior is designed to be testable and explainable. Full per-domain decision lookup is planned for managed or customer portal workflows.</p>
+      <p class="mini">See the <a href="/legal/privacy-notice/">Privacy Notice</a> for the complete data-handling description.</p>
+    </div>
+  </div>
+
+  <div>
+    {% set heading = "Report DNS filtering issues" %}{% set desc = "For DNS filtering reports, use the public AEGIS-DNS issue tracker. This helps keep reports structured, visible, and actionable." %}
+    {% include "section-heading.njk" %}
+
+    <div class="grid2" style="margin-top: 16px;">
+      <div class="card"><h3>False positive report</h3><p>A domain is blocked but should be allowed.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open report chooser</a></p></div>
+      <div class="card"><h3>False negative report</h3><p>A suspicious or malicious domain is not blocked but should be reviewed.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open report chooser</a></p></div>
+      <div class="card"><h3>Abuse report</h3><p>Report misuse, harmful infrastructure, or resolver abuse.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open report chooser</a></p></div>
+      <div class="card"><h3>Blocklist or list-quality issue</h3><p>Report duplicate, malformed, outdated, or incorrectly categorized entries.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open report chooser</a></p></div>
     </div>
   </div>
 
@@ -174,23 +156,16 @@ curl -sS -X POST -H <span class="hl">'content-type: application/dns-message'</sp
     {% include "section-heading.njk" %}
 
     <div class="stack" style="margin-top: 16px;">
-      <details class="faq"><summary>Is AEGIS PDNS the company or the product?</summary><p>AEGIS PDNS is a product. SecretChip is the parent company that develops products and delivers services.</p></details>
-      <details class="faq"><summary>What resolver modes are available?</summary><p>AEGIS PDNS offers filtered and open resolver options, plus managed profile approaches for organizations.</p></details>
-      <details class="faq"><summary>Does AEGIS PDNS support DoH, DoT, and DoQ?</summary><p>Yes. The product supports DoH, DoT, and DoQ for modern encrypted DNS connectivity paths.</p></details>
-      <details class="faq"><summary>Can organizations request managed deployment options?</summary><p>Yes. SecretChip can scope managed deployment and policy profile support for MSP and enterprise environments.</p></details>
-      <details class="faq"><summary>What is the difference between filtered and open resolver options?</summary><p>Filtered mode prioritizes malicious-domain blocking. Open mode is intended for compatibility and use cases where broad filtering is not desired.</p></details>
-      <details class="faq"><summary>Where should I start if I want to test it?</summary><p>Start with the DNS test page for browser-visible checks, then contact SecretChip for deeper validation and rollout planning.</p></details>
+      <details class="faq"><summary>What is filtered?</summary><p>Filtered mode blocks known risky destinations and known malicious infrastructure from curated AEGIS-DNS sources. Filtering is best-effort and may produce false positives or false negatives.</p></details>
+      <details class="faq"><summary>What is not filtered?</summary><p>Open mode is intended for compatibility checks and behavior comparison. Managed policies may differ by customer scope. AEGIS PDNS is not a replacement for endpoint protection, browser security, patching, or user training.</p></details>
+      <details class="faq"><summary>Can I test it before setup?</summary><p>Yes. Use the DNS test page to test selected resolver endpoints and the public canary domains.</p></details>
+      <details class="faq"><summary>Can organizations request managed deployment?</summary><p>Yes. Contact SecretChip for beta access, managed deployment, commercial support, policy design, and operational rollout planning.</p></details>
+      <details class="faq"><summary>Can I validate DoT and DoQ in the browser?</summary><p>No. Standard browser JavaScript cannot directly open raw TCP/853 for DoT or UDP/QUIC/853 for DoQ. The browser test focuses on DoH and public HTTPS canary checks.</p></details>
     </div>
   </div>
 
-  <div class="card">
-    <h3>Test AEGIS PDNS</h3>
-    <p>Run live server-assisted checks for resolver reachability, DoH behavior, and block behavior signals with honest result states.</p>
-    <p style="margin-top: 8px;"><a href="/aegis-pdns/test/">Open DNS test workflow →</a></p>
-  </div>
-
-  {% set ctaTitle = "Validate and deploy with confidence" %}
-  {% set ctaText = "Run real DNS checks, confirm resolver behavior, and engage SecretChip for policy-aware rollout support." %}
+  {% set ctaTitle = "Validate and deploy AEGIS PDNS" %}
+  {% set ctaText = "Run transparent DNS checks, set up your device or network, or contact SecretChip for rollout support." %}
   {% set ctaPrimaryLabel = "Open DNS Test" %}
   {% set ctaPrimaryHref = "/aegis-pdns/test/" %}
   {% set ctaSecondaryLabel = "Contact SecretChip" %}

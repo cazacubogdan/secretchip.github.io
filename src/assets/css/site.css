@@ -28,7 +28,7 @@
   --purple-tint: rgba(104, 10, 252, 0.14);
   --purple-edge: rgba(104, 10, 252, 0.40);
 
-  /* Semantic (verifier states only — not branding) */
+  /* Semantic (verifier states only, not branding) */
   --ok: #57d38c;
   --ok-edge: rgba(87, 211, 140, 0.16);
   --warn: #ffd166;
@@ -542,7 +542,7 @@ details.faq p { margin: 10px 0 0; color: var(--soft); font-size: 13.5px; }
 .field.has-error textarea,
 .field.has-error select { border-color: var(--bad); }
 
-/* Honeypot — must stay invisible to humans */
+/* Honeypot: must stay invisible to humans */
 .hp {
   position: absolute !important;
   left: -10000px !important;
@@ -748,7 +748,7 @@ h2.hero-title .mark {
 }
 
 /* -----------------------------------------------------------
-   Terminal block — fake-live monospace artifact
+   Terminal block: fake-live monospace artifact
    ----------------------------------------------------------- */
 .terminal {
   background: linear-gradient(180deg, rgba(6, 11, 24, 0.95), rgba(10, 17, 36, 0.95));

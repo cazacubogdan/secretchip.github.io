@@ -4,12 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    # Daily rebuild at 05:00 UTC so the homepage reflects yesterday's
-    # AEGIS PDNS resolver activity. Requires TECHNITIUM_API_URL and
-    # TECHNITIUM_API_TOKEN repository secrets; build falls back to
-    # capability text if either is missing or the API is unreachable.
-    - cron: "0 5 * * *"
 
 permissions:
   contents: read
@@ -39,9 +33,6 @@ jobs:
 
       - name: Build with Eleventy
         run: npm run build
-        env:
-          TECHNITIUM_API_URL: ${{ secrets.TECHNITIUM_API_URL }}
-          TECHNITIUM_API_TOKEN: ${{ secrets.TECHNITIUM_API_TOKEN }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v4

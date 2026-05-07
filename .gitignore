@@ -4,13 +4,12 @@ dist/
 .DS_Store
 *.log
 .gitignore
+.git/
 
-
-# Legacy trees — kept locally for reference, excluded from the deployed repo.
-# Will be removed entirely once the new build is verified live.
 dev/
 temp/
 original/
 old/
 CLAUDE.md
 .claude/
+/scripts/

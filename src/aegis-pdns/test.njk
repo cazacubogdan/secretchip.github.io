@@ -2,45 +2,33 @@
 layout: base.njk
 permalink: /aegis-pdns/test/
 title: Test AEGIS PDNS
-description: Run live checks for AEGIS PDNS endpoint reachability, DoH behavior, and policy outcomes.
+description: Run browser-side checks for AEGIS PDNS endpoint reachability, DoH behavior, canary behavior, and best-effort device configuration.
 ---
 
 <section class="stack-xl">
   <div class="fade-up">
-    {% set eyebrow = "AEGIS PDNS" %}{% set heading = "Test AEGIS PDNS behavior" %}{% set asH1 = true %}{% set kicker = "checks: reachability · doh-query · block-test · device-probe" %}{% set desc = "Run practical checks for endpoint reachability, DoH behavior, and policy outcomes. Checks run from your browser against live endpoints. Results are reported as <strong>pass</strong> or <strong>fail</strong> based on real resolver responses." %}
+    {% set eyebrow = "AEGIS PDNS" %}{% set heading = "Test AEGIS PDNS behavior" %}{% set asH1 = true %}{% set kicker = "checks: reachability · doh query · filter behavior · public canaries · device probe" %}{% set desc = "Run practical browser-side checks against the selected AEGIS PDNS DoH endpoint. The checks separate endpoint health, DNS response parsing, filter behavior, public canary reachability, and best-effort device configuration." %}
     {% include "section-heading.njk" %}
   </div>
 
-  <div class="terminal" aria-hidden="true">
-    <div class="terminal-bar">
-      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      <span class="title">aegis-pdns ~ verifier overview</span>
-    </div>
-    <div class="terminal-body"><span class="prompt">$</span> <span class="cmd">verifier --plan</span>
-<span class="dim">→ Resolver mode check (filtered or open)</span>
-  <span class="accent">[1]</span> reachability   <span class="out">https GET <span class="dim">{{ site.endpoints.doh }}</span></span>
-  <span class="accent">[2]</span> doh-query      <span class="out">RFC 8484 binary query for {{ site.endpoints.allowTestHost }} A</span>
-  <span class="accent">[3]</span> block-test     <span class="out">canary {{ site.endpoints.blockTestHost }} → expect block in filtered, answers in open</span>
-<span class="dim">→ Device check — confirms your device is using AEGIS PDNS</span>
-  <span class="accent">[4]</span> device-probe   <span class="out">"On AEGIS PDNS" only when allow loads and block fails</span>
-<span class="prompt">$</span> <span class="cmd">verifier --run</span><span class="cursor"></span></div>
-  </div>
-
   <div class="card" id="verify">
-    <h3 class="section-title">Resolver endpoint selector</h3>
-    <p class="mini">Switch between filtered and open resolver to compare behavior. Filtered should block the canary; open should resolve it normally.</p>
+    <h3 class="section-title">Resolver endpoint tests</h3>
+    <p>The resolver tests check whether a selected AEGIS endpoint works from this browser. They do not prove that your device is configured to use AEGIS PDNS as its current resolver.</p>
 
     <div class="field" style="margin-top: 12px;">
       <label for="resolverSelect">Endpoint under test</label>
       <select id="resolverSelect" name="resolver">
-        <option value="{{ site.endpoints.doh }}" data-mode="filtered">Protected resolver (filtered): {{ site.endpoints.doh }}</option>
-        <option value="{{ site.endpoints.dohOpen }}" data-mode="open">Open resolver option: {{ site.endpoints.dohOpen }}</option>
+        <option value="{{ site.endpoints.doh }}" data-mode="filtered">Filtered: {{ site.endpoints.doh }}</option>
+        <option value="{{ site.endpoints.dohOpen }}" data-mode="open">Open: {{ site.endpoints.dohOpen }}</option>
       </select>
       <span class="hint">Mode: <span id="resolverMode">filtered</span></span>
     </div>
 
     <input type="hidden" id="verifyDohUrl" />
-    <div class="mono mini" id="blockHost" style="margin-top: 8px;">{{ site.endpoints.blockTestHost }}</div>
+    <div class="note" style="margin-top: 12px;">
+      <div class="mono">Allow canary: <span id="allowHost">{{ site.endpoints.allowTestHost }}</span></div>
+      <div class="mono">Block canary: <span id="blockHost">{{ site.endpoints.blockTestHost }}</span></div>
+    </div>
 
     <div class="statusline">
       <span class="pill"><span class="led" id="vLed"></span><span id="vStatus">Idle</span></span>
@@ -48,45 +36,60 @@ description: Run live checks for AEGIS PDNS endpoint reachability, DoH behavior,
 
     <div class="btnrow">
       <button class="btn primary" type="button" onclick="verifyAll()">Run all checks</button>
-      <button class="btn" type="button" onclick="verifyReachability()">Reachability</button>
-      <button class="btn" type="button" onclick="verifyBinaryExample()">DoH query (allow-test canary)</button>
-      <button class="btn" type="button" onclick="verifyBlockTest()">Block / behavior</button>
-      <button class="btn purple" type="button" onclick="verifyBinaryExample('google.com')" title="Optional external sanity check — confirms the resolver can resolve a well-known external domain.">External sanity (google.com)</button>
+      <button class="btn" type="button" onclick="verifyReachability()">Endpoint reachability</button>
+      <button class="btn" type="button" onclick="verifyBinaryExample()">DoH query</button>
+      <button class="btn" type="button" onclick="verifyBlockTest()">Filter behavior</button>
+      <button class="btn" type="button" onclick="verifyPublicCanaries()">Public canaries</button>
       <button class="btn" type="button" onclick="clearVerify()">Reset</button>
     </div>
 
     <div class="grid3" style="margin-top: 18px;">
       <div class="tile">
-        <h3>Reachability</h3>
+        <h3>1. Endpoint reachability</h3>
         <p><strong id="rReach">Not run</strong></p>
         <p class="mini" id="dReach"></p>
       </div>
       <div class="tile">
-        <h3>DoH query</h3>
+        <h3>2. DoH query correctness</h3>
         <p><strong id="rBin">Not run</strong></p>
         <p class="mini" id="dBin"></p>
         <p class="mini" id="dBinExtra"></p>
       </div>
       <div class="tile">
-        <h3>Behavior check</h3>
+        <h3>3. Filter behavior</h3>
         <p><strong id="rBlock">Not run</strong></p>
         <p class="mini" id="dBlock"></p>
         <p class="mini" id="dBlockExtra"></p>
       </div>
+      <div class="tile">
+        <h3>4. Public canary reachability</h3>
+        <p><strong id="rPublic">Not run</strong></p>
+        <p class="mini" id="dPublic"></p>
+        <p class="mini" id="dPublicExtra"></p>
+      </div>
+      <div class="tile">
+        <h3>5. Device configuration</h3>
+        <p><strong id="rDevice">Not run</strong></p>
+        <p class="mini" id="dDevice"></p>
+        <p class="mini" id="dDeviceExtra"></p>
+      </div>
+      <div class="tile">
+        <h3>Result summary</h3>
+        <p><strong id="rSummary">Idle</strong></p>
+        <p class="mini" id="vSummary"></p>
+      </div>
     </div>
-
-    <p class="mini" id="vSummary" style="margin-top: 12px;"></p>
   </div>
 
   <div class="card" id="device-probe">
-    <h3 class="section-title">Device-level probe</h3>
-    <p class="mini">3-host probe: control + allow + block. Reports "On AEGIS PDNS" only when the allow host loads and the block host fails.</p>
+    <h3 class="section-title">Is this device using AEGIS PDNS?</h3>
+    <p>The device probe checks whether this browser or device appears to be configured to use AEGIS PDNS as its current resolver. It is best-effort because browsers do not expose the active system resolver directly.</p>
+    <p class="mini">The resolver tests above check whether a selected AEGIS endpoint works from this browser. The device probe checks whether this browser or device is actually configured to use AEGIS PDNS as its current resolver.</p>
 
     <div class="note">
-      <div class="mini" style="margin-bottom: 6px;">Targets:</div>
-      <div class="mono">DoH: <span id="dohUrl">{{ site.endpoints.doh }}</span></div>
       <div class="mono">Control: <span id="controlHost">{{ site.endpoints.controlHost }}</span></div>
-      <div class="mono">Allow: <span id="allowHost">{{ site.endpoints.allowTestHost }}</span></div>
+      <div class="mono">Allow: <span id="deviceAllowHost">{{ site.endpoints.allowTestHost }}</span></div>
+      <div class="mono">Block: <span id="deviceBlockHost">{{ site.endpoints.blockTestHost }}</span></div>
     </div>
 
     <div class="statusline">
@@ -96,12 +99,12 @@ description: Run live checks for AEGIS PDNS endpoint reachability, DoH behavior,
 
     <div class="grid3" style="margin-top: 16px;">
       <div class="tile">
-        <h3><span class="led" id="dohLed" style="display: inline-block; vertical-align: middle; margin-right: 6px;"></span>DoH</h3>
+        <h3><span class="led" id="dohLed" style="display: inline-block; vertical-align: middle; margin-right: 6px;"></span>Control host</h3>
         <p><strong id="dohText">Not run</strong></p>
         <p class="mini" id="dohDetail"></p>
       </div>
       <div class="tile">
-        <h3><span class="led" id="blockLed" style="display: inline-block; vertical-align: middle; margin-right: 6px;"></span>Filter</h3>
+        <h3><span class="led" id="blockLed" style="display: inline-block; vertical-align: middle; margin-right: 6px;"></span>Block canary</h3>
         <p><strong id="blockText">Not run</strong></p>
         <p class="mini" id="blockDetail"></p>
       </div>
@@ -113,9 +116,16 @@ description: Run live checks for AEGIS PDNS endpoint reachability, DoH behavior,
     </div>
   </div>
 
+  <div class="card">
+    <h3>DoT and DoQ validation</h3>
+    <p>Standard browser JavaScript cannot normally open raw TCP/853 for DoT or UDP/QUIC/853 for DoQ. This page labels DoT and DoQ as configuration endpoints, not browser-tested protocols.</p>
+    <div class="code-block" style="margin-top: 10px;"><span class="lang">shell</span><span class="cmt"># Manual DoT connectivity check</span>
+openssl s_client -connect {{ site.endpoints.dotHost }}:{{ site.endpoints.dotPort }} -servername {{ site.endpoints.dotHost }}</div>
+  </div>
+
   <p class="mini">
-    <a href="/aegis-pdns/">← Back to AEGIS PDNS</a>
+    <a href="/aegis-pdns/">Back to AEGIS PDNS</a>
     <span style="color: rgba(255,255,255,0.20);"> · </span>
-    <a href="{{ site.github.issues }}" target="_blank" rel="noopener noreferrer">Report an issue</a>
+    <a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Report DNS issue</a>
   </p>
 </section>

@@ -6,11 +6,16 @@ description: Set up AEGIS PDNS on Android, iPhone, routers, and browsers.
 ---
 
 <section class="card">
-  <h2>Setup overview</h2>
+  <h2>Set up AEGIS PDNS</h2>
   <p class="subtitle">
-    Pick the device or surface you want to protect. Aegis works wherever encrypted DNS is supported —
-    from system-wide on a router to per-browser inside Firefox.
+    Choose where you want protection:
   </p>
+  <ul class="list">
+    <li>One device: use Android Private DNS, iOS profile, or browser DoH.</li>
+    <li>Whole network: configure your router or gateway.</li>
+    <li>Organization: contact SecretChip for managed rollout planning.</li>
+  </ul>
+  <p>Use the verification section after setup to confirm resolver behavior.</p>
 
   <div class="note">
     <div class="mini" style="margin-bottom: 6px;">Endpoints (copy any):</div>
@@ -95,7 +100,7 @@ Hostname: <span class="hl-purple">{{ site.endpoints.dotHost }}</span></div>
     <li>If your firmware exposes DoQ, point it to <strong>{{ site.endpoints.doqHost }}</strong> on port <strong>{{ site.endpoints.doqPort }}</strong>.</li>
   </ul>
 
-  <div class="code-block" style="margin-top: 10px;"><span class="lang">openwrt</span><span class="cmt"># /etc/config/dhcp — point dnsmasq upstream at AEGIS DoT via stubby/unbound</span>
+  <div class="code-block" style="margin-top: 10px;"><span class="lang">openwrt</span><span class="cmt"># /etc/config/dhcp: point dnsmasq upstream at AEGIS DoT via stubby/unbound</span>
 config server
   option address <span class="hl-purple">'/#/{{ site.endpoints.dotHost }}'</span>
   option port    <span class="hl-purple">'{{ site.endpoints.dotPort }}'</span>
@@ -112,7 +117,7 @@ DNSSEC=allow-downgrade</div>
 
 <section class="card" id="browsers" style="margin-top: 16px;">
   <h3 class="section-title">Browsers</h3>
-  <p>Browser-level DNS-over-HTTPS only protects that browser's traffic — other apps still use the system resolver.</p>
+  <p>Browser-level DNS-over-HTTPS only protects that browser's traffic. Other apps still use the system resolver.</p>
   <ol class="steps">
     <li>Open your browser's privacy settings.</li>
     <li>Find the <strong>DNS over HTTPS</strong> section.</li>
@@ -145,7 +150,7 @@ DoH URL: <span class="hl-purple">{{ site.endpoints.doh }}</span></div>
     <button class="btn" type="button" onclick="verifyReachability()">Reachability</button>
     <button class="btn" type="button" onclick="verifyBinaryExample()">DoH query (allow-test canary)</button>
     <button class="btn" type="button" onclick="verifyBlockTest()">Block test</button>
-    <button class="btn purple" type="button" onclick="verifyBinaryExample('google.com')" title="Optional external sanity check — confirms the resolver can resolve a well-known external domain.">External sanity (google.com)</button>
+    <button class="btn purple" type="button" onclick="verifyBinaryExample('google.com')" title="Optional external sanity check: confirms the resolver can resolve a well-known external domain.">External sanity (google.com)</button>
     <button class="btn" type="button" onclick="clearVerify()">Reset</button>
   </div>
 

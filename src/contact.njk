@@ -2,30 +2,39 @@
 layout: base.njk
 permalink: /contact/
 title: Contact
-description: Direct contact for AEGIS PDNS, services, partnership discussions, and general inquiries.
+description: Contact SecretChip for AEGIS PDNS beta access, managed deployment, commercial questions, partnership, privacy, and general inquiries.
 ---
 
 <section class="stack-xl">
   <div class="fade-up">
-    {% set eyebrow = "Contact" %}{% set heading = "Contact SecretChip" %}{% set asH1 = true %}{% set desc = "Direct contact for AEGIS PDNS, services, partnership discussions, and general inquiries. Share your context and we will route the inquiry to the right team." %}
+    {% set eyebrow = "Contact" %}{% set heading = "Contact SecretChip" %}{% set asH1 = true %}{% set desc = "Use this page for commercial, beta, managed deployment, partnership, privacy, and general inquiries. DNS filtering reports should use the public AEGIS-DNS issue tracker." %}
     {% include "section-heading.njk" %}
+  </div>
+
+  <div>
+    {% set heading = "Report DNS filtering issues" %}{% set desc = "For DNS filtering reports, use the public AEGIS-DNS issue tracker. This helps keep reports structured, visible, and actionable." %}
+    {% include "section-heading.njk" %}
+
+    <div class="grid2" style="margin-top: 16px;">
+      <div class="card"><h3>Report a false positive</h3><p>A domain is blocked but should be allowed.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open AEGIS-DNS report chooser</a></p></div>
+      <div class="card"><h3>Report a false negative</h3><p>A suspicious or malicious domain is not blocked but should be reviewed.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open AEGIS-DNS report chooser</a></p></div>
+      <div class="card"><h3>Report abuse</h3><p>Report misuse, harmful infrastructure, or resolver abuse.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open AEGIS-DNS report chooser</a></p></div>
+      <div class="card"><h3>Report list-quality issue</h3><p>Report duplicate, malformed, outdated, or incorrectly categorized entries.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open AEGIS-DNS report chooser</a></p></div>
+    </div>
   </div>
 
   <div class="grid2">
     <div class="card">
-      <h3>Send us a message</h3>
-      <p class="mini" style="margin: -2px 0 0;">Contact submissions are processed through Tally (a third-party form provider) with built-in validation and abuse protection. See our <a href="/legal/cookie-policy/">Cookie Policy</a> and <a href="/legal/privacy-notice/">Privacy Notice</a> for details.</p>
-
-      <p style="margin-top: 12px; font-size: 14px;">Pick the topic that matches your reason for contact:</p>
-      <ul class="list" style="font-size: 14px;">
-        <li>AEGIS PDNS beta access</li>
-        <li>DNS false positive report</li>
-        <li>DNS false negative report</li>
-        <li>Abuse report</li>
-        <li>Security consulting inquiry</li>
-        <li>Privacy request</li>
-        <li>Partnership or vendor inquiry</li>
+      <h3>Use this form for</h3>
+      <ul class="list">
+        <li>Beta access.</li>
+        <li>Managed deployment.</li>
+        <li>Commercial questions.</li>
+        <li>Partnership or vendor inquiries.</li>
+        <li>Privacy requests.</li>
+        <li>General contact.</li>
       </ul>
+      <p class="mini" style="margin-top: 12px;">Contact submissions are processed through Tally, a third-party form provider with built-in validation and abuse protection. See our <a href="/legal/cookie-policy/">Cookie Policy</a> and <a href="/legal/privacy-notice/">Privacy Notice</a> for details.</p>
 
       <div class="tally-wrap" style="margin-top: 14px;">
         <iframe data-tally-src="{{ site.tallyContactFormUrl }}"
@@ -38,24 +47,20 @@ description: Direct contact for AEGIS PDNS, services, partnership discussions, a
                 title="Contact SecretChip"></iframe>
       </div>
       <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-
-      <p class="mini" style="margin-top: 14px;">
-        Privacy reminder: your submission is processed per our <a href="/legal/privacy-notice/">Privacy Notice</a>.
-      </p>
     </div>
 
     <div class="card">
       <h3>Direct email</h3>
-      <p>For sensitive disclosures or anything that doesn't belong in the form:</p>
+      <p>For sensitive disclosures or anything that does not belong in the form:</p>
       <p class="mono" style="font-size: 14px; color: var(--accent);">
-        <a href="#" data-rot13-mailto="uryyb@frpergpuvc.arg" data-subject="SecretChip — direct">Reveal email address</a>
+        <a href="#" data-rot13-mailto="uryyb@frpergpuvc.arg" data-subject="SecretChip direct contact">Reveal email address</a>
       </p>
 
       <h3 style="margin-top: 22px;">Contact FAQ</h3>
       <div class="stack">
         <details class="faq"><summary>How quickly does SecretChip respond?</summary><p>Initial responses are typically sent within two business days.</p></details>
-        <details class="faq"><summary>Can I use this form for product and services questions?</summary><p>Yes. Select the topic that best matches your request and include your environment details.</p></details>
-        <details class="faq"><summary>Can organizations request managed deployment options?</summary><p>Yes. Use topic selection for Services or AEGIS PDNS and describe scope, timeline, and operating model.</p></details>
+        <details class="faq"><summary>Can organizations request managed deployment options?</summary><p>Yes. Describe the scope, timeline, operating model, and whether you need policy design or rollout support.</p></details>
+        <details class="faq"><summary>Where should DNS list problems go?</summary><p>Use the AEGIS-DNS report chooser for false positives, false negatives, abuse, and list-quality issues.</p></details>
       </div>
     </div>
   </div>

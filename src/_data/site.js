@@ -20,33 +20,33 @@ module.exports = {
     controlHost: "dns.secretchip.net",
   },
   github: {
-    issues: "https://github.com/secretchip/dns.secretchip.net/issues",
+    aegisDns: "https://github.com/secretchip/AEGIS-DNS",
+    aegisDnsReleases: "https://github.com/secretchip/AEGIS-DNS/releases",
+    aegisDnsIssues: "https://github.com/secretchip/AEGIS-DNS/issues/new/choose",
   },
-  // Tally embed — handles contact form submission, validation, and delivery.
+  // Tally embed: handles contact form submission, validation, and delivery.
   tallyContactFormUrl: "https://tally.so/embed/QKxLNY?alignLeft=1&hideTitle=1&dynamicHeight=1&formEventsForwarding=1",
   nav: [
     { label: "Home", href: "/" },
     { label: "AEGIS PDNS", href: "/aegis-pdns/" },
-    { label: "Solutions", href: "/solutions/" },
-    { label: "Services", href: "/services/" },
-    { label: "Company", href: "/company/" },
+    { label: "Test", href: "/aegis-pdns/test/" },
+    { label: "Setup", href: "/aegis-pdns/setup/" },
+    { label: "Status", href: "/status/" },
     { label: "Contact", href: "/contact/" },
-    // TODO: confirm final external status page URL
-    { label: "Status", href: "https://status.secretchip.net", external: true },
   ],
   footerGroups: {
-    Company: [
-      { label: "About SecretChip", href: "/company/" },
-      { label: "Contact", href: "/contact/" },
-    ],
     Product: [
       { label: "AEGIS PDNS", href: "/aegis-pdns/" },
-      { label: "Setup", href: "/aegis-pdns/setup/" },
       { label: "DNS Test", href: "/aegis-pdns/test/" },
+      { label: "Setup", href: "/aegis-pdns/setup/" },
+      { label: "Status", href: "/status/" },
+      { label: "Client Portal", href: "/login/" },
+      { label: "Contact", href: "/contact/" },
     ],
-    Solutions: [
-      { label: "Audience Segments", href: "/solutions/" },
+    More: [
+      { label: "Solutions", href: "/solutions/" },
       { label: "Services", href: "/services/" },
+      { label: "About SecretChip", href: "/company/" },
     ],
     Legal: [
       { label: "Legal Hub", href: "/legal/" },
@@ -57,6 +57,5 @@ module.exports = {
       { label: "Acceptable Use Policy", href: "/legal/acceptable-use-policy/" },
       { label: "Privacy Requests", href: "/legal/privacy-requests/" },
     ],
-    Client: [{ label: "Client Login", href: "/login/" }],
   },
 };

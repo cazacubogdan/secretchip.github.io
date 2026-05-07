@@ -1,13 +1,13 @@
 ---
 layout: base.njk
 permalink: /login/
-title: Client Login
-description: SecretChip client portal — coming soon.
+title: Client Portal
+description: SecretChip client portal, coming soon.
 ---
 
 <section class="stack-xl" style="max-width: 720px; margin: 80px auto 0;">
   <div class="fade-up">
-    {% set eyebrow = "Coming soon" %}{% set heading = "Client Portal" %}{% set asH1 = true %}{% set kicker = "auth: pending · onboarding: pending · sso: pending" %}{% set desc = "Authentication, customer onboarding, service status, reporting, and SSO-backed access are planned for the SecretChip client portal. Current customers — please use the contact page until the portal is available." %}
+    {% set eyebrow = "Coming soon" %}{% set heading = "Client Portal" %}{% set asH1 = true %}{% set kicker = "auth: pending · onboarding: pending · sso: pending" %}{% set desc = "The SecretChip client portal is being prepared." %}
     {% include "section-heading.njk" %}
   </div>
 
@@ -17,16 +17,27 @@ description: SecretChip client portal — coming soon.
       <span class="title">secretchip ~ portal status</span>
     </div>
     <div class="terminal-body"><span class="prompt">$</span> <span class="cmd">portal status</span>
-<span class="dim">→ checking client portal availability…</span>
+<span class="dim">checking client portal availability...</span>
 <span class="purple">[pending]</span> <span class="out">authentication backend</span>
 <span class="purple">[pending]</span> <span class="out">customer onboarding workflow</span>
 <span class="purple">[pending]</span> <span class="out">single sign-on integration</span>
 
-<span class="ok">[ok]</span> <span class="out">contact channel — see /contact/ or email reveal on the contact page</span>
+<span class="ok">[ok]</span> <span class="out">contact channel: see /contact/ or email reveal on the contact page</span>
 <span class="prompt">$</span><span class="cursor"></span></div>
   </div>
 
-  <p style="color: var(--muted); margin-top: 14px;">If you need immediate assistance, contact SecretChip and we will route you through the correct support path.</p>
+  <div class="card" style="margin-top: 18px;">
+    <h3>Planned features</h3>
+    <ul class="list">
+      <li>Customer onboarding.</li>
+      <li>Managed deployment access.</li>
+      <li>Resolver policy information.</li>
+      <li>Service reports.</li>
+      <li>Support workflow.</li>
+      <li>SSO-backed access.</li>
+    </ul>
+    <p>Until the portal is available, use the contact page.</p>
+  </div>
 
   <div class="btnrow" style="justify-content: center; margin-top: 18px;">
     <a class="btn" href="/">Back to homepage</a>
