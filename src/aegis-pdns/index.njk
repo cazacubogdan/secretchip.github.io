@@ -102,13 +102,24 @@ description: AEGIS PDNS is SecretChip protective DNS with encrypted resolver acc
   </div>
 
   <div>
-    {% set heading = "Who it is for" %}{% set desc = "" %}
+    {% set heading = "Plans and use cases" %}{% set desc = "" %}
     {% include "section-heading.njk" %}
 
     <div class="grid3" style="margin-top: 16px;">
-      <div class="card"><h3>Personal and home</h3><p>People who want encrypted DNS on devices or routers with practical security defaults.</p></div>
-      <div class="card"><h3>SMB and MSP</h3><p>Teams standardizing protective DNS across users, endpoints, and customer environments.</p></div>
-      <div class="card"><h3>Enterprise</h3><p>Security and infrastructure teams that need DNS controls they can test, document, and roll out with governance.</p></div>
+      <div class="card"><h3>Personal and home</h3><p>Free for individual use. Use AEGIS PDNS on your own devices or home network. You benefit from shared filtering and intelligence-driven improvements, but without managed support or direct threat intelligence access.</p></div>
+      <div class="card"><h3>SMB and MSP</h3><p>Commercial support for teams and providers that need rollout help, policy guidance, troubleshooting, false-positive handling, and report handling. You benefit from shared intelligence-driven list improvements.</p></div>
+      <div class="card"><h3>Enterprise</h3><p>Commercial threat intelligence and managed support for organizations that need direct intelligence access, environment-specific context, reporting, prioritization, policy design, and operational rollout.</p></div>
+    </div>
+  </div>
+
+  <div>
+    {% set heading = "Shared intelligence model" %}{% set desc = "" %}
+    {% include "section-heading.njk" %}
+
+    <div class="card" style="margin-top: 16px;">
+      <p>AEGIS PDNS is powered by a shared threat intelligence and list-quality pipeline. When SecretChip validates risky infrastructure, false positives, false negatives, abuse patterns, or list-quality issues, the resulting improvements can flow into the public filtering base.</p>
+      <p>This means personal, SMB, MSP, and enterprise users can benefit from improvements to the resolver over time.</p>
+      <p>Everyone benefits from validated filtering improvements. Enterprise customers pay for direct threat intelligence access, environment-specific context, reporting, prioritization, policy design, and operational support.</p>
     </div>
   </div>
 
@@ -160,6 +171,7 @@ description: AEGIS PDNS is SecretChip protective DNS with encrypted resolver acc
       <details class="faq"><summary>What is not filtered?</summary><p>Open mode is intended for compatibility checks and behavior comparison. Managed policies may differ by customer scope. AEGIS PDNS is not a replacement for endpoint protection, browser security, patching, or user training.</p></details>
       <details class="faq"><summary>Can I test it before setup?</summary><p>Yes. Use the DNS test page to test selected resolver endpoints and the public canary domains.</p></details>
       <details class="faq"><summary>Can organizations request managed deployment?</summary><p>Yes. Contact SecretChip for beta access, managed deployment, commercial support, policy design, and operational rollout planning.</p></details>
+      <details class="faq"><summary>Do enterprise customers get exclusive blocking?</summary><p>No. Validated filtering improvements can flow into the shared filtering base. Enterprise customers pay for direct threat intelligence access, reporting, context, prioritization, and support, not for protection that is intentionally withheld from other users.</p></details>
       <details class="faq"><summary>Can I validate DoT and DoQ in the browser?</summary><p>No. Standard browser JavaScript cannot directly open raw TCP/853 for DoT or UDP/QUIC/853 for DoQ. The browser test focuses on DoH and public HTTPS canary checks.</p></details>
     </div>
   </div>
