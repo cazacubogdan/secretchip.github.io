@@ -26,27 +26,59 @@ module.exports = {
   },
   // Tally embed: handles contact form submission, validation, and delivery.
   tallyContactFormUrl: "https://tally.so/embed/QKxLNY?alignLeft=1&hideTitle=1&dynamicHeight=1&formEventsForwarding=1",
+  // Two flagship offerings, presented equally across the site.
+  products: [
+    {
+      key: "aegis",
+      name: "AEGIS PDNS",
+      href: "/aegis-pdns/",
+      tag: "Protective DNS",
+      tagline: "Encrypted, policy-aware DNS that blocks risky domains before a connection is made.",
+      points: [
+        "Encrypted resolver over DoH, DoT, and DoQ",
+        "Filtered and open resolver modes",
+        "Public canary domains to verify behavior",
+        "Deployment support for devices, routers, and fleets",
+      ],
+      ctaLabel: "Explore AEGIS PDNS",
+    },
+    {
+      key: "vciso",
+      name: "vCISO",
+      href: "/vciso/",
+      tag: "Security Leadership",
+      tagline: "On-demand security leadership that builds your strategy, governance, and compliance program.",
+      points: [
+        "Security strategy and multi-year roadmap",
+        "Governance, risk, and compliance (SOC 2, ISO 27001, NIST CSF)",
+        "Risk assessments and gap analysis",
+        "Board and executive reporting",
+      ],
+      ctaLabel: "Explore vCISO",
+    },
+  ],
   nav: [
     { label: "Home", href: "/" },
     { label: "AEGIS PDNS", href: "/aegis-pdns/" },
-    { label: "Test", href: "/aegis-pdns/test/" },
-    { label: "Setup", href: "/aegis-pdns/setup/" },
-    { label: "Status", href: "/status/" },
+    { label: "vCISO", href: "/vciso/" },
+    { label: "Solutions", href: "/solutions/" },
+    { label: "Company", href: "/company/" },
     { label: "Contact", href: "/contact/" },
   ],
   footerGroups: {
-    Product: [
+    Products: [
       { label: "AEGIS PDNS", href: "/aegis-pdns/" },
       { label: "DNS Test", href: "/aegis-pdns/test/" },
       { label: "Setup", href: "/aegis-pdns/setup/" },
+      { label: "vCISO", href: "/vciso/" },
       { label: "Status", href: "/status/" },
-      { label: "Client Portal", href: "/login/" },
-      { label: "Contact", href: "/contact/" },
     ],
-    More: [
+    Company: [
       { label: "Solutions", href: "/solutions/" },
       { label: "Services", href: "/services/" },
       { label: "About SecretChip", href: "/company/" },
+      { label: "Contact", href: "/contact/" },
+      { label: "Client Portal", href: "/login/" },
     ],
     Legal: [
       { label: "Legal Hub", href: "/legal/" },
