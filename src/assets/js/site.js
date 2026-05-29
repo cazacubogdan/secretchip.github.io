@@ -8,7 +8,70 @@
     if (y) y.textContent = String(new Date().getFullYear());
     initRevealEmail();
     initCookieConsent();
+    initAegisStats();
   });
+
+  /* ---------------------------------------------------------
+     AEGIS public stats (read live from the published stats file)
+     Shows LastWeek figures only; LastDay/LastMonth are ignored.
+     --------------------------------------------------------- */
+  function initAegisStats() {
+    var el = $("aegis-stats");
+    if (!el) return;
+    var src = el.getAttribute("data-stats-src");
+    if (!src) return;
+
+    fetch(src, { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.text() : Promise.reject(); })
+      .then(function (txt) {
+        var data = parseIni(txt);
+        var s = data.LastWeek;
+        if (!s || s.status !== "ok") return; // only show when the weekly section is valid
+        var q = toNum(s.totalQueries);
+        var blocked = toNum(s.totalBlocked);
+        var blocklist = toNum(s.blockListZones);
+        var cached = toNum(s.totalCached);
+
+        setStat(el, "queries", q != null ? compact(q) : null);
+        setStat(el, "blocked", blocked != null ? blocked.toLocaleString("en-US") : null);
+        setStat(el, "blocklist", blocklist != null ? compact(blocklist) : null);
+        setStat(el, "cache", (q && cached != null) ? Math.round((cached / q) * 100) + "%" : null);
+        el.hidden = false;
+      })
+      .catch(function () { /* stats unavailable: leave the strip hidden */ });
+  }
+
+  function parseIni(text) {
+    var out = {}, cur = null;
+    String(text).split(/\r?\n/).forEach(function (raw) {
+      var line = raw.trim();
+      if (!line || line.charAt(0) === "#") return;
+      var sec = line.match(/^\[(.+)\]$/);
+      if (sec) { cur = sec[1]; out[cur] = {}; return; }
+      var i = line.indexOf("=");
+      if (i > 0 && cur) out[cur][line.slice(0, i).trim()] = line.slice(i + 1).trim();
+    });
+    return out;
+  }
+
+  function toNum(v) {
+    if (v == null) return null;
+    var n = Number(String(v).replace(/[, ]/g, ""));
+    return isFinite(n) ? n : null;
+  }
+
+  function compact(v) {
+    v = Number(v);
+    if (v >= 1e6) return (v / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
+    if (v >= 1e3) return (v / 1e3).toFixed(1).replace(/\.0$/, "") + "K";
+    return String(v);
+  }
+
+  function setStat(root, key, value) {
+    if (value == null) return;
+    var node = root.querySelector('[data-stat="' + key + '"]');
+    if (node) node.textContent = value;
+  }
 
   /* ---------------------------------------------------------
      Cookie consent (GDPR)
