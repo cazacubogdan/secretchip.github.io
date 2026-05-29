@@ -10,7 +10,10 @@
     {% for item in site.nav %}
       <a class="nav-link" href="{{ item.href }}">{{ item.label }}</a>
     {% endfor %}
-    <a class="login-pill{% if page.url == '/login/' %} is-active{% endif %}" href="/login/">Client Portal</a>
+    <a class="login-pill{% if page.url == '/login/' %} is-active{% endif %}" href="/login/" aria-label="Client portal login">
+      <svg class="login-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      Client Portal
+    </a>
     <a class="btn primary nav-cta" href="/contact/">Contact</a>
   </nav>
 </header>
