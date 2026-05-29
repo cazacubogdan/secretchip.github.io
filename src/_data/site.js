@@ -13,11 +13,6 @@ module.exports = {
     dohOpen: "https://nofilter.dns.secretchip.net/dns-query",
     dotHost: "dns.secretchip.net",
     dotPort: 853,
-    doqHost: "dns.secretchip.net",
-    doqPort: 853,
-    blockTestHost: "dns-block-test.secretchip.net",
-    allowTestHost: "dns-allow-test.secretchip.net",
-    controlHost: "dns.secretchip.net",
   },
   github: {
     aegisDns: "https://github.com/secretchip/AEGIS-DNS",
@@ -26,56 +21,18 @@ module.exports = {
   },
   // Tally embed: handles contact form submission, validation, and delivery.
   tallyContactFormUrl: "https://tally.so/embed/QKxLNY?alignLeft=1&hideTitle=1&dynamicHeight=1&formEventsForwarding=1",
-  // Two flagship offerings, presented equally across the site.
-  products: [
-    {
-      key: "aegis",
-      name: "AEGIS PDNS",
-      href: "/aegis-pdns/",
-      tag: "Protective DNS",
-      tagline: "Encrypted, policy-aware DNS that blocks risky domains before a connection is made.",
-      points: [
-        "Encrypted resolver over DoH, DoT, and DoQ",
-        "Filtered and open resolver modes",
-        "Deployment support for devices, routers, and fleets",
-      ],
-      ctaLabel: "Explore AEGIS PDNS",
-    },
-    {
-      key: "vciso",
-      name: "vCISO",
-      href: "/vciso/",
-      tag: "Security Leadership",
-      tagline: "On-demand security leadership that builds your strategy, governance, and compliance program.",
-      points: [
-        "Security strategy and multi-year roadmap",
-        "Governance, risk, and compliance (SOC 2, ISO 27001, NIST CSF)",
-        "Board and executive reporting",
-      ],
-      ctaLabel: "Explore vCISO",
-    },
-  ],
+  // One-page site: primary nav scrolls to sections; Contact is its own page.
   nav: [
-    { label: "Home", href: "/" },
-    { label: "AEGIS PDNS", href: "/aegis-pdns/" },
-    { label: "vCISO", href: "/vciso/" },
-    { label: "Company", href: "/company/" },
-    { label: "Contact", href: "/contact/" },
+    { label: "AEGIS PDNS", href: "/#aegis" },
+    { label: "vCISO", href: "/#vciso" },
+    { label: "About", href: "/#about" },
   ],
   footerGroups: {
-    Products: [
-      { label: "AEGIS PDNS", href: "/aegis-pdns/" },
-      { label: "DNS Test", href: "/aegis-pdns/test/" },
-      { label: "Setup", href: "/aegis-pdns/setup/" },
-      { label: "vCISO", href: "/vciso/" },
-      { label: "Status", href: "/status/" },
-    ],
-    Company: [
-      { label: "Solutions", href: "/solutions/" },
-      { label: "Services", href: "/services/" },
-      { label: "About SecretChip", href: "/company/" },
+    Explore: [
+      { label: "AEGIS PDNS", href: "/#aegis" },
+      { label: "vCISO", href: "/#vciso" },
+      { label: "About", href: "/#about" },
       { label: "Contact", href: "/contact/" },
-      { label: "Client Portal", href: "/login/" },
     ],
     Legal: [
       { label: "Legal Hub", href: "/legal/" },
