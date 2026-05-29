@@ -32,6 +32,7 @@ module.exports = {
       { label: "AEGIS PDNS", href: "/#aegis" },
       { label: "vCISO", href: "/#vciso" },
       { label: "About", href: "/#about" },
+      { label: "Client Portal", href: "/login/" },
       { label: "Contact", href: "/contact/" },
     ],
     Legal: [
