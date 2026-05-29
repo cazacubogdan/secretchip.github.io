@@ -37,7 +37,6 @@ module.exports = {
       points: [
         "Encrypted resolver over DoH, DoT, and DoQ",
         "Filtered and open resolver modes",
-        "Public canary domains to verify behavior",
         "Deployment support for devices, routers, and fleets",
       ],
       ctaLabel: "Explore AEGIS PDNS",
@@ -51,7 +50,6 @@ module.exports = {
       points: [
         "Security strategy and multi-year roadmap",
         "Governance, risk, and compliance (SOC 2, ISO 27001, NIST CSF)",
-        "Risk assessments and gap analysis",
         "Board and executive reporting",
       ],
       ctaLabel: "Explore vCISO",
@@ -61,7 +59,6 @@ module.exports = {
     { label: "Home", href: "/" },
     { label: "AEGIS PDNS", href: "/aegis-pdns/" },
     { label: "vCISO", href: "/vciso/" },
-    { label: "Solutions", href: "/solutions/" },
     { label: "Company", href: "/company/" },
     { label: "Contact", href: "/contact/" },
   ],

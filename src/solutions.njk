@@ -2,98 +2,47 @@
 layout: base.njk
 permalink: /solutions/
 title: Solutions
-description: Security solutions by audience segment from SecretChip.
+description: SecretChip solutions by audience — protective DNS with AEGIS PDNS and security leadership with vCISO, from home networks to the enterprise.
 ---
 
-<section class="stack-xl">
-  <div class="fade-up">
-    {% set eyebrow = "Solutions" %}{% set heading = "Solutions aligned to operational context" %}{% set asH1 = true %}{% set desc = "SecretChip solutions are organized by audience so teams can evaluate fit quickly, understand where AEGIS PDNS applies, and identify when vCISO leadership and services support are useful." %}
+{% set eyebrow = "Solutions" %}
+{% set heroTitle = "The right fit, whatever your size." %}
+{% set heroLead = "From a single household to a segmented enterprise — protective DNS where it applies, and security leadership when you need it." %}
+{% set heroPrimaryLabel = "Talk to us" %}
+{% set heroPrimaryHref = "/contact/" %}
+{% set heroSecondaryLabel = "View AEGIS PDNS" %}
+{% set heroSecondaryHref = "/aegis-pdns/" %}
+{% include "page-hero.njk" %}
+
+<section class="stack-xl section">
+  <div>
+    {% set eyebrow = "" %}{% set heading = "By audience" %}{% set asH1 = false %}{% set center = true %}{% set desc = "" %}
     {% include "section-heading.njk" %}
+    <div class="grid3" style="margin-top: 24px;">
+      <div class="card">
+        <h3>Personal &amp; Home</h3>
+        <p>Encrypted DNS and low-friction setup for everyday privacy and security.</p>
+        <ul class="checks"><li>Filtered resolver on any device or router</li><li>No extra software</li></ul>
+      </div>
+      <div class="card">
+        <h3>SMB &amp; MSP</h3>
+        <p>Consistent, customer-ready DNS policy with practical operations.</p>
+        <ul class="checks"><li>Per-tenant profiles and rollout paths</li><li>vCISO support for policy and compliance</li></ul>
+      </div>
+      <div class="card">
+        <h3>Enterprise</h3>
+        <p>Governance-aligned DNS controls that fit your operating model.</p>
+        <ul class="checks"><li>Segmented rollout and change management</li><li>vCISO leadership, reporting, and audits</li></ul>
+      </div>
+    </div>
   </div>
 
-  <div class="grid3">
-    <div class="card"><h3>Personal & Home</h3><p>Encrypted DNS defaults, clear policy options, and low-friction setup for privacy and security hygiene.</p></div>
-    <div class="card"><h3>SMB & MSP</h3><p>Multi-tenant policy control, practical operations, and customer-ready deployment paths.</p></div>
-    <div class="card"><h3>Enterprise</h3><p>Governance-aligned DNS controls with integration options for security and infrastructure teams.</p></div>
-  </div>
-
-  <section id="personal-home" class="stack">
-    {% set eyebrow = "" %}{% set heading = "Personal & Home" %}{% set asH1 = false %}{% set kicker = "scope: 1 device → 1 household · ownership: self · effort: minutes" %}{% set desc = "Who it is for: individuals, families, and home-lab operators who want stronger DNS security without enterprise complexity." %}
-    {% include "section-heading.njk" %}
-
-    <div class="kv-table">
-      <div class="kv-key">Default mode</div>
-      <div class="kv-val"><strong>Filtered</strong> resolver: encrypted DoH/DoT with malicious-domain blocking</div>
-      <div class="kv-key">Threat coverage</div>
-      <div class="kv-val">Known malicious infrastructure, plaintext-DNS interception on untrusted networks</div>
-      <div class="kv-key">Fits into</div>
-      <div class="kv-val">Browser, OS resolver, home router, no extra software</div>
-      <div class="kv-key">Typical owner</div>
-      <div class="kv-val">The user themselves</div>
-    </div>
-
-    <div class="grid2">
-      <div class="card"><h3>Problems it solves</h3><p>Block malicious domains and encrypt DNS on every device.</p></div>
-      <div class="card"><h3>How AEGIS PDNS fits</h3><p>Start with direct resolver configuration in browsers, devices, or routers. Use filtered mode by default and open mode when compatibility testing is needed.</p></div>
-    </div>
-    <p class="mini">When services may help: households with advanced networking setups or small local operations that want structured hardening beyond resolver configuration.</p>
-  </section>
-
-  <section id="smb-msp" class="stack">
-    {% set heading = "SMB & MSP" %}{% set kicker = "scope: tens → thousands of endpoints · ownership: shared · effort: weeks" %}{% set desc = "Who it is for: internal IT teams and managed service providers that operate multiple customer environments and need repeatable security controls." %}
-    {% include "section-heading.njk" %}
-
-    <div class="kv-table">
-      <div class="kv-key">Default mode</div>
-      <div class="kv-val"><strong>Filtered</strong> + <strong>Managed</strong> profiles per client tenant</div>
-      <div class="kv-key">Threat coverage</div>
-      <div class="kv-val">Cross-tenant policy drift, inconsistent endpoint configuration, malicious-domain exposure</div>
-      <div class="kv-key">Fits into</div>
-      <div class="kv-val">Per-client router/firewall config, MDM payloads, RMM rollouts</div>
-      <div class="kv-key">Typical owner</div>
-      <div class="kv-val">MSP service desk, SMB IT lead</div>
-    </div>
-
-    <div class="grid2">
-      <div class="card"><h3>Problems it solves</h3><p>Keep DNS policy consistent across all your customer accounts and audit what each one allows.</p></div>
-      <div class="card"><h3>How AEGIS PDNS fits</h3><p>Use resolver mode separation for different client profiles, then move into managed deployment patterns as account volume and policy needs increase.</p></div>
-    </div>
-    <p class="mini">When vCISO or services may help: onboarding design, profile modeling, deployment standards, compliance posture, and operational runbooks for support teams.</p>
-  </section>
-
-  <section id="enterprise" class="stack">
-    {% set heading = "Enterprise" %}{% set kicker = "scope: segmented network · ownership: security + platform · effort: phased program" %}{% set desc = "Who it is for: security, network, and platform teams that need governance-ready DNS controls and integration with existing operating models." %}
-    {% include "section-heading.njk" %}
-
-    <div class="kv-table">
-      <div class="kv-key">Default mode</div>
-      <div class="kv-val"><strong>Managed</strong> profiles aligned to network segments and risk groups</div>
-      <div class="kv-key">Threat coverage</div>
-      <div class="kv-val">Decentralized resolver behavior, plaintext exfil paths, audit gaps in DNS posture</div>
-      <div class="kv-key">Fits into</div>
-      <div class="kv-val">Existing change-management, segmented rollout, SIEM observability where supported</div>
-      <div class="kv-key">Typical owner</div>
-      <div class="kv-val">Security architecture, network engineering, platform team</div>
-    </div>
-
-    <div class="grid2">
-      <div class="card"><h3>Problems it solves</h3><p>Enforce DNS policy across your network and audit what each segment can resolve.</p></div>
-      <div class="card"><h3>How AEGIS PDNS fits</h3><p>Acts as a protective DNS control layer that can be mapped to segmented environments, staged rollout plans, and enterprise change management requirements.</p></div>
-    </div>
-    <p class="mini">When vCISO or services may help: security strategy and governance, board reporting, architecture review, phased implementation planning, integration support, and operational enablement for internal teams.</p>
-  </section>
-
-  <div class="btnrow">
-    <a class="btn primary" href="/aegis-pdns/">View AEGIS PDNS</a>
-    <a class="btn purple" href="/vciso/">View vCISO</a>
-    <a class="btn" href="/contact/">Contact SecretChip</a>
-  </div>
-
-  {% set ctaTitle = "Move from audience fit to rollout" %}
-  {% set ctaText = "Use AEGIS PDNS as your starting control, then bring in SecretChip services when design, integration, or operational depth is required." %}
-  {% set ctaPrimaryLabel = "Explore AEGIS PDNS" %}
-  {% set ctaPrimaryHref = "/aegis-pdns/" %}
-  {% set ctaSecondaryLabel = "Discuss your environment" %}
-  {% set ctaSecondaryHref = "/contact/" %}
+  {% set center = true %}
+  {% set ctaTitle = "Find your rollout path" %}
+  {% set ctaText = "Tell us your environment and goals. We'll recommend a practical starting point across AEGIS PDNS and vCISO." %}
+  {% set ctaPrimaryLabel = "Talk to us" %}
+  {% set ctaPrimaryHref = "/contact/" %}
+  {% set ctaSecondaryLabel = "Explore vCISO" %}
+  {% set ctaSecondaryHref = "/vciso/" %}
   {% include "cta.njk" %}
 </section>

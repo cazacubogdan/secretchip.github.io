@@ -2,125 +2,45 @@
 layout: base.njk
 permalink: /vciso/
 title: vCISO
-description: SecretChip vCISO delivers on-demand security leadership — strategy, governance, risk, and compliance — without the cost of a full-time CISO.
+description: SecretChip vCISO gives you senior security leadership on demand — strategy, governance, and compliance you can pass — without a full-time hire.
 ---
 
-<section class="stack-xl">
-  <div class="fade-up">
-    {% set eyebrow = "vCISO by SecretChip" %}{% set heading = "Executive security leadership, on demand." %}{% set asH1 = true %}{% set kicker = "strategy · governance · risk · compliance · board reporting" %}{% set desc = "A SecretChip vCISO gives your organization seasoned security leadership without the cost and commitment of a full-time hire. We set strategy, build the governance and compliance program, and report progress in language your board understands." %}
-    {% include "section-heading.njk" %}
+{% set eyebrow = "vCISO · Security leadership" %}
+{% set heroTitle = "A CISO when you need one — not a headcount." %}
+{% set heroLead = "Senior security leadership on demand: we build your strategy, run governance and compliance, and report progress your board and customers can trust." %}
+{% set heroPrimaryLabel = "Book a discovery call" %}
+{% set heroPrimaryHref = "/contact/" %}
+{% set heroSecondaryLabel = "Pair with AEGIS PDNS" %}
+{% set heroSecondaryHref = "/aegis-pdns/" %}
+{% include "page-hero.njk" %}
 
-    <div class="card" style="margin-top: 18px;">
-      <p>A virtual Chief Information Security Officer (vCISO) is an experienced security leader who works with your team part-time or on a flexible engagement. You get senior decision-making, a documented program, and clear accountability — sized to where your organization actually is.</p>
-      <div class="btnrow" style="margin-top: 16px;">
-        <a class="btn primary" href="/contact/">Book a discovery call</a>
-        <a class="btn" href="/solutions/">See solutions by audience</a>
-        <a class="btn purple" href="/aegis-pdns/">Pair with AEGIS PDNS</a>
-      </div>
+<section class="stack-xl section">
+  <div>
+    {% set eyebrow = "" %}{% set heading = "What's included" %}{% set asH1 = false %}{% set center = true %}{% set desc = "Shaped to your context — most engagements cover all of these." %}
+    {% include "section-heading.njk" %}
+    <div class="grid2" style="margin-top: 24px;">
+      <div class="card"><h3>A security strategy</h3><p>A maturity assessment and a prioritized, multi-year roadmap aligned to your risk and goals.</p></div>
+      <div class="card"><h3>Compliance you can pass</h3><p>Policies, gap analysis, and a maintained risk register for SOC 2, ISO 27001, and NIST CSF readiness.</p></div>
+      <div class="card"><h3>Risk made visible</h3><p>A clear current-posture assessment and gap report — with owners and next steps, not jargon.</p></div>
+      <div class="card"><h3>Board-ready reporting</h3><p>Recurring, plain-language updates that satisfy leadership, customers, and auditors.</p></div>
     </div>
   </div>
 
   <div>
-    {% set eyebrow = "" %}{% set heading = "What problem it solves" %}{% set asH1 = false %}{% set desc = "" %}
+    {% set heading = "How an engagement works" %}{% set center = true %}{% set desc = "" %}
     {% include "section-heading.njk" %}
-
-    <div class="grid2" style="margin-top: 16px;">
-      <div class="card">
-        <h3>Leadership without the full-time cost</h3>
-        <p>Hiring a full-time CISO is expensive and often premature. A vCISO gives you executive-level security direction scaled to your stage, risk, and budget.</p>
-      </div>
-      <div class="card">
-        <h3>A program, not a pile of tools</h3>
-        <p>Security spend only works inside a strategy. We connect your controls, policies, and roadmap so investments map to real risk instead of guesswork.</p>
-      </div>
+    <div class="grid4" style="margin-top: 24px;">
+      <div class="card"><h3>1 · Discover</h3><p>Assess posture and obligations, then agree on scope.</p></div>
+      <div class="card"><h3>2 · Plan</h3><p>Deliver a roadmap, risk register, and the policies to execute it.</p></div>
+      <div class="card"><h3>3 · Operate</h3><p>Run the program on a regular cadence: governance and tuning.</p></div>
+      <div class="card"><h3>4 · Report</h3><p>Keep leadership aligned and audits simple.</p></div>
     </div>
+    <p class="mini" style="text-align:center; max-width:60ch; margin: 18px auto 0;">A vCISO provides governance and strategy — not 24/7 SOC operations. We design those functions and bring in operational support where you need it.</p>
   </div>
 
-  <div>
-    {% set heading = "What a SecretChip vCISO delivers" %}{% set desc = "Engagements are shaped to your context, but most cover these five areas." %}
-    {% include "section-heading.njk" %}
-
-    <div class="grid2" style="margin-top: 16px;">
-      <div class="card">
-        <h3>Security strategy &amp; roadmap</h3>
-        <p>A current-state maturity assessment, a multi-year roadmap aligned to business objectives and risk tolerance, prioritized investment sequencing, and metrics to measure progress.</p>
-      </div>
-      <div class="card">
-        <h3>Governance, risk &amp; compliance</h3>
-        <p>The execution core of most engagements: custom policy creation, gap analysis, tabletop exercises, and a maintained risk register. Framework coverage including SOC 2, ISO 27001, and NIST CSF 2.0.</p>
-      </div>
-      <div class="card">
-        <h3>Risk assessment &amp; gap analysis</h3>
-        <p>A current-posture assessment against industry-standard frameworks (NIST CSF, CIS Controls) producing a clear gap report of security weaknesses and compliance shortfalls, with owners.</p>
-      </div>
-      <div class="card">
-        <h3>Board &amp; executive reporting</h3>
-        <p>Recurring, plain-language reporting on program status, risk posture, and progress against the roadmap — built for leadership and audit conversations, not just engineers.</p>
-      </div>
-      <div class="card">
-        <h3>Vendor &amp; third-party risk</h3>
-        <p>Evaluation of security tool investments, third-party risk assessment, and assurance that provider outputs align with your risk appetite and compliance requirements.</p>
-      </div>
-      <div class="card">
-        <h3>Protective DNS in the program</h3>
-        <p>Where it fits, we fold AEGIS PDNS in as a concrete protective control — policy design, rollout governance, and validation — so strategy turns into deployed protection.</p>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    {% set heading = "Who it is for" %}{% set desc = "" %}
-    {% include "section-heading.njk" %}
-
-    <div class="grid3" style="margin-top: 16px;">
-      <div class="card"><h3>Growth-stage startups</h3><p>Win enterprise deals and clear security questionnaires with a credible program and SOC 2 / ISO 27001 readiness — without hiring a full security team yet.</p></div>
-      <div class="card"><h3>SMBs &amp; mid-market</h3><p>Get senior security direction, policy, and compliance coverage that fits a lean team and a real budget.</p></div>
-      <div class="card"><h3>MSPs &amp; teams without a CISO</h3><p>Add an accountable leadership layer above existing IT and security operations, or cover an interim gap between full-time hires.</p></div>
-    </div>
-  </div>
-
-  <div>
-    {% set heading = "How an engagement works" %}{% set desc = "" %}
-    {% include "section-heading.njk" %}
-
-    <div class="grid4" style="margin-top: 16px;">
-      <div class="card"><h3>1 · Discover</h3><p>We assess current posture, risks, and obligations against an industry framework and agree on scope.</p></div>
-      <div class="card"><h3>2 · Plan</h3><p>You get a prioritized roadmap, a risk register, and the policies and milestones to execute it.</p></div>
-      <div class="card"><h3>3 · Operate</h3><p>We run the program on a regular cadence: governance, compliance progress, and tuning.</p></div>
-      <div class="card"><h3>4 · Report</h3><p>Recurring executive and board reporting keeps leadership aligned and audits straightforward.</p></div>
-    </div>
-  </div>
-
-  <div>
-    {% set heading = "Scope boundaries" %}{% set desc = "Clarity over noise — here's what a vCISO is and is not." %}
-    {% include "section-heading.njk" %}
-
-    <div class="kv-table" style="margin-top: 16px;">
-      <div class="kv-key">A vCISO does</div>
-      <div class="kv-val"><strong>Governance and strategy:</strong> set risk appetite, design the program, build policy and compliance posture, and report to leadership.</div>
-      <div class="kv-key">A vCISO does not</div>
-      <div class="kv-val">Run your SOC, triage alerts around the clock, or execute hands-on incident response. We design those functions and bring in the right operational support where needed.</div>
-      <div class="kv-key">Engagement model</div>
-      <div class="kv-val">Part-time, interim, or ongoing — flexible to your stage and obligations.</div>
-      <div class="kv-key">Frameworks</div>
-      <div class="kv-val">SOC 2, ISO 27001, NIST CSF 2.0, CIS Controls, and others depending on your regulatory exposure.</div>
-    </div>
-  </div>
-
-  <div>
-    {% set heading = "FAQ" %}{% set desc = "" %}
-    {% include "section-heading.njk" %}
-
-    <div class="stack" style="margin-top: 16px;">
-      <details class="faq"><summary>How is a vCISO different from a full-time CISO?</summary><p>You get the same executive-level direction and accountability, but on a flexible engagement sized to your stage and budget — instead of a single permanent salary and the time it takes to recruit one.</p></details>
-      <details class="faq"><summary>Can a vCISO help us pass SOC 2 or ISO 27001?</summary><p>Yes. Readiness is a core deliverable: gap analysis, policy creation, control implementation guidance, and the documentation auditors expect. We prepare the program; the certification audit itself is performed by an independent assessor.</p></details>
-      <details class="faq"><summary>Do we have to use AEGIS PDNS?</summary><p>No. The vCISO engagement stands on its own. Where protective DNS is a prioritized control, AEGIS PDNS is an easy, transparent option to fold in — but it is never required.</p></details>
-      <details class="faq"><summary>How quickly can we start?</summary><p>Most engagements begin with a short discovery call and a current-posture assessment. Contact SecretChip to scope timing and a model that fits.</p></details>
-    </div>
-  </div>
-
+  {% set center = true %}
   {% set ctaTitle = "Put a security leader behind your program" %}
-  {% set ctaText = "Bring your current obligations and target outcomes. We'll propose a vCISO engagement that fits — and show where AEGIS PDNS strengthens it." %}
+  {% set ctaText = "Most engagements start with a short discovery call and a current-posture assessment. Tell us where you are." %}
   {% set ctaPrimaryLabel = "Book a discovery call" %}
   {% set ctaPrimaryHref = "/contact/" %}
   {% set ctaSecondaryLabel = "Explore AEGIS PDNS" %}

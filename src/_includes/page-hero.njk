@@ -1,0 +1,11 @@
+<section class="page-hero{% if heroWide %} home-hero{% endif %} fade-up">
+  {% if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+  <h1>{{ heroTitle | safe }}</h1>
+  {% if heroLead %}<p class="lead">{{ heroLead | safe }}</p>{% endif %}
+  {% if heroPrimaryHref %}
+  <div class="btnrow">
+    <a class="btn primary" href="{{ heroPrimaryHref }}">{{ heroPrimaryLabel }}</a>
+    {% if heroSecondaryHref %}<a class="btn" href="{{ heroSecondaryHref }}">{{ heroSecondaryLabel }}</a>{% endif %}
+  </div>
+  {% endif %}
+</section>
