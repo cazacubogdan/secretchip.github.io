@@ -142,16 +142,21 @@ nav.site a.nav-link {
 nav.site a.nav-link:hover { color: var(--text-strong); background: var(--bg-soft); text-decoration: none; }
 nav.site a.nav-link.is-active { color: var(--accent); background: var(--accent-tint); }
 nav.site a.login-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   color: var(--accent);
+  background: var(--accent-tint);
   font-size: 13.5px;
   font-weight: 600;
   padding: 8px 14px;
   border-radius: 9px;
   border: 1px solid var(--accent-edge);
   margin-left: 6px;
-  transition: background 150ms ease;
+  transition: background 150ms ease, border-color 150ms ease;
 }
-nav.site a.login-pill:hover { background: var(--accent-tint); text-decoration: none; }
+nav.site a.login-pill:hover { background: #d8e8ff; border-color: var(--accent); text-decoration: none; }
+nav.site a.login-pill .login-ico { width: 14px; height: 14px; flex: 0 0 auto; }
 
 /* -----------------------------------------------------------
    Cards
