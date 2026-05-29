@@ -39,11 +39,11 @@ description: SecretChip is a security partner offering AEGIS PDNS protective DNS
 
     <div class="stats" id="aegis-stats"
          data-stats-src="https://raw.githubusercontent.com/secretchip/AEGIS-DNS/refs/heads/main/public_dns_statistics/stats.txt"
-         hidden aria-label="AEGIS PDNS live statistics">
-      <div class="stat"><span class="stat-num" data-stat="queries">—</span><span class="stat-label">Queries this week</span></div>
-      <div class="stat"><span class="stat-num" data-stat="blocked">—</span><span class="stat-label">Threats blocked</span></div>
-      <div class="stat"><span class="stat-num" data-stat="blocklist">—</span><span class="stat-label">Domains on blocklist</span></div>
-      <div class="stat"><span class="stat-num" data-stat="cache">—</span><span class="stat-label">Cache hit rate</span></div>
+         aria-label="AEGIS PDNS statistics"{% if not aegisStats.available %} hidden{% endif %}>
+      <div class="stat"><span class="stat-num" data-stat="queries">{{ aegisStats.queries or "—" }}</span><span class="stat-label">Queries this week</span></div>
+      <div class="stat"><span class="stat-num" data-stat="blocked">{{ aegisStats.blocked or "—" }}</span><span class="stat-label">Threats blocked</span></div>
+      <div class="stat"><span class="stat-num" data-stat="blocklist">{{ aegisStats.blocklist or "—" }}</span><span class="stat-label">Domains on blocklist</span></div>
+      <div class="stat"><span class="stat-num" data-stat="cache">{{ aegisStats.cache or "—" }}</span><span class="stat-label">Cache hit rate</span></div>
     </div>
 
     <p class="mini" style="text-align: center; margin: 18px auto 0;">
