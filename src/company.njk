@@ -2,49 +2,35 @@
 layout: base.njk
 permalink: /company/
 title: Company
-description: SecretChip company profile and approach.
+description: SecretChip is a security partner with two flagship offerings — AEGIS PDNS for protective DNS and vCISO for security leadership.
 ---
 
-<section class="stack-xl">
-  <div class="fade-up">
-    {% set eyebrow = "Company" %}{% set heading = "SecretChip builds practical security products and services." %}{% set asH1 = true %}{% set kicker = "model: company-first · portfolio: products + services · brand: blue + purple" %}{% set desc = "SecretChip is a company-first security brand with products and services under one operating model. AEGIS PDNS delivers protective DNS; our vCISO service delivers security leadership. This architecture keeps brand clarity strong while leaving room for future products and service lines." %}
-    {% include "section-heading.njk" %}
+{% set eyebrow = "Company" %}
+{% set heroTitle = "A security partner you can hold accountable." %}
+{% set heroLead = "SecretChip brings protective DNS and senior security leadership under one roof — one team, one relationship, clear outcomes." %}
+{% set heroPrimaryLabel = "Talk to us" %}
+{% set heroPrimaryHref = "/contact/" %}
+{% set heroSecondaryLabel = "See our services" %}
+{% set heroSecondaryHref = "/services/" %}
+{% include "page-hero.njk" %}
 
-    <div class="stat-strip" style="margin-top: 22px;">
-      <div class="stat"><span class="stat-num">2</span><span class="stat-label">Flagship offerings</span></div>
-      <div class="stat"><span class="stat-num">Product + Leadership</span><span class="stat-label">Portfolio model</span></div>
-      <div class="stat"><span class="stat-num">EU-focused</span><span class="stat-label">Operating posture</span></div>
-      <div class="stat"><span class="stat-num">Generally available</span><span class="stat-label">Service stage</span></div>
-    </div>
-  </div>
-
+<section class="stack-xl section">
   <div>
-    {% set eyebrow = "" %}{% set heading = "Brand positioning" %}{% set asH1 = false %}{% set desc = "The site structure reflects how SecretChip operates in practice." %}
+    {% set eyebrow = "" %}{% set heading = "What we believe" %}{% set asH1 = false %}{% set center = true %}{% set desc = "We emphasize clarity, realistic implementation, and durable outcomes." %}
     {% include "section-heading.njk" %}
-
-    <div class="grid2" style="margin-top: 16px;">
-      <div class="card"><h3>Company-first by design</h3><p>SecretChip represents the parent brand, accountability layer, and commercial relationship. Product and service pages are connected pathways, not isolated microsites.</p></div>
-      <div class="card"><h3>Product and leadership together</h3><p>AEGIS PDNS demonstrates SecretChip execution standards as a deployable protective control, while the vCISO service puts that and the rest of your controls inside a real security program.</p></div>
-    </div>
-  </div>
-
-  <div>
-    {% set heading = "Principles and approach" %}{% set desc = "SecretChip emphasizes technical clarity, realistic implementation, and durable operating outcomes." %}
-    {% include "section-heading.njk" %}
-
-    <div class="grid2" style="margin-top: 16px;">
+    <div class="grid3" style="margin-top: 24px;">
       <div class="card"><h3>Clarity over noise</h3><p>We say upfront what scope, tradeoffs, and responsibilities each engagement carries.</p></div>
       <div class="card"><h3>Measurable controls</h3><p>We prefer controls that can be validated in real environments over abstract promises.</p></div>
-      <div class="card"><h3>Deployment realism</h3><p>Recommendations are shaped by constraints teams actually face in production.</p></div>
-      <div class="card"><h3>Security-first execution</h3><p>Product behavior and service delivery prioritize secure defaults and operational discipline.</p></div>
+      <div class="card"><h3>Deployment realism</h3><p>Recommendations are shaped by the constraints teams actually face in production.</p></div>
     </div>
   </div>
 
+  {% set center = true %}
   {% set ctaTitle = "Build your rollout with SecretChip" %}
-  {% set ctaText = "Start with a focused conversation on AEGIS PDNS, services delivery, or a combined model aligned to your operating context." %}
+  {% set ctaText = "Start with a focused conversation on AEGIS PDNS, vCISO, or a combined model." %}
   {% set ctaPrimaryLabel = "Contact SecretChip" %}
   {% set ctaPrimaryHref = "/contact/" %}
-  {% set ctaSecondaryLabel = "See Services" %}
-  {% set ctaSecondaryHref = "/services/" %}
+  {% set ctaSecondaryLabel = "Explore vCISO" %}
+  {% set ctaSecondaryHref = "/vciso/" %}
   {% include "cta.njk" %}
 </section>

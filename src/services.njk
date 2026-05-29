@@ -2,77 +2,33 @@
 layout: base.njk
 permalink: /services/
 title: Services
-description: Security services from SecretChip, connected to AEGIS PDNS outcomes.
+description: Security services from SecretChip — vCISO leadership, protective DNS, infrastructure hardening, and operational enablement.
 ---
 
-<section class="stack-xl">
-  <div class="fade-up">
-    {% set eyebrow = "Services" %}{% set heading = "Security services that ship outcomes" %}{% set asH1 = true %}{% set desc = "SecretChip services support architecture, deployment, integration, and operations. Our two flagship offerings — AEGIS PDNS and the vCISO service — anchor this work, and services extend impact around both and beyond them." %}
-    {% include "section-heading.njk" %}
-  </div>
+{% set eyebrow = "Services" %}
+{% set heroTitle = "Expertise that ships outcomes." %}
+{% set heroLead = "Strategy, deployment, and operations — anchored by our two flagship offerings, AEGIS PDNS and vCISO." %}
+{% set heroPrimaryLabel = "Scope an engagement" %}
+{% set heroPrimaryHref = "/contact/" %}
+{% set heroSecondaryLabel = "See vCISO" %}
+{% set heroSecondaryHref = "/vciso/" %}
+{% include "page-hero.njk" %}
 
-  <div class="grid2">
-    <div class="card">
-      <h3>vCISO &amp; Security Consulting</h3>
-      <p>On-demand security leadership and consulting: define scope quickly, align controls to risk, and sequence implementation with practical delivery milestones.</p>
-      <ul class="cli-list">
-        <li>security strategy &amp; roadmap</li>
-        <li>governance, risk &amp; compliance</li>
-        <li>phased implementation roadmap</li>
-        <li>board &amp; executive reporting</li>
-      </ul>
-      <p class="mini" style="margin-top:12px;"><a href="/vciso/">See the full vCISO offering →</a></p>
-    </div>
-    <div class="card">
-      <h3>Protective DNS Services</h3>
-      <p>Plan and operate protective DNS strategies including AEGIS PDNS resolver selection, policy tuning, and rollout governance.</p>
-      <ul class="cli-list">
-        <li>resolver-mode &amp; profile design</li>
-        <li>policy ruleset + canary harness</li>
-        <li>rollout playbook by audience</li>
-        <li>quarterly tuning &amp; review</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Infrastructure Security</h3>
-      <p>Harden adjacent infrastructure controls so DNS improvements are supported by resilient network and platform posture.</p>
-      <ul class="cli-list">
-        <li>network egress &amp; resolver-path audit</li>
-        <li>platform hardening checklist</li>
-        <li>identity + DNS control mapping</li>
-        <li>remediation backlog with owners</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Operational Enablement</h3>
-      <p>Build runbooks, roles, and internal workflows that help teams sustain security outcomes after initial deployment.</p>
-      <ul class="cli-list">
-        <li>incident-response runbook</li>
-        <li>on-call rota &amp; escalation map</li>
-        <li>change-management workflow</li>
-        <li>internal training package</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>How SecretChip works</h3>
-    <p>We scope your needs, build a realistic rollout plan, and help your team operate the controls long-term.</p>
-  </div>
-
+<section class="stack-xl section">
   <div>
-    {% set eyebrow = "" %}{% set heading = "Products and services relationship" %}{% set asH1 = false %}{% set desc = "AEGIS PDNS is a deployable product and vCISO is a leadership service. SecretChip services help clients design, deploy, and integrate both while also supporting broader security needs." %}
+    {% set eyebrow = "" %}{% set heading = "What we do" %}{% set asH1 = false %}{% set center = true %}{% set desc = "" %}
     {% include "section-heading.njk" %}
-
-    <div class="grid3" style="margin-top: 16px;">
-      <div class="card"><h3>Product-led engagement</h3><p>Start with AEGIS PDNS testing and deployment, then add vCISO or consulting support where policy, scale, or compliance complexity appears.</p></div>
-      <div class="card"><h3>Leadership-led engagement</h3><p>Start with a vCISO engagement to set strategy and governance, then adopt AEGIS PDNS when protective DNS becomes a prioritized control domain.</p></div>
-      <div class="card"><h3>Combined model</h3><p>Engage around products and services together for faster implementation, cleaner handoff, and stronger long-term operational consistency.</p></div>
+    <div class="grid2" style="margin-top: 24px;">
+      <div class="card"><h3>vCISO &amp; consulting</h3><p>On-demand security leadership: strategy, governance, risk, and compliance with board-ready reporting. <a href="/vciso/">See the full offering →</a></p></div>
+      <div class="card"><h3>Protective DNS</h3><p>Plan and operate AEGIS PDNS: resolver selection, policy tuning, and rollout governance.</p></div>
+      <div class="card"><h3>Infrastructure security</h3><p>Harden the network and platform controls that support your DNS and identity posture.</p></div>
+      <div class="card"><h3>Operational enablement</h3><p>Runbooks, roles, and workflows so your team sustains outcomes after deployment.</p></div>
     </div>
   </div>
 
+  {% set center = true %}
   {% set ctaTitle = "Scope your next security milestone" %}
-  {% set ctaText = "Bring your current constraints and target outcomes. SecretChip will map a practical plan across services, AEGIS PDNS, or both." %}
+  {% set ctaText = "Bring your constraints and target outcomes. We'll map a practical plan across AEGIS PDNS, vCISO, or both." %}
   {% set ctaPrimaryLabel = "Contact SecretChip" %}
   {% set ctaPrimaryHref = "/contact/" %}
   {% set ctaSecondaryLabel = "Explore AEGIS PDNS" %}

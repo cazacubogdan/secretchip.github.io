@@ -1,32 +1,27 @@
 ---
 layout: base.njk
 title: false
-description: SecretChip builds practical security products and services. AEGIS PDNS delivers protective, encrypted DNS. Our vCISO service provides on-demand security leadership, governance, and compliance.
+description: SecretChip is a security partner for teams that need protective DNS and senior security leadership. Block threats with AEGIS PDNS and lead your program with our vCISO service. Talk to us.
 ---
 
-<section class="home-hero fade-up">
-  <p class="eyebrow">SecretChip · Practical security</p>
-  <h1>Security that's <span class="gradient-text">testable, deployable, and led</span>.</h1>
-  <p class="lead">SecretChip builds practical security products and services. Protect your network with encrypted, policy-aware DNS, and lead your security program with on-demand executive expertise.</p>
-  <div class="btnrow">
-    <a class="btn primary" href="#products">Explore our products</a>
-    <a class="btn" href="/contact/">Talk to SecretChip</a>
-  </div>
-</section>
+{% set heroWide = true %}
+{% set eyebrow = "SecretChip · Practical security" %}
+{% set heroTitle = 'Security that <span class="gradient-text">earns trust — and proves it</span>.' %}
+{% set heroLead = "We help teams block threats and pass scrutiny — with protective DNS you can verify, and senior security leadership on demand. Tell us what you're protecting." %}
+{% set heroPrimaryLabel = "Talk to us" %}
+{% set heroPrimaryHref = "/contact/" %}
+{% set heroSecondaryLabel = "See what we do" %}
+{% set heroSecondaryHref = "#products" %}
+{% include "page-hero.njk" %}
 
 <section id="products" class="section">
-  {% set eyebrow = "What we offer" %}{% set heading = "Two ways to strengthen your security posture" %}{% set asH1 = false %}{% set desc = "A protective DNS product you can test and deploy today, and the security leadership to put it inside a real program." %}
+  {% set eyebrow = "What we do" %}{% set heading = "Two ways we strengthen your security" %}{% set asH1 = false %}{% set center = true %}{% set desc = "Pick the entry point that fits — or run both together." %}
   {% include "section-heading.njk" %}
 
-  <div class="grid2" style="margin-top: 22px;">
+  <div class="grid2" style="margin-top: 24px;">
     {% for p in site.products %}
       <div class="card product-card {{ p.key }}">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <span class="ico {% if p.key == 'aegis' %}blue{% else %}purple{% endif %}" aria-hidden="true">
-            {% if p.key == 'aegis' %}◈{% else %}✦{% endif %}
-          </span>
-          <span class="product-tag">{{ p.tag }}</span>
-        </div>
+        <span class="product-tag">{{ p.tag }}</span>
         <h3>{{ p.name }}</h3>
         <p>{{ p.tagline }}</p>
         <ul class="checks product-feats">
@@ -42,35 +37,24 @@ description: SecretChip builds practical security products and services. AEGIS P
 
 <section class="band section">
   <div class="band-inner">
-    {% set eyebrow = "Why SecretChip" %}{% set heading = "Security you can reason about" %}{% set asH1 = false %}{% set desc = "We favor controls that can be validated in real environments over abstract promises." %}
+    {% set eyebrow = "Why SecretChip" %}{% set heading = "Security you can reason about" %}{% set asH1 = false %}{% set center = true %}{% set desc = "We favor controls you can validate over promises you have to take on faith." %}
     {% include "section-heading.njk" %}
 
-    <div class="grid4" style="margin-top: 22px;">
-      <div class="card"><h3>Testable</h3><p>Public canary domains, resolver modes, and clear deliverables mean you can verify what's happening instead of guessing.</p></div>
-      <div class="card"><h3>Deployable</h3><p>Practical rollout paths for devices, routers, and fleets — and roadmaps your team can actually execute.</p></div>
-      <div class="card"><h3>Transparent</h3><p>Visible filtering pipeline outputs and plain-language reporting. We say upfront what each engagement covers.</p></div>
-      <div class="card"><h3>Led</h3><p>Experienced security leadership connects the product to governance, compliance, and board-level priorities.</p></div>
+    <div class="grid3" style="margin-top: 24px;">
+      <div class="card"><h3>Testable</h3><p>Public test domains and clear deliverables — verify what's happening instead of guessing.</p></div>
+      <div class="card"><h3>Deployable</h3><p>Realistic rollout for devices, routers, and fleets, and roadmaps teams can actually execute.</p></div>
+      <div class="card"><h3>Led</h3><p>Senior security leadership ties it all to governance, compliance, and board priorities.</p></div>
     </div>
   </div>
 </section>
 
 <section class="section">
-  {% set eyebrow = "How it fits together" %}{% set heading = "Product plus leadership" %}{% set asH1 = false %}{% set desc = "Start wherever you are. AEGIS PDNS gives you a protective control today; vCISO makes sure it sits inside a strategy that holds up to scrutiny." %}
-  {% include "section-heading.njk" %}
-
-  <div class="grid3" style="margin-top: 22px;">
-    <div class="card"><h3>Product-led</h3><p>Begin with AEGIS PDNS testing and deployment, then add leadership support when policy, scale, or compliance complexity appears.</p></div>
-    <div class="card"><h3>Leadership-led</h3><p>Begin with a vCISO engagement to set strategy and governance, then adopt AEGIS PDNS as a prioritized protective control.</p></div>
-    <div class="card"><h3>Combined</h3><p>Run product and leadership together for faster implementation, cleaner handoff, and durable operating outcomes.</p></div>
-  </div>
-</section>
-
-<section class="section">
-  {% set ctaTitle = "Tell us what you're protecting" %}
-  {% set ctaText = "Bring your current constraints and target outcomes. We'll map a practical plan across AEGIS PDNS, vCISO, or both." %}
-  {% set ctaPrimaryLabel = "Contact SecretChip" %}
+  {% set center = true %}
+  {% set ctaTitle = "Let's talk about what you're protecting" %}
+  {% set ctaText = "Bring your constraints and goals. We'll map a practical plan across AEGIS PDNS, vCISO, or both — no obligation." %}
+  {% set ctaPrimaryLabel = "Talk to us" %}
   {% set ctaPrimaryHref = "/contact/" %}
-  {% set ctaSecondaryLabel = "See solutions by audience" %}
-  {% set ctaSecondaryHref = "/solutions/" %}
+  {% set ctaSecondaryLabel = "Explore AEGIS PDNS" %}
+  {% set ctaSecondaryHref = "/aegis-pdns/" %}
   {% include "cta.njk" %}
 </section>

@@ -2,39 +2,20 @@
 layout: base.njk
 permalink: /contact/
 title: Contact
-description: Contact SecretChip for AEGIS PDNS beta access, managed deployment, commercial questions, partnership, privacy, and general inquiries.
+description: Talk to SecretChip about AEGIS PDNS protective DNS or a vCISO engagement. We typically reply within two business days.
 ---
 
-<section class="stack-xl">
-  <div class="fade-up">
-    {% set eyebrow = "Contact" %}{% set heading = "Contact SecretChip" %}{% set asH1 = true %}{% set desc = "Use this page for AEGIS PDNS, vCISO, commercial, beta, managed deployment, partnership, privacy, and general inquiries. DNS filtering reports should use the public AEGIS-DNS issue tracker." %}
-    {% include "section-heading.njk" %}
-  </div>
+{% set eyebrow = "Contact" %}
+{% set heroTitle = "Tell us what you're protecting." %}
+{% set heroLead = "Whether you need protective DNS, a vCISO, or both — send a few details and we'll come back with a practical next step. Typically within two business days." %}
+{% include "page-hero.njk" %}
 
-  <div>
-    {% set heading = "Report DNS filtering issues" %}{% set desc = "For DNS filtering reports, use the public AEGIS-DNS issue tracker. This helps keep reports structured, visible, and actionable." %}
-    {% include "section-heading.njk" %}
-
-    <div class="grid2" style="margin-top: 16px;">
-      <div class="card"><h3>Report a false positive</h3><p>A domain is blocked but should be allowed.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open AEGIS-DNS report chooser</a></p></div>
-      <div class="card"><h3>Report a false negative</h3><p>A suspicious or malicious domain is not blocked but should be reviewed.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open AEGIS-DNS report chooser</a></p></div>
-      <div class="card"><h3>Report abuse</h3><p>Report misuse, harmful infrastructure, or resolver abuse.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open AEGIS-DNS report chooser</a></p></div>
-      <div class="card"><h3>Report list-quality issue</h3><p>Report duplicate, malformed, outdated, or incorrectly categorized entries.</p><p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open AEGIS-DNS report chooser</a></p></div>
-    </div>
-  </div>
-
+<section class="section">
   <div class="grid2">
     <div class="card">
-      <h3>Use this form for</h3>
-      <ul class="list">
-        <li>vCISO discovery calls and security leadership engagements.</li>
-        <li>AEGIS PDNS beta access and managed deployment.</li>
-        <li>Commercial questions.</li>
-        <li>Partnership or vendor inquiries.</li>
-        <li>Privacy requests.</li>
-        <li>General contact.</li>
-      </ul>
-      <p class="mini" style="margin-top: 12px;">Contact submissions are processed through Tally, a third-party form provider with built-in validation and abuse protection. See our <a href="/legal/cookie-policy/">Cookie Policy</a> and <a href="/legal/privacy-notice/">Privacy Notice</a> for details.</p>
+      <h3>Send a message</h3>
+      <p class="mini">For vCISO discovery calls, AEGIS PDNS deployment, commercial and partnership questions, privacy requests, and general contact.</p>
+      <p class="mini">Submissions are processed through Tally, a third-party form provider. See our <a href="/legal/cookie-policy/">Cookie Policy</a> and <a href="/legal/privacy-notice/">Privacy Notice</a>.</p>
 
       <div class="tally-wrap" style="margin-top: 14px;">
         <iframe data-tally-src="{{ site.tallyContactFormUrl }}"
@@ -50,17 +31,20 @@ description: Contact SecretChip for AEGIS PDNS beta access, managed deployment, 
     </div>
 
     <div class="card">
-      <h3>Direct email</h3>
-      <p>For sensitive disclosures or anything that does not belong in the form:</p>
+      <h3>Prefer email?</h3>
+      <p>For sensitive disclosures or anything that doesn't belong in a form:</p>
       <p class="mono" style="font-size: 14px; color: var(--accent);">
         <a href="#" data-rot13-mailto="uryyb@frpergpuvc.arg" data-subject="SecretChip direct contact">Reveal email address</a>
       </p>
 
-      <h3 style="margin-top: 22px;">Contact FAQ</h3>
+      <h3 style="margin-top: 22px;">Reporting a DNS issue?</h3>
+      <p class="mini">For false positives, false negatives, abuse, or list-quality reports, use the public tracker so we can act on them quickly.</p>
+      <p><a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Open the AEGIS-DNS report chooser →</a></p>
+
+      <h3 style="margin-top: 22px;">Common questions</h3>
       <div class="stack">
-        <details class="faq"><summary>How quickly does SecretChip respond?</summary><p>Initial responses are typically sent within two business days.</p></details>
-        <details class="faq"><summary>Can organizations request managed deployment options?</summary><p>Yes. Describe the scope, timeline, operating model, and whether you need policy design or rollout support.</p></details>
-        <details class="faq"><summary>Where should DNS list problems go?</summary><p>Use the AEGIS-DNS report chooser for false positives, false negatives, abuse, and list-quality issues.</p></details>
+        <details class="faq"><summary>How quickly will I hear back?</summary><p>Initial responses are typically sent within two business days.</p></details>
+        <details class="faq"><summary>Can we request a vCISO or managed deployment?</summary><p>Yes — share the scope, timeline, and operating model, and whether you need policy design or rollout support.</p></details>
       </div>
     </div>
   </div>
