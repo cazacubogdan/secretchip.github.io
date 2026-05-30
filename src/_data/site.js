@@ -4,6 +4,10 @@ module.exports = {
   productShort: "AEGIS PDNS",
   productMark: "AEGIS PDNS",
   productTagline: "Practical security products and services",
+  // SEO defaults (used by the homepage and as fallbacks).
+  seoTitle: "Protective DNS & Virtual CISO (vCISO) Services | SecretChip",
+  seoDescription:
+    "SecretChip delivers AEGIS PDNS — protective, encrypted DNS (DoH, DoT, DoQ) that blocks malware, phishing and ransomware domains — plus vCISO security leadership for SOC 2, ISO 27001, NIST CSF, GDPR, NIS2 and DORA compliance.",
   domain: "secretchip.net",
   url: "https://secretchip.net",
   contactEmail: "hello@secretchip.net",
