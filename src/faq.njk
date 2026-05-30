@@ -1,0 +1,44 @@
+---
+layout: base.njk
+permalink: /faq/
+title: FAQ
+description: Answers on AEGIS PDNS protective DNS and our virtual CISO (vCISO) service — how DNS filtering over DoH, DoT and DoQ blocks malware, phishing and ransomware, and how we help you meet NIS2, DORA, SOC 2, ISO 27001 and GDPR.
+---
+
+<section class="page-hero fade-up">
+  <p class="eyebrow">FAQ</p>
+  <h1>Protective DNS &amp; vCISO, answered.</h1>
+  <p class="lead">What AEGIS PDNS blocks, how we help you meet NIS2 and the other frameworks, and how to get started.</p>
+</section>
+
+<section class="section">
+  <div class="stack faq-list">
+    {% for item in faqs %}
+    <details class="faq"{% if loop.first %} open{% endif %}>
+      <summary>{{ item.q }}</summary>
+      <p>{{ item.a | safe }}</p>
+    </details>
+    {% endfor %}
+  </div>
+
+  <div class="btnrow" style="justify-content: center; margin-top: 28px;">
+    <a class="btn primary" href="/contact/">Get in touch</a>
+    <a class="btn" href="/#aegis">See what we do</a>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for item in faqs %}
+    {
+      "@type": "Question",
+      "name": {{ item.q | dump | safe }},
+      "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} }
+    }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
