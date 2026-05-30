@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "description": "Static marketing and product site",
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "eleventy",
     "serve": "eleventy --serve --quiet",
     "clean": "rm -rf dist"
