@@ -7,11 +7,19 @@ description: SecretChip delivers AEGIS PDNS protective DNS — encrypted DNS fil
 <section class="page-hero home-hero fade-up">
   <p class="eyebrow">Protective DNS &amp; Virtual CISO services</p>
   <h1>Security you can <span class="gradient-text">verify</span>. Leadership you can <span class="gradient-text">trust</span>.</h1>
-  <p class="lead">Protective DNS you can test yourself — and virtual CISO leadership on demand.</p>
+  <p class="lead">Protective DNS you can test yourself — and virtual CISO leadership on demand. Built for EU teams meeting NIS2.</p>
   <div class="btnrow">
     <a class="btn primary" href="/contact/">Get in touch</a>
     <a class="btn" href="#aegis">See what we do</a>
   </div>
+
+  <ul class="trust-row" aria-label="Why teams choose SecretChip">
+    <li>EU-based</li>
+    <li>NIS2-aligned</li>
+    <li>Encrypted DoH/DoT/DoQ</li>
+    <li>Never sell DNS data</li>
+    <li>Free to test</li>
+  </ul>
 </section>
 
 <section id="about" class="section">
@@ -27,12 +35,18 @@ description: SecretChip delivers AEGIS PDNS protective DNS — encrypted DNS fil
 
 <section id="aegis" class="band section">
   <div class="band-inner">
-    {% set eyebrow = "AEGIS PDNS · Protective DNS" %}{% set heading = "Block malware, phishing &amp; ransomware before they connect." %}{% set center = true %}{% set desc = "Encrypted DNS filtering over DoH, DoT and DoQ — and you can prove it works." %}
+    {% set eyebrow = "AEGIS PDNS · Protective DNS for NIS2 cyber hygiene" %}{% set heading = "Block malware, phishing &amp; ransomware before they connect." %}{% set center = true %}{% set desc = "Encrypted DNS filtering over DoH, DoT and DoQ — a NIS2 cyber-hygiene control you can prove works." %}
     {% include "section-heading.njk" %}
+
+    <ol class="steps" style="margin-top: 24px;">
+      <li><span class="step-n">1</span><span class="step-t">Point your DNS</span><span class="step-d">Set our encrypted resolver — minutes, no agents.</span></li>
+      <li><span class="step-n">2</span><span class="step-t">We filter</span><span class="step-d">Malicious domains blocked at lookup, around the clock.</span></li>
+      <li><span class="step-n">3</span><span class="step-t">You verify</span><span class="step-d">Public test domains confirm exactly what's blocked.</span></li>
+    </ol>
 
     <div class="grid4" style="margin-top: 24px;">
       <div class="card"><h3>Stopped early</h3><p>Risky domains blocked at the DNS layer.</p></div>
-      <div class="card"><h3>Encrypted everywhere</h3><p>Over HTTPS, TLS, and QUIC.</p></div>
+      <div class="card"><h3>Cyber-hygiene control</h3><p>Encrypted over HTTPS, TLS, and QUIC — NIS2 Art. 21 (g)(h).</p></div>
       <div class="card"><h3>Verify it yourself</h3><p>Public test domains confirm what's blocked.</p></div>
       <div class="card"><h3>Private by default</h3><p>We never sell DNS query data.</p></div>
     </div>
@@ -51,6 +65,9 @@ description: SecretChip delivers AEGIS PDNS protective DNS — encrypted DNS fil
       <a href="/aegis.mobileconfig">Apple profile</a> ·
       <a href="{{ site.github.aegisDnsIssues }}" target="_blank" rel="noopener noreferrer">Report a domain</a>
     </p>
+    <p class="mini" style="text-align: center; margin: 6px auto 0;">
+      Built in the open on the <a href="{{ site.github.aegisDns }}" target="_blank" rel="noopener noreferrer">AEGIS-DNS project</a>.
+    </p>
 
     <div class="btnrow" style="justify-content: center; margin-top: 18px;">
       <a class="btn primary" href="/contact/">Protect your team</a>
@@ -59,13 +76,19 @@ description: SecretChip delivers AEGIS PDNS protective DNS — encrypted DNS fil
 </section>
 
 <section id="vciso" class="section">
-  {% set eyebrow = "vCISO · Virtual CISO &amp; security leadership" %}{% set heading = "A CISO when you need one — not a headcount." %}{% set center = true %}{% set desc = "Virtual CISO leadership for security strategy, governance and SOC 2, ISO 27001 &amp; NIST CSF compliance — part-time, interim, or ongoing." %}
+  {% set eyebrow = "vCISO · NIS2-ready security leadership" %}{% set heading = "A CISO when you need one — not a headcount." %}{% set center = true %}{% set desc = "Meet NIS2, SOC 2 and ISO 27001 with virtual CISO leadership for strategy, governance and board accountability — part-time, interim, or ongoing." %}
   {% include "section-heading.njk" %}
+
+  <ol class="steps" style="margin-top: 24px;">
+    <li><span class="step-n">1</span><span class="step-t">Assess</span><span class="step-d">Gap analysis against NIS2 and your target frameworks.</span></li>
+    <li><span class="step-n">2</span><span class="step-t">Plan</span><span class="step-d">A prioritised roadmap with owners and timelines.</span></li>
+    <li><span class="step-n">3</span><span class="step-t">Operate</span><span class="step-d">We run the programme and report to your board.</span></li>
+  </ol>
 
   <div class="grid4" style="margin-top: 24px;">
     <div class="card"><h3>Strategy &amp; roadmap</h3><p>From maturity assessment to a multi-year plan.</p></div>
-    <div class="card"><h3>Compliance you can pass</h3><p>SOC 2, ISO 27001, NIST CSF, GDPR, NIS2, DORA, PCI DSS, and more.</p></div>
-    <div class="card"><h3>Risk made visible</h3><p>A clear gap report, with owners.</p></div>
+    <div class="card"><h3>Compliance you can pass</h3><p>NIS2, DORA, SOC 2, ISO 27001, NIST CSF, GDPR, PCI DSS, and more.</p></div>
+    <div class="card"><h3>NIS2 accountability</h3><p>Art. 20 management duties, Art. 21 measures, Art. 23 reporting.</p></div>
     <div class="card"><h3>Board-ready reporting</h3><p>Plain-language updates for leadership and auditors.</p></div>
   </div>
 
@@ -74,6 +97,22 @@ description: SecretChip delivers AEGIS PDNS protective DNS — encrypted DNS fil
   </div>
 </section>
 
+{% if testimonials.length %}
+<section id="testimonials" class="section">
+  {% set eyebrow = "In their words" %}{% set heading = "Trusted by teams who verify." %}{% set center = true %}{% set desc = "" %}
+  {% include "section-heading.njk" %}
+
+  <div class="grid3" style="margin-top: 24px;">
+    {% for t in testimonials %}
+    <figure class="quote">
+      <blockquote>{{ t.quote }}</blockquote>
+      <figcaption>{{ t.name }}{% if t.role %}, {{ t.role }}{% endif %}{% if t.org %} · {{ t.org }}{% endif %}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 <section id="cta" class="band section">
   <div class="band-inner cta-final">
     <h2>Tell us what you're protecting.</h2>
@@ -81,5 +120,6 @@ description: SecretChip delivers AEGIS PDNS protective DNS — encrypted DNS fil
     <div class="btnrow" style="justify-content: center;">
       <a class="btn primary" href="/contact/">Contact us</a>
     </div>
+    <p class="mini" style="margin-top: 16px;">Still deciding? <a href="/faq/">Read the FAQ</a>.</p>
   </div>
 </section>
