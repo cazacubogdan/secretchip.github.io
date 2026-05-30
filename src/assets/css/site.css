@@ -256,7 +256,8 @@ ul.list li { margin: 7px 0; }
   background: var(--bg-soft);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  margin: 0 -18px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   padding: 48px 18px;
 }
 .band > .band-inner { max-width: var(--max); margin: 0 auto; }
