@@ -344,15 +344,12 @@ footer.site {
 .footer-base { max-width: var(--max); margin: 28px auto 0; padding-top: 18px; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
 .footer-base a { color: var(--muted); }
 .footer-base a:hover { color: var(--accent); }
-.footer-status { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 @media (max-width: 980px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; } .footer-grid .footer-brand { grid-column: 1 / -1; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
 
-/* Status page + badge */
+/* Status page embed */
 .status-embed { width: 100%; max-width: 1000px; margin: 0 auto; }
 .status-embed iframe { width: 100%; aspect-ratio: 1000 / 800; height: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--panel); }
-.status-badge { display: block; border: 0; max-width: 100%; }
-.status-badge-row { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 16px; }
 @media (max-width: 560px) { .status-embed iframe { aspect-ratio: 1000 / 1100; } }
 
 /* -----------------------------------------------------------
