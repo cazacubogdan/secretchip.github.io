@@ -30,6 +30,7 @@ module.exports = {
     { label: "AEGIS PDNS", href: "/#aegis" },
     { label: "vCISO", href: "/#vciso" },
     { label: "About", href: "/#about" },
+    { label: "Status", href: "/status/" },
   ],
   footerGroups: {
     Explore: [
@@ -37,6 +38,7 @@ module.exports = {
       { label: "vCISO", href: "/#vciso" },
       { label: "About", href: "/#about" },
       { label: "FAQ", href: "/faq/" },
+      { label: "Status", href: "/status/" },
       { label: "Client Portal", href: "/login/" },
       { label: "Contact", href: "/contact/" },
     ],
